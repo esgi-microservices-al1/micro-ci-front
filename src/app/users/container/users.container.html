@@ -1,0 +1,4 @@
+<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px">
+    <ci-users-list fxFlex [users]="users" (selectedUser)="getSelectedUser($event)"></ci-users-list>
+    <ci-user-details fxFlex [user]="selectedUser"></ci-user-details>
+</div>

@@ -1,0 +1,43 @@
+<mat-card class="card" fxFlex>
+
+  <mat-card-title>
+    <h3>User Details</h3>
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <div *ngIf="!user" fxLayoutAlign="center center">
+      Select a user
+    </div>
+    <div *ngIf="user">
+      <mat-tab-group>
+        <mat-tab label="User">
+          <mat-list>
+            <mat-list-item>Name: {{user.name}}</mat-list-item>
+            <mat-list-item>Username: {{user.username}}</mat-list-item>
+            <mat-list-item>Email: {{user.email}}</mat-list-item>
+            <mat-list-item>Phone: {{user.phone}}</mat-list-item>
+            <mat-list-item>Website: {{user.website}}</mat-list-item>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Address">
+          <mat-list>
+            <mat-list-item>Street: {{user.address.street}}</mat-list-item>
+            <mat-list-item>Suite: {{user.address.suite}}</mat-list-item>
+            <mat-list-item>City: {{user.address.city}}</mat-list-item>
+            <mat-list-item>Zipcode: {{user.address.zipcode}}</mat-list-item>
+            <mat-list-item>GPS coordinates: {{user.address.geo.lat}} {{user.address.geo.lng}}</mat-list-item>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Company">
+          <mat-list>
+            <mat-list-item>Name: {{user.company.name}}</mat-list-item>
+            <mat-list-item>Catch Phrase: {{user.company.catchPhrase}}</mat-list-item>
+            <mat-list-item>BS: {{user.company.bs}}</mat-list-item>
+          </mat-list>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+  </mat-card-content>
+</mat-card>
