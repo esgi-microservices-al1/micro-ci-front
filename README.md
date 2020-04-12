@@ -34,8 +34,6 @@ Vous pouvez toutefois ajouter les librairies que vous souhaitez tout en ayant co
 
 Afin que les différentes feature teams puissent facilement développer sur un même projet Angular, je vous propose de respecter certaines conventions de code. 
 
-Vous pourrez retrouver un exemple de mise en pratique de ces conventions sur la branche `sample`.
-
 Vous êtes libre de modifier tous les fichiers du projet, pensez à vérifier qu'il n'y a pas d'impact pour les autres teams.
 
 #### Découpage du projet en fonctionnalités
@@ -47,7 +45,7 @@ Vous êtes libre de modifier tous les fichiers du projet, pensez à vérifier qu
 - Un container représente une aggrégation de components pour former une "page" qui aura une route référencée dans le `routing.module.ts`
 - Un container fait appel aux services afin de récupérer une donnée pour ensuite la transmettre aux components (via @Input/@Output)
 - Il est possible que plusieurs feature teams travaillent sur des components différents regrouppés au sein d'un même container
-- Le service sera l'appel réseau en passant par le proxy Angular (proxy.config.json), vous devez donc reporter les routes dans ce fichier
+- Le service fera l'appel réseau en passant par le proxy Angular (proxy.config.json) en local, et la configuration nginx pour la production. Vous devez donc reporter les routes externes dans ces fichiers.
 - Tous les modules de la librairie Angular Material que vous souhaitez utiliser seront référencés dans `material.module.ts`
 - De manière générale, un module pouvant être partagé au sein des différents containers/components doit être exporté dans le `SharedModule` ou avoir son module comme `material.module.ts` 
 

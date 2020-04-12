@@ -12,6 +12,7 @@ export class UsersContainer implements OnInit, OnDestroy {
   users: User[];
   selectedUser: User;
 
+  // Manage Observable cancellation when component is destroyed : https://alligator.io/angular/takeuntil-rxjs-unsubscribe/
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -22,18 +23,18 @@ export class UsersContainer implements OnInit, OnDestroy {
     this.usersService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        value => this.users = value,
+        users => this.users = [...users],
         error => console.error(error)
       );
-  }
-
-  getSelectedUser(event) {
-    this.selectedUser = event;
   }
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.complete();
+  }
+
+  getSelectedUser(event: User): void {
+    this.selectedUser = event;
   }
 
 }
