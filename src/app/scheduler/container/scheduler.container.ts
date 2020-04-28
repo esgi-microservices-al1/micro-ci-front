@@ -7,7 +7,7 @@ import {SchedulerService} from "../services/scheduler.service";
   templateUrl: './scheduler.container.html'
 })
 export class SchedulerContainer implements OnInit {
-  private schedules: Schedule[];
+  schedules: Schedule[];
 
   constructor(private schedulerService: SchedulerService ) {
 
@@ -15,7 +15,6 @@ export class SchedulerContainer implements OnInit {
 
   ngOnInit(): void {
     this.schedules = this.schedulerService.getSchedules();
-    console.log(this.schedules);
   }
 
 

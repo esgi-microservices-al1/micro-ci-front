@@ -8,7 +8,7 @@ import {Schedule, ScheduleStatus} from "../../model/schedule.model";
 })
 export class ScheduleListComponent implements OnInit {
 
-  displayedColumns: string[] =  ['name', 'project', 'scheduledAt', 'createdAt', 'status'];
+  displayedColumns: string[] =  ['name', 'project', 'scheduledBy', 'scheduledAt', 'createdAt', 'status'];
 
   @Input()
   schedules: Schedule[]
