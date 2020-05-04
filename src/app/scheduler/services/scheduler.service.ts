@@ -1,6 +1,7 @@
-import {Schedule, ScheduleStatus} from "../model/schedule.model";
+import {Schedule, ScheduleUnity} from "../model/schedule.model";
 import {Injectable} from "@angular/core";
 import {User} from "../../users/model/user.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,14 +36,31 @@ export class SchedulerService {
 
   };
 
-  private schedules: Schedule[] = [{name: 'Schedule 1', project: 'porject 1', scheduledAt: new Date(),
-                                    scheduledBy: this.user1, createdAt: new Date(), status: ScheduleStatus.Awaiting },
-                                  {name: 'Schedule 2', project: 'porject 2', scheduledAt: new Date(),
-                                    scheduledBy:  this.user1, createdAt: new Date(), status: ScheduleStatus.InProgress },
-                                  {name: 'Schedule 3', project: 'porject 3', scheduledAt: new Date(),
-                                    scheduledBy:  this.user1, createdAt: new Date(), status: ScheduleStatus.Echec },
-                                  {name: 'Schedule 4', project: 'porject 4', scheduledAt: new Date(),
-                                    scheduledBy:  this.user1, createdAt: new Date(), status: ScheduleStatus.Success }];
+
+  private schedules: Schedule[] = [{ name: 'Schedule 1', project: 'porject 1', branch: 'master',
+                                      scheduledAt: new Date(),
+                                      scheduledBy: this.user1,
+                                      interval: { unity: ScheduleUnity.Day,
+                                        frequency: 2}
+                                    },
+                                  {name: 'Schedule 2', project: 'porject 2', branch: 'master',
+                                    scheduledAt: new Date(),
+                                    scheduledBy: this.user1,
+                                    interval: { unity: ScheduleUnity.Hour,
+                                                frequency: 2}
+                                  },
+                                  {name: 'Schedule 3', project: 'porject 3', branch: 'master',
+                                    scheduledAt: new Date(),
+                                    scheduledBy: this.user1,
+                                    interval: { unity: ScheduleUnity.Week,
+                                      frequency: 2}
+                                  },
+                                  {name: 'Schedule 4', project: 'porject 4', branch: 'master',
+                                    scheduledAt: new Date(),
+                                    scheduledBy: this.user1,
+                                    interval: { unity: ScheduleUnity.Minute,
+                                      frequency: 2}
+                                  }];
 
   getSchedules(): Schedule[] {
     return this.schedules;

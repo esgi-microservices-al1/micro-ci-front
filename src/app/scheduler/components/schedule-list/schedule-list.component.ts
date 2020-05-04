@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {Schedule, ScheduleStatus} from "../../model/schedule.model";
+import {Schedule, ScheduleUnity} from "../../model/schedule.model";
 
 @Component({
   selector: 'schedule-list',
@@ -8,7 +8,7 @@ import {Schedule, ScheduleStatus} from "../../model/schedule.model";
 })
 export class ScheduleListComponent implements OnInit {
 
-  displayedColumns: string[] =  ['name', 'project', 'scheduledBy', 'scheduledAt', 'createdAt', 'status'];
+  displayedColumns: string[] =  ['name', 'project', 'branch','scheduledBy', 'scheduledAt', 'frequency'];
 
   @Input()
   schedules: Schedule[]
@@ -17,11 +17,20 @@ export class ScheduleListComponent implements OnInit {
     console.log({schedule : this.schedules});
   }
 
-  getIconStatus(status: ScheduleStatus): string {
-    if( status === ScheduleStatus.Awaiting ) return 'hourglass_empty';
-    else if (status === ScheduleStatus.InProgress) return 'restore';
-    else if (status === ScheduleStatus.Echec) return 'error';
-    return 'check_circle';
+  frequencyText(scheduleUnity :ScheduleUnity, frequency: number): string {
+    let unity;
+    if( scheduleUnity == ScheduleUnity.Day) {
+      unity = 'jour(s)'
+    } else if (scheduleUnity == ScheduleUnity.Hour ) {
+      unity = 'heure(s)'
+    } else if (scheduleUnity == ScheduleUnity.Minute ) {
+      unity = 'minute(s)'
+    } else if (scheduleUnity == ScheduleUnity.Week ) {
+      unity = 'semaine(s)'
+    } else {
+      unity = 'moi(s)'
+    }
+    return `tous les ${ frequency > 1 ? frequency : ''} ${unity}`;
   }
 
 

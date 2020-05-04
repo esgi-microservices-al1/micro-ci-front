@@ -17,8 +17,4 @@ export class SchedulerContainer implements OnInit {
     this.schedules = this.schedulerService.getSchedules();
   }
 
-
-
-
-
 }

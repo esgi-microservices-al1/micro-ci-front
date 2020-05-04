@@ -3,15 +3,20 @@ import {User} from "../../users/model/user.model";
 export interface Schedule {
   name: string,
   project : string, // project name or Object
-  scheduledAt : Date,
+  branch: string,
   scheduledBy : User,
-  status: ScheduleStatus,
-  createdAt : Date,
+  interval: {
+    unity: ScheduleUnity,
+    frequency: number
+  }
+  scheduledAt : Date
 }
 
-export enum ScheduleStatus {
-  Awaiting = 'Awaiting',
-  InProgress = 'In Progress',
-  Success = 'Success',
-  Echec = 'Echec'
+
+export enum ScheduleUnity {
+  Month = 'Month',
+  Week = 'Week',
+  Day = 'Day',
+  Hour = 'Hour',
+  Minute = 'Minute'
 }
