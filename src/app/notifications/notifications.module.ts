@@ -5,6 +5,7 @@ import { ProjectsListComponent } from './components/projects-list/projects-list.
 import { ProjectService } from './services/projects.service';
 import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   imports: [
     SharedModule,
     MatCheckboxModule,
+    MatButtonModule,
   ],
 })
 export class NotificationsModule { }

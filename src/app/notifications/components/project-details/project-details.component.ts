@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { Project } from '../../models/project.model';
 import { UserNotification } from '../../models/userNotification.model';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ProjectService } from '../../services/projects.service';
 
 @Component({
     selector: 'ci-project-details',
@@ -16,9 +17,11 @@ export class ProjectDetailsComponent implements OnChanges {
 
     columns: string[] = ['notified', 'id', 'name', 'username', 'email'];
 
+    constructor(private projectService: ProjectService) {}
+
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.project.currentValue) {
-            this.checkedUsers = changes.project.currentValue.notifiedUsers;
+            this.checkedUsers = [...changes.project.currentValue.notifiedUsers];
         }
     }
 
@@ -32,5 +35,21 @@ export class ProjectDetailsComponent implements OnChanges {
         } else {
             this.checkedUsers.splice(this.checkedUsers.indexOf(user), 1);
         }
+    }
+
+    get updateButtonDisabled(): boolean {
+        return this.project ?
+            this.checkedUsers.every((x: UserNotification) => this.project.notifiedUsers.includes(x)) &&
+            this.project.notifiedUsers.length === this.checkedUsers.length
+        : true;
+    }
+
+    update() {
+        this.project.notifiedUsers = [...this.checkedUsers];
+        this.projectService.update(this.project).subscribe(
+            (result: number) => result === 1 ?
+                console.log('updated') :
+                console.error('error')
+        );
     }
 }

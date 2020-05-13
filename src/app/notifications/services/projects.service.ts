@@ -4,7 +4,6 @@ import { Observable, Subscriber } from 'rxjs';
 import { Project } from '../models/project.model';
 import { UserNotification } from '../models/userNotification.model';
 
-const projectSamples: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 const userSamples: UserNotification[] = [
     {id: 1, name: 'User n°1', username: 'Patrick-J-1', email: 'patrick.user1@myges.fr'},
     {id: 2, name: 'User n°2', username: 'Patrick-J-2', email: 'patrick.user2@myges.fr'},
@@ -27,26 +26,45 @@ const userSamples: UserNotification[] = [
     {id: 19, name: 'User n°19', username: 'Patrick-J-19', email: 'patrick.user19@myges.fr'}
 ];
 
+const projectSamples: Project[] = [
+    {id: 1, name: 'Project n°1', notifiedUsers: userSamples.slice(1)},
+    {id: 2, name: 'Project n°2', notifiedUsers: userSamples.slice(2)},
+    {id: 3, name: 'Project n°3', notifiedUsers: userSamples.slice(3)},
+    {id: 4, name: 'Project n°4', notifiedUsers: userSamples.slice(4)},
+    {id: 5, name: 'Project n°5', notifiedUsers: userSamples.slice(5)},
+    {id: 6, name: 'Project n°6', notifiedUsers: userSamples.slice(6)},
+    {id: 7, name: 'Project n°7', notifiedUsers: userSamples.slice(7)},
+    {id: 8, name: 'Project n°8', notifiedUsers: userSamples.slice(8)},
+    {id: 9, name: 'Project n°9', notifiedUsers: userSamples.slice(9)},
+    {id: 10, name: 'Project n°10', notifiedUsers: userSamples.slice(10)},
+    {id: 11, name: 'Project n°11', notifiedUsers: userSamples.slice(11)},
+    {id: 12, name: 'Project n°12', notifiedUsers: userSamples.slice(12)},
+    {id: 13, name: 'Project n°13', notifiedUsers: userSamples.slice(13)},
+    {id: 14, name: 'Project n°14', notifiedUsers: userSamples.slice(14)},
+    {id: 15, name: 'Project n°15', notifiedUsers: userSamples.slice(15)}
+];
+
 @Injectable()
 export class ProjectService {
     constructor(private httpService: HttpClient) {}
 
     get(): Observable<Project[]> {
         return new Observable<Project[]>(subscriber => {
-            subscriber.next(
-                Array.from<number, Project>(projectSamples, (x: number) =>
-                    ({
-                        id: x,
-                        name: `Project n°${x}`,
-                        notifiedUsers: userSamples.slice(x)
-                    } as Project)
-                )
-            );
+            subscriber.next(projectSamples);
             subscriber.complete();
         });
     }
 
     getAllUsers(): Observable<UserNotification[]> {
         return new Observable<UserNotification[]>(subscriber => subscriber.next(userSamples));
+    }
+
+    update(project: Project): Observable<number> {
+        return new Observable<number>(subscriber => {
+            projectSamples.slice(projectSamples.findIndex(p => p.id === project.id), 1);
+            projectSamples.push(project);
+            subscriber.next(1);
+            subscriber.complete();
+        });
     }
 }
