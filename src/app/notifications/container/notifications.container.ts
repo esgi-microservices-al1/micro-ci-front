@@ -7,7 +7,7 @@ import { ProjectService } from '../services/projects.service';
 })
 export class NotificationsContainer {
     projects: Project[];
-    constructor(private projectService: ProjectService){
+    constructor(private projectService: ProjectService) {
         this.projectService.get().subscribe((projects: Project[]) => {
             this.projects = [...projects];
         });
