@@ -1,2 +1,4 @@
-<h1>Notifications Component</h1>
-<ci-projects-list [projects]='projects'></ci-projects-list>
+<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px">
+    <ci-projects-list fxFlex [projects]='projects' (selectedProject)='getSelectedProject($event)'></ci-projects-list>
+    <ci-project-details fxFlex [project]='selectedProject'></ci-project-details>
+</div>
