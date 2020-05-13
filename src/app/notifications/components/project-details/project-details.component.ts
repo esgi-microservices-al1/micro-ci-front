@@ -3,8 +3,8 @@ import { Project } from '../../models/project.model';
 
 @Component({
     selector: 'ci-project-details',
-    templateUrl: 'project-details.html',
-    styleUrls: ['project-details.scss']
+    templateUrl: 'project-details.component.html',
+    styleUrls: ['project-details.component.scss']
 })
 export class ProjectDetailsComponent {
     @Input() project: Project;

@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../../models/project.model';
 @Component({
     selector: 'ci-projects-list',
-    templateUrl: './projects-list.html',
-    styleUrls: ['./projects-list.scss']
+    templateUrl: './projects-list.component.html',
+    styleUrls: ['./projects-list.component.scss']
 })
 export class ProjectsListComponent {
 
