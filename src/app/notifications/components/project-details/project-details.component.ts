@@ -11,25 +11,26 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class ProjectDetailsComponent implements OnChanges {
     @Input() project: Project;
     @Input() users: UserNotification[];
-    
+
     checkedUsers: UserNotification[] = [];
-    
+
     columns: string[] = ['notified', 'id', 'name', 'username', 'email'];
 
     ngOnChanges(changes: SimpleChanges): void {
-        if(changes.project.currentValue){
+        if (changes.project.currentValue) {
             this.checkedUsers = changes.project.currentValue.notifiedUsers;
         }
     }
 
-    isNotified(user: UserNotification){
+    isNotified(user: UserNotification) {
         return this.project.notifiedUsers.some(((x: UserNotification) => x.id === user.id));
     }
 
-    showOptions(user: UserNotification, event: MatCheckboxChange){
-        if(event.checked)
+    showOptions(user: UserNotification, event: MatCheckboxChange) {
+        if (event.checked) {
             this.checkedUsers.push(user);
-        else
+        } else {
             this.checkedUsers.splice(this.checkedUsers.indexOf(user), 1);
+        }
     }
 }

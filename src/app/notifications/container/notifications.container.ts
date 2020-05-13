@@ -19,7 +19,7 @@ export class NotificationsContainer {
 
         this.projectService.getAllUsers().subscribe((users: UserNotification[]) => {
             this.users = [...users];
-        })
+        });
     }
 
     getSelectedProject(event: Project): void {
