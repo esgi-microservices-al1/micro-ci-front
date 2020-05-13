@@ -9,7 +9,7 @@ const routes: Routes = [{
   component: UsersContainer
 },
 {
-  path:'notifications',
+  path: 'notifications',
   component: NotificationsContainer
 },
 ];

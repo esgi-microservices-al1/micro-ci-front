@@ -8,7 +8,6 @@ import { ProjectDetailsComponent } from './components/project-details/project-de
 @NgModule({
   declarations: [
       NotificationsContainer,
-      
       ProjectsListComponent,
       ProjectDetailsComponent,
   ],
