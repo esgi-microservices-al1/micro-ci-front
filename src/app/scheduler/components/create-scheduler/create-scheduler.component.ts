@@ -1,9 +1,9 @@
 import {Component, OnInit, NgModule, Input} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 
 NgModule( {
 
-})
+});
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'create-scheduler',
@@ -17,13 +17,6 @@ export class CreateSchedulerComponent implements OnInit {
   @Input() intervalUnit: string;
   @Input() frequency: bigint;
   @Input() startDate: Date;
-  unitOptions = [ { name : 'Month' },
-    { name : 'Week' },
-    { name : 'Day' },
-    { name : 'Hour' },
-    { name : 'Minute' }
-  ];
-  textCopy: string;
   disableForm = true;
 
   ngOnInit(): void {
@@ -34,11 +27,9 @@ export class CreateSchedulerComponent implements OnInit {
     this.disableForm = value;
   }
 
-  onClick(text: string): void {
-    // Get all the datas and save them
-    console.log('Click submit.');
-    this.textCopy = 'changed to ' + text;
-    this.disableForm = true;
+  onClick(): void {
+    // TODO : Get all the data and save them
+    this.disableForm = false;
   }
 
 }
