@@ -1,22 +1,29 @@
-import {User} from "../../users/model/user.model";
+import {User} from '../../users/model/user.model';
 
 export interface Schedule {
-  name: string,
-  project : string, // project name or Object
-  branch: string,
-  scheduledBy : User,
-  interval: {
-    unity: ScheduleUnity,
-    frequency: number
+  name: string;
+  project: string; // project name or Object
+  scheduledAt: Date;
+  scheduledBy: User;
+  status: ScheduleStatus;
+  createdAt: Date;
+}
+
+export enum ScheduleStatus {
+  Awaiting = 'Awaiting',
+  InProgress = 'In Progress',
+  Success = 'Success',
+  Echec = 'Echec'
+}
+/*
+{
+  name: String,     //unique
+  project : String, // ID ?
+  branch : String, // ID ?
+  interval : {
+     unity : String // ['Month','week','Day', 'Hour', 'Minute'
+     frequency : Number
   }
-  scheduledAt : Date
+  startDate: Date
 }
-
-
-export enum ScheduleUnity {
-  Month = 'Month',
-  Week = 'Week',
-  Day = 'Day',
-  Hour = 'Hour',
-  Minute = 'Minute'
-}
+ */

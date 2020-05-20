@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {Schedule} from "../model/schedule.model";
-import {SchedulerService} from "../services/scheduler.service";
+import {Component, OnInit} from '@angular/core';
+import {Schedule} from '../model/schedule.model';
+import {SchedulerService} from '../services/scheduler.service';
 
 
 @Component({
@@ -16,5 +16,4 @@ export class SchedulerContainer implements OnInit {
   ngOnInit(): void {
     this.schedules = this.schedulerService.getSchedules();
   }
-
 }

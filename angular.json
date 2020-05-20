@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "micro-ci-front"
+  "defaultProject": "micro-ci-front",
+  "cli": {
+    "analytics": false
+  }
 }

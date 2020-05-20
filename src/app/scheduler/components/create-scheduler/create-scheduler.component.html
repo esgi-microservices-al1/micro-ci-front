@@ -1,0 +1,41 @@
+<div class="entire-form">
+  <div class="title-form">
+    <p>New Schedule Form</p>
+  </div>
+  <form [formGroup]="scheduleForm">
+    <div class="project-infos">
+      <p class="project-title">Project : </p>
+      <label>Name : </label>
+      <input type="text" class="project-name" [attr.disabled]="disableForm" [(ngModel)]="scheduleName">
+      <label> Branch : </label>
+      <input type="text" class="project-branch" [attr.disabled]="disableForm" [(ngModel)]="branchName">
+    </div>
+
+    <div class="interval-infos">
+      <p class="interval-title">Interval : </p>
+      <label>Unit : </label>
+      <select formControlName="unitControl" [attr.disabled]="disableForm" [(ngModel)]="intervalUnit">
+        <option value="">---</option>
+        <option value="">Month</option>
+        <option value="">Week</option>
+        <option value="">Day</option>
+        <option value="">Hour</option>
+        <option value="">Minute</option>
+        <!--      <option *ngFor="let unit of unitOptions"[unitName]="unit.name"></option>-->
+      </select>
+      <label> Frequency : </label>
+      <input type="text" class="frequency" [attr.disabled]="disableForm" [(ngModel)]="frequency">
+    </div>
+
+    <div class="date-infos">
+      <label>Start Date : </label>
+      <input type="date" class="start-date" [attr.disabled]="disableForm" [(ngModel)]="startDate">
+    </div>
+
+    <button mat-raised-button
+            color="primary"
+            (click)="onClick(scheduleName)"
+            [disabled]="disableForm">Submit
+    </button>
+  </form>
+</div>
