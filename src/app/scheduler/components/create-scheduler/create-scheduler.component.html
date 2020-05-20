@@ -1,40 +1,62 @@
-<div class="entire-form">
+<form class="entire-form" [formGroup]="scheduleForm" (ngSubmit)="onSubmit(scheduleForm.value)">
+
   <div class="title-form">
     <p>New Schedule Form</p>
   </div>
-  <form [formGroup]="scheduleForm">
-    <div class="project-infos">
-      <p class="project-title">Project : </p>
-      <label>Name : </label>
-      <input type="text" class="project-name" disabled="disableForm" [(ngModel)]="scheduleName">
-      <label> Branch : </label>
-      <input type="text" class="project-branch" disabled="disableForm" [(ngModel)]="branchName">
+
+  <div>
+    <p class="project-title">Project : </p>
+    <div>
+      <label for="projectName">
+        Project Name :
+      </label>
+      <input id="projectName" type="text" formControlName="projectName">
     </div>
 
-    <div class="interval-infos">
-      <p class="interval-title">Interval : </p>
-      <label>Unit : </label>
-      <select formControlName="unitControl" disabled="disableForm" [(ngModel)]="intervalUnit">
-        <option value="">---</option>
-        <option value="">Month</option>
-        <option value="">Week</option>
-        <option value="">Day</option>
-        <option value="">Hour</option>
-        <option value="">Minute</option>
-        <!--      <option *ngFor="let unit of unitOptions"[unitName]="unit.name"></option>-->
-      </select>
-      <label> Frequency : </label>
-      <input type="text" class="frequency" disabled="disableForm" [(ngModel)]="frequency">
+    <div>
+      <label for="branchName">
+        Project Branch :
+      </label>
+      <input id="branchName" type="text" formControlName="branchName">
     </div>
+  </div>
 
-    <div class="date-infos">
-      <label>Start Date : </label>
-      <input type="date" class="start-date" disabled="disableForm" [(ngModel)]="startDate">
+
+  <div>
+    <p class="interval-title">Interval : </p>
+    <label>
+      Frequency Unit :
+    </label>
+    <select id="frequency-unit" formControlName="frequencyUnit">
+      <option value="">---</option>
+      <option value="">Month</option>
+      <option value="">Week</option>
+      <option value="">Day</option>
+      <option value="">Hour</option>
+      <option value="">Minute</option>
+    </select>
+
+    <div>
+      <label for="frequency">
+        Frequency :
+      </label>
+      <input id="frequency" type="text" formControlName="frequency">
     </div>
+  </div>
 
-    <button mat-raised-button
-            color="primary"
-            (click)="onClick()">Submit
-    </button>
-  </form>
-</div>
+
+  <div>
+    <p class="date-title">Date : </p>
+    <label for="startDate">
+      Start Date :
+    </label>
+    <input id="startDate" type="date" formControlName="startDate">
+  </div>
+
+  <button class="button"
+          type="submit"
+          mat-raised-button
+          color="primary"
+          formControlName="submit">Submit</button>
+
+</form>

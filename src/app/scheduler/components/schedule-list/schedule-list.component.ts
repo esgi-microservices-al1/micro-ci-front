@@ -14,7 +14,7 @@ export class ScheduleListComponent implements OnInit {
   displayedColumns: string[] =  ['name', 'project', 'scheduledBy', 'scheduledAt', 'createdAt', 'status'];
 
   @Input()
-  schedules: Schedule[]
+  schedules: Schedule[];
 
   @Input()
   createSchedule: CreateSchedulerComponent;
@@ -25,8 +25,8 @@ export class ScheduleListComponent implements OnInit {
     console.log({schedule : this.schedules});
   }
 
-  setDisableForm(value: boolean) {
-    this.createSchedule.setDisableForm(value);
+  setDisableForm() {
+    this.createSchedule.setDisableForm(false);
   }
 
   getIconStatus(status: ScheduleStatus): string {

@@ -1,9 +1,8 @@
-import {Component, OnInit, NgModule, Input} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 
-NgModule( {
+import {SchedulerService} from '../../services/scheduler.service';
 
-});
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'create-scheduler',
@@ -11,25 +10,41 @@ NgModule( {
   styleUrls: ['./create-scheduler.component.scss']
 })
 export class CreateSchedulerComponent implements OnInit {
-  scheduleForm: FormGroup;
-  @Input() scheduleName: string;
-  @Input() branchName: string;
-  @Input() intervalUnit: string;
-  @Input() frequency: bigint;
-  @Input() startDate: Date;
-  disableForm = true;
+
+  constructor(
+    private schedulerService: SchedulerService,
+    private formBuilder: FormBuilder,
+  ) {
+    this.scheduleForm = this.formBuilder.group({
+      projectName: [{ value: '', disabled: true }],
+      branchName: [{ value: '', disabled: true }],
+      frequencyUnit: [{ value: '', disabled: true }],
+      frequency: [{ value: '', disabled: true }],
+      startDate: [{ value: '', disabled: true }],
+      submit: [{ value: '', disabled: true }]
+    });
+  }
+
+  scheduler;
+  scheduleForm;
+
 
   ngOnInit(): void {
-    this.setDisableForm(true);
+    this.scheduler = this.schedulerService.getSchedules();
   }
 
   setDisableForm(value: boolean): void {
-    this.disableForm = value;
+    if (value) {
+      this.scheduleForm.disable();
+    } else {
+      this.scheduleForm.enable();
+    }
   }
 
-  onClick(): void {
-    // TODO : Get all the data and save them
-    this.disableForm = false;
+  onSubmit(schedulerData) {
+    // TODO : Save the data in the model and send them to the list
+    this.scheduleForm.reset();
+    this.setDisableForm(true);
+    console.warn('Your scheduler has been created', schedulerData);
   }
-
 }
