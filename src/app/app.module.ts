@@ -6,8 +6,10 @@ import { RoutingModule } from './routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
 import { UsersModule, UsersContainer } from './users';
-import { EventsBuildComponent } from './events-build/events-build.component';
 import { Routes, RouterModule } from '@angular/router';
+import {EventsBuildComponent} from "./events/events-build/events-build.component";
+import {MatTableModule} from "@angular/material/table";
+
 
 const routes: Routes = [
   { path: 'users', component: UsersContainer},
@@ -16,9 +18,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppContainer, 
+    AppContainer,
     EventsBuildComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -26,13 +28,14 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // <-- debugging purposes only
+      {enableTracing: true} // <-- debugging purposes only
     ),
 
 
     CoreModule,
 
-    UsersModule
+    UsersModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppContainer]
