@@ -5,17 +5,30 @@ import { AppContainer } from './app.container';
 import { RoutingModule } from './routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
-import { UsersModule } from './users';
+import { UsersModule, UsersContainer } from './users';
+import { EventsBuildComponent } from './events-build/events-build.component';
+import { Routes, RouterModule } from '@angular/router';
 
+const routes: Routes = [
+  { path: 'users', component: UsersContainer},
+  { path: 'build' , component: EventsBuildComponent},
+];
 
 @NgModule({
   declarations: [
-    AppContainer
+    AppContainer, 
+    EventsBuildComponent,
+    
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
+
 
     CoreModule,
 
