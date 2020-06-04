@@ -10,8 +10,9 @@ import { ProjectModule } from './project';
 import { NotificationsModule } from './notifications';
 import {EventsModule} from './events/events-module';
 import {SchedulerModule} from './scheduler';
-
+import { CommandsModule } from './commands/commands.module';
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -23,14 +24,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     RoutingModule,
     BrowserAnimationsModule,
-
     CoreModule,
     ProjectModule,
     UsersModule,
     NotificationsModule,
     EventsModule,
     SchedulerModule,
-    HttpClientModule
+    HttpClientModule,
+    CommandsModule
   ],
   providers: [],
   bootstrap: [AppContainer]

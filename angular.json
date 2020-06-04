@@ -126,8 +126,12 @@
       }
     }
   },
+<<<<<<< HEAD
   "defaultProject": "micro-ci-front",
   "cli": {
     "analytics": false
   }
+=======
+  "defaultProject": "micro-ci-front"
+>>>>>>> e9eecc9... afficher project on commands view
 }
