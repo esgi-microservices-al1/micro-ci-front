@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppContainer
+    AppContainer,
   ],
   imports: [
     BrowserModule,

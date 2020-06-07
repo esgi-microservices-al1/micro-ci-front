@@ -1,4 +1,4 @@
-import { Project } from 'src/app/commands/model/commande.model';
+import { Project, Command } from 'src/app/commands/model/commande.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CommandService } from 'src/app/commands/services/command.service';
@@ -29,7 +29,6 @@ import { OnDestroy, OnInit, Component } from '@angular/core';
           },
           err => console.error("Project Get err: " +  err)
         );
-
     }
   
     ngOnDestroy(): void {
