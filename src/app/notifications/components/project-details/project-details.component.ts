@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit, OnChanges, SimpleChanges, EventEmitter, Output} from '@angular/core';
 import {Project} from '../../models/project.model';
 import {UserNotification} from '../../models/userNotification.model';
 import {MatCheckboxChange} from '@angular/material/checkbox';
@@ -12,16 +12,17 @@ import {ProjectService} from '../../services/projects.service';
 export class ProjectDetailsComponent implements OnChanges {
   @Input() project: Project;
   @Input() users: UserNotification[];
+  @Output() selectedProject: EventEmitter<Project> = new EventEmitter<Project>();
 
   checkedUsers: UserNotification[] = [];
 
-  columns: string[] = ['notified', 'id', 'name', 'username', 'email'];
+  columns: string[] = ['notified', 'id', 'emailAddress'];
 
   constructor(private projectService: ProjectService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.project.currentValue) {
+    if (changes.project && changes.project.currentValue) {
       this.checkedUsers = [...changes.project.currentValue.notifiedUsers];
     }
   }
@@ -48,9 +49,14 @@ export class ProjectDetailsComponent implements OnChanges {
   update() {
     this.project.notifiedUsers = [...this.checkedUsers];
     this.projectService.update(this.project).subscribe(
-      (result: number) => result === 1 ?
-        console.log('updated') :
-        console.error('error')
+      (result: Project) => {
+        if (result) {
+          this.selectedProject.emit(result);
+          window.alert('Project Updated');
+        } else {
+          window.alert('An error has occured');
+        }
+      }
     );
   }
 }
