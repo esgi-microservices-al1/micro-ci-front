@@ -17,12 +17,17 @@ export class NotificationsContainer {
       this.projects = [...projects];
     });
 
-    this.projectService.getAllUsers().subscribe((users: UserNotification[]) => {
-      this.users = [...users];
-    });
+    this.getAllUsers();
   }
 
   getSelectedProject(event: Project): void {
     this.selectedProject = event;
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
+    this.projectService.getAllUsers().subscribe((users: UserNotification[]) => {
+      this.users = [...users];
+    });
   }
 }

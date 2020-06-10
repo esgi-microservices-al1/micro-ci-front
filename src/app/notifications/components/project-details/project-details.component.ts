@@ -14,6 +14,8 @@ export class ProjectDetailsComponent implements OnChanges {
   @Input() users: UserNotification[];
   @Output() selectedProject: EventEmitter<Project> = new EventEmitter<Project>();
 
+  newUserEmail = '';
+
   checkedUsers: UserNotification[] = [];
 
   columns: string[] = ['notified', 'id', 'emailAddress'];
@@ -28,7 +30,7 @@ export class ProjectDetailsComponent implements OnChanges {
   }
 
   isNotified(user: UserNotification) {
-    return this.project.notifiedUsers.some(((x: UserNotification) => x.id === user.id));
+    return !user.id || this.project.notifiedUsers.some(((x: UserNotification) => x.id === user.id));
   }
 
   showOptions(user: UserNotification, event: MatCheckboxChange) {
@@ -44,6 +46,18 @@ export class ProjectDetailsComponent implements OnChanges {
       this.checkedUsers.every((x: UserNotification) => this.project.notifiedUsers.includes(x)) &&
       this.project.notifiedUsers.length === this.checkedUsers.length
       : true;
+  }
+
+  newUserClick() {
+    if (this.newUserEmail === '') {
+      window.alert('Email address cannot be Empty');
+    } else {
+      const newUser = {id: null, emailAddress: this.newUserEmail};
+      this.users.push(newUser);
+      this.users = [... this.users];
+      this.showOptions(newUser, {checked: true, source: null});
+      this.newUserEmail = '';
+    }
   }
 
   update() {
