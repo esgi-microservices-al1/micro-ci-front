@@ -1,7 +1,7 @@
-import { UserNotification } from './userNotification.model';
+import {UserNotification} from './userNotification.model';
 
 export interface Project {
-    id: number;
-    name: string;
-    notifiedUsers?: UserNotification[];
+  id: number;
+  name: string;
+  notifiedUsers?: UserNotification[];
 }

@@ -1,28 +1,28 @@
-import { Component } from '@angular/core';
-import { Project } from '../models/project.model';
-import { ProjectService } from '../services/projects.service';
-import { UserNotification } from '../models/userNotification.model';
+import {Component} from '@angular/core';
+import {Project} from '../models/project.model';
+import {ProjectService} from '../services/projects.service';
+import {UserNotification} from '../models/userNotification.model';
 
 @Component({
-    templateUrl: 'notifications.container.html'
+  templateUrl: 'notifications.container.html'
 })
 export class NotificationsContainer {
-    projects: Project[];
-    users: UserNotification[];
+  projects: Project[];
+  users: UserNotification[];
 
-    selectedProject: Project;
+  selectedProject: Project;
 
-    constructor(private projectService: ProjectService) {
-        this.projectService.get().subscribe((projects: Project[]) => {
-            this.projects = [...projects];
-        });
+  constructor(private projectService: ProjectService) {
+    this.projectService.get().subscribe((projects: Project[]) => {
+      this.projects = [...projects];
+    });
 
-        this.projectService.getAllUsers().subscribe((users: UserNotification[]) => {
-            this.users = [...users];
-        });
-    }
+    this.projectService.getAllUsers().subscribe((users: UserNotification[]) => {
+      this.users = [...users];
+    });
+  }
 
-    getSelectedProject(event: Project): void {
-        this.selectedProject = event;
-    }
+  getSelectedProject(event: Project): void {
+    this.selectedProject = event;
+  }
 }
