@@ -4,6 +4,11 @@
     <p>New Schedule Form</p>
   </div>
 
+  <label for="schedulerName">
+    Scheduler Name :
+  </label>
+  <input id="schedulerName" type="text" formControlName="schedulerName">
+
   <div>
     <p class="project-title">Project : </p>
     <div>
@@ -50,7 +55,7 @@
     <label for="startDate">
       Start Date :
     </label>
-    <input id="startDate" type="date" formControlName="startDate">
+    <input id="startDate" type="datetime-local" formControlName="startDate">
   </div>
 
   <button class="button"

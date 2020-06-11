@@ -18,6 +18,7 @@ export class CreateSchedulerComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.scheduleForm = this.formBuilder.group({
+      schedulerName: [{value: '', disabled: false}],
       projectName: [{ value: '', disabled: false }],
       branchName: [{ value: '', disabled: false }],
       frequencyUnit: [{ value: '', disabled: false }],
@@ -50,7 +51,8 @@ export class CreateSchedulerComponent implements OnInit {
     let interval: IntervalModel;
     interval = new IntervalModel(schedulerData.frequencyUnit, schedulerData.frequency);
     let scheduleDto: ScheduleModelDto;
-    scheduleDto = new ScheduleModelDto(schedulerData.projectName,
+    scheduleDto = new ScheduleModelDto(schedulerData.schedulerName,
+      schedulerData.projectName,
       schedulerData.projectBranch,
       interval,
       schedulerData.startDate);

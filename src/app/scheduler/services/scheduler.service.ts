@@ -1,4 +1,4 @@
-import {Schedule, ScheduleStatus} from '../model/schedule.model';
+import {Schedule, ScheduleModelDto, ScheduleStatus} from '../model/schedule.model';
 import {Injectable} from '@angular/core';
 import {User} from '../../users/model/user.model';
 
@@ -51,6 +51,10 @@ export class SchedulerService {
   addSchedule(schedule: string[]): void {
     // this.schedules.push({name: schedule.pop(), project: schedule.pop(), scheduledAt : new Date(schedule.pop()),
     //                      scheduledBy: schedule.pop(), createdAt: schedule.pop(), scheduledAt : schedule.pop()});
+  }
+
+  sentToApi(scheduleDto: ScheduleModelDto) {
+
   }
 
 }
