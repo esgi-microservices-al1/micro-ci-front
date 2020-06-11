@@ -1,4 +1,5 @@
 import {User} from '../../users/model/user.model';
+import {IntervalModel} from './interval.model';
 
 export interface Schedule {
   name: string;
@@ -14,6 +15,26 @@ export enum ScheduleStatus {
   InProgress = 'In Progress',
   Success = 'Success',
   Echec = 'Echec'
+}
+
+export class ScheduleModelDto {
+  projectName: string;
+  projectBranch: string;
+  interval: IntervalModel;
+  startDate: Date;
+
+  constructor(projectName, projectBranch, interval, startDate) {
+    this.projectName = projectName ;
+    this.projectBranch = projectBranch ;
+    this.interval = interval ;
+    this.startDate = startDate ;
+  }
+
+  toString() {
+    return JSON.stringify(this) ;
+  }
+
+
 }
 /*
 {

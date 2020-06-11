@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 
 import {SchedulerService} from '../../services/scheduler.service';
+import {ScheduleModelDto} from "../../model/schedule.model";
+import {IntervalModel} from "../../model/interval.model";
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -16,12 +18,12 @@ export class CreateSchedulerComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.scheduleForm = this.formBuilder.group({
-      projectName: [{ value: '', disabled: true }],
-      branchName: [{ value: '', disabled: true }],
-      frequencyUnit: [{ value: '', disabled: true }],
-      frequency: [{ value: '', disabled: true }],
-      startDate: [{ value: '', disabled: true }],
-      submit: [{ value: '', disabled: true }]
+      projectName: [{ value: '', disabled: false }],
+      branchName: [{ value: '', disabled: false }],
+      frequencyUnit: [{ value: '', disabled: false }],
+      frequency: [{ value: '', disabled: false }],
+      startDate: [{ value: '', disabled: false }],
+      submit: [{ value: '', disabled: false }]
     });
   }
 
@@ -44,7 +46,15 @@ export class CreateSchedulerComponent implements OnInit {
   onSubmit(schedulerData) {
     // TODO : Save the data in the model and send them to the list
     this.scheduleForm.reset();
-    this.setDisableForm(true);
+    this.setDisableForm(false);
+    let interval: IntervalModel;
+    interval = new IntervalModel(schedulerData.frequencyUnit, schedulerData.frequency);
+    let scheduleDto: ScheduleModelDto;
+    scheduleDto = new ScheduleModelDto(schedulerData.projectName,
+      schedulerData.projectBranch,
+      interval,
+      schedulerData.startDate);
+    console.log(scheduleDto.toString());
     console.warn('Your scheduler has been created', schedulerData);
   }
 }
