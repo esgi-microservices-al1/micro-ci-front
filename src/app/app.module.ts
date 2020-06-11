@@ -8,6 +8,9 @@ import { CoreModule } from './core';
 import { UsersModule } from './users';
 import {SchedulerModule} from './scheduler';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import {SchedulerModule} from './scheduler';
     CoreModule,
 
     UsersModule,
-    SchedulerModule
+    SchedulerModule,
+
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppContainer]

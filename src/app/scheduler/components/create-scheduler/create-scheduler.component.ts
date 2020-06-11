@@ -57,6 +57,7 @@ export class CreateSchedulerComponent implements OnInit {
       interval,
       schedulerData.startDate);
     console.log(scheduleDto.toString());
+    this.schedulerService.postSchedule(scheduleDto).subscribe();
     console.warn('Your scheduler has been created', schedulerData);
   }
 }
