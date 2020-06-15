@@ -4,6 +4,7 @@ import {FormBuilder} from '@angular/forms';
 import {SchedulerService} from '../../services/scheduler.service';
 import {ScheduleModelDto} from "../../model/schedule.model";
 import {IntervalModel} from "../../model/interval.model";
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -12,11 +13,15 @@ import {IntervalModel} from "../../model/interval.model";
   styleUrls: ['./create-scheduler.component.scss']
 })
 export class CreateSchedulerComponent implements OnInit {
+  scheduler;
+  scheduleForm;
 
   constructor(
     private schedulerService: SchedulerService,
     private formBuilder: FormBuilder,
+    private toastService: ToastService
   ) {
+
     this.scheduleForm = this.formBuilder.group({
       schedulerName: [{value: '', disabled: false}],
       projectName: [{ value: '', disabled: false }],
@@ -27,10 +32,6 @@ export class CreateSchedulerComponent implements OnInit {
       submit: [{ value: '', disabled: false }]
     });
   }
-
-  scheduler;
-  scheduleForm;
-
 
   ngOnInit(): void {
     this.scheduler = this.schedulerService.getSchedules();
@@ -45,6 +46,8 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   onSubmit(schedulerData) {
+    this.toastService.createToast('coucou', null);
+
     // TODO : Save the data in the model and send them to the list
     this.scheduleForm.reset();
     this.setDisableForm(false);
@@ -60,4 +63,6 @@ export class CreateSchedulerComponent implements OnInit {
     this.schedulerService.postSchedule(scheduleDto).subscribe();
     console.warn('Your scheduler has been created', schedulerData);
   }
+
+
 }
