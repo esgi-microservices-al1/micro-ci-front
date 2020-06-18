@@ -11,7 +11,7 @@ import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.com
 })
 export class ScheduleListComponent implements OnInit {
 
-  displayedColumns: string[] =  ['name', 'project', 'scheduledBy', 'scheduledAt', 'createdAt', 'status'];
+  displayedColumns: string[] =  ['name', 'project', 'branch', 'startDate'];
 
   @Input()
   schedules: Schedule[];
@@ -27,17 +27,6 @@ export class ScheduleListComponent implements OnInit {
 
   setDisableForm() {
     this.createSchedule.setDisableForm(false);
-  }
-
-  getIconStatus(status: ScheduleStatus): string {
-    if ( status === ScheduleStatus.Awaiting ) {
-      return 'hourglass_empty';
-    } else if (status === ScheduleStatus.InProgress) {
-      return 'restore';
-    } else if (status === ScheduleStatus.Echec) {
-      return 'error';
-    }
-    return 'check_circle';
   }
 
 }

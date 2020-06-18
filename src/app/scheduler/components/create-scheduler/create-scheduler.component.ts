@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 
 import {SchedulerService} from '../../services/scheduler.service';
 import {ScheduleModelDto} from '../../model/schedule.model';
 import {IntervalModel} from '../../model/interval.model';
 import {ToastService} from '../../services/toast.service';
+import {SchedulerContainer} from '../..';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -23,6 +24,7 @@ export class CreateSchedulerComponent implements OnInit {
     'HOUR',
     'MINUTE'
   ];
+  @Output() updateScheduleList = new EventEmitter();
 
   constructor(
     private schedulerService: SchedulerService,
@@ -69,7 +71,9 @@ export class CreateSchedulerComponent implements OnInit {
       interval,
       schedulerData.startDate);
     console.log(scheduleDto.toString());
-    this.schedulerService.postSchedule(scheduleDto).subscribe();
+    this.schedulerService.postSchedule(scheduleDto).subscribe((res) => {
+      this.updateScheduleList.emit();
+    });
     console.warn('Your scheduler has been created', schedulerData);
   }
 

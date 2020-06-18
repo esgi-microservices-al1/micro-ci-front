@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {User} from '../../users/model/user.model';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {Observable, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -60,10 +60,8 @@ export class SchedulerService {
     })
   };
 
-  getSchedules(): Schedule[] {
-    return this.schedules;
-    //fill with the url
-    //return this.httpClient.get('https://')
+  getSchedules(): Observable<Schedule[]> {
+    return this.httpClient.get<Schedule[]>('http://localhost:5000/schedule');
   }
 
   addSchedule(schedule: string[]): void {
