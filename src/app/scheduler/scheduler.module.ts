@@ -5,6 +5,9 @@ import {ScheduleListComponent} from './components/schedule-list/schedule-list.co
 import { CreateSchedulerComponent } from './components/create-scheduler/create-scheduler.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
   imports: [
     SharedModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ]
 })
 export class SchedulerModule { }

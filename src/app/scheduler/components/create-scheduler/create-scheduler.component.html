@@ -1,66 +1,59 @@
 <form class="entire-form" [formGroup]="scheduleForm" (ngSubmit)="onSubmit(scheduleForm.value)">
 
   <div class="title-form">
-    <p>New Schedule Form</p>
+    <p>Schedule Form</p>
   </div>
-  <label for="schedulerName">
-    Scheduler Name :
-  </label>
-  <input id="schedulerName" type="text" formControlName="schedulerName">
+  <mat-form-field appearance="fill">
+    <mat-label>Schedule Name</mat-label>
+    <input matInput id="schedulerName" type="text" formControlName="schedulerName">
+  </mat-form-field>
 
   <div>
     <p class="project-title">Project : </p>
-    <div>
-      <label for="projectName">
-        Project Name :
-      </label>
-      <input id="projectName" type="text" formControlName="projectName">
-    </div>
-
-    <div>
-      <label for="branchName">
-        Project Branch :
-      </label>
-      <input id="branchName" type="text" formControlName="branchName">
-    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Project Name</mat-label>
+      <input matInput id="projectName" type="text" formControlName="projectName">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Branch Name</mat-label>
+      <input matInput id="branchName" type="text" formControlName="branchName">
+    </mat-form-field>
   </div>
 
 
   <div>
     <p class="interval-title">Interval : </p>
-    <label>
-      Frequency Unit :
-    </label>
-    <select id="frequency-unit" formControlName="frequencyUnit">
-      <option value="">---</option>
-      <option value="Month">Month</option>
-      <option value="Week">Week</option>
-      <option value="Day">Day</option>
-      <option value="Hour">Hour</option>
-      <option value="Minute">Minute</option>
-    </select>
-
-    <div>
-      <label for="frequency">
-        Frequency :
-      </label>
-      <input id="frequency" type="text" formControlName="frequency">
-    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Frequency Unit</mat-label>
+      <mat-select id="frequencyUnit">
+        <mat-option value="">---</mat-option>
+        <mat-option value="Month">Month</mat-option>
+        <mat-option value="Week">Week</mat-option>
+        <mat-option value="Day">Day</mat-option>
+        <mat-option value="Hour">Hour</mat-option>
+        <mat-option value="Minute">Minute</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Frequency</mat-label>
+      <input matInput id="frequency" type="text" formControlName="frequency">
+    </mat-form-field>
   </div>
 
 
-  <div>
-    <p class="date-title">Date : </p>
-    <label for="startDate">
-      Start Date :
-    </label>
-    <input id="startDate" type="datetime-local" formControlName="startDate">
-  </div>
-
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Start Date</mat-label>
+    <input matInput id="startDate" type="text" formControlName="startDate">
+  </mat-form-field>
+  <br>
   <button class="button"
           type="submit"
           mat-raised-button
           color="primary"
-          formControlName="submit">Submit</button>
+          formControlName="submit"
+          (submit)="onSubmit(null)">Submit</button>
 
 </form>
