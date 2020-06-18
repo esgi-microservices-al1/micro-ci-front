@@ -56,7 +56,6 @@ export class SchedulerService {
     headers: new HttpHeaders({
       'Cache-Control' : 'no-cache',
       'Content-Type':  'application/json',
-      'Access-Control-Request-Method': 'POST',
       'Access-Control-Allow-Origin':  'http://127.0.0.1:5000'
     })
   };
@@ -89,7 +88,7 @@ export class SchedulerService {
   }
 
   postSchedule(scheduleDto: ScheduleModelDto) {
-    return this.httpClient.post<ScheduleModelDto>('http://localhost:5000/schedule', scheduleDto);
+    return this.httpClient.post<ScheduleModelDto>('http://localhost:5000/schedule', scheduleDto, this.httpOptions);
   }
 
 }

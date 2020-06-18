@@ -18,16 +18,16 @@ export enum ScheduleStatus {
 }
 
 export class ScheduleModelDto {
-  schedulerName: string;
-  projectName: string;
-  projectBranch: string;
+  name: string;
+  project: string;
+  branch: string;
   interval: IntervalModel;
   startDate: Date;
 
   constructor(schedulerName, projectName, projectBranch, interval, startDate) {
-    this.schedulerName = schedulerName;
-    this.projectName = projectName ;
-    this.projectBranch = projectBranch ;
+    this.name = schedulerName;
+    this.project = projectName ;
+    this.branch = projectBranch ;
     this.interval = interval ;
     this.startDate = startDate ;
   }

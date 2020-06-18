@@ -5,19 +5,19 @@
   </div>
   <mat-form-field appearance="fill">
     <mat-label>Schedule Name</mat-label>
-    <input matInput id="schedulerName" type="text" formControlName="schedulerName">
+    <input matInput required id="schedulerName" type="text" formControlName="schedulerName">
   </mat-form-field>
 
   <div>
     <p class="project-title">Project : </p>
     <mat-form-field appearance="fill">
       <mat-label>Project Name</mat-label>
-      <input matInput id="projectName" type="text" formControlName="projectName">
+      <input matInput required id="projectName" type="text" formControlName="projectName">
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Branch Name</mat-label>
-      <input matInput id="branchName" type="text" formControlName="branchName">
+      <input matInput required id="branchName" type="text" formControlName="branchName">
     </mat-form-field>
   </div>
 
@@ -26,34 +26,29 @@
     <p class="interval-title">Interval : </p>
     <mat-form-field appearance="fill">
       <mat-label>Frequency Unit</mat-label>
-      <mat-select id="frequencyUnit">
-        <mat-option value="">---</mat-option>
-        <mat-option value="Month">Month</mat-option>
-        <mat-option value="Week">Week</mat-option>
-        <mat-option value="Day">Day</mat-option>
-        <mat-option value="Hour">Hour</mat-option>
-        <mat-option value="Minute">Minute</mat-option>
+      <mat-select required id="frequencyUnit" formControlName="frequencyUnit">
+        <mat-option *ngFor="let unit of frequencyUnits" value="{{unit}}">{{unit}}</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Frequency</mat-label>
-      <input matInput id="frequency" type="text" formControlName="frequency">
+      <input matInput required id="frequency" type="number" formControlName="frequency">
     </mat-form-field>
   </div>
 
 
   <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Start Date</mat-label>
-    <input matInput id="startDate" type="text" formControlName="startDate">
+  <mat-form-field>
+    <input matInput id="startDate" [matDatepicker]="startDatepicker" formControlName="startDate">
+    <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatepicker></mat-datepicker>
   </mat-form-field>
   <br>
   <button class="button"
           type="submit"
           mat-raised-button
           color="primary"
-          formControlName="submit"
-          (submit)="onSubmit(null)">Submit</button>
+          formControlName="submit">Submit</button>
 
 </form>

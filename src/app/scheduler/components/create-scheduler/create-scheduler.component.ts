@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 
 import {SchedulerService} from '../../services/scheduler.service';
-import {ScheduleModelDto} from "../../model/schedule.model";
-import {IntervalModel} from "../../model/interval.model";
-import {ToastService} from "../../services/toast.service";
+import {ScheduleModelDto} from '../../model/schedule.model';
+import {IntervalModel} from '../../model/interval.model';
+import {ToastService} from '../../services/toast.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,6 +15,14 @@ import {ToastService} from "../../services/toast.service";
 export class CreateSchedulerComponent implements OnInit {
   scheduler;
   scheduleForm;
+  frequencyUnits = [
+    '',
+    'MONTH',
+    'WEEK',
+    'DAY',
+    'HOUR',
+    'MINUTE'
+  ];
 
   constructor(
     private schedulerService: SchedulerService,
@@ -49,6 +57,7 @@ export class CreateSchedulerComponent implements OnInit {
     this.toastService.createToast('coucou', null);
 
     // TODO : Save the data in the model and send them to the list
+    console.log('schedulerData', schedulerData);
     this.scheduleForm.reset();
     this.setDisableForm(false);
     let interval: IntervalModel;
@@ -56,7 +65,7 @@ export class CreateSchedulerComponent implements OnInit {
     let scheduleDto: ScheduleModelDto;
     scheduleDto = new ScheduleModelDto(schedulerData.schedulerName,
       schedulerData.projectName,
-      schedulerData.projectBranch,
+      schedulerData.branchName,
       interval,
       schedulerData.startDate);
     console.log(scheduleDto.toString());
