@@ -14,8 +14,7 @@ export class CreateProjectComponent implements OnInit {
   constructor(private fb: FormBuilder, private projectService: ProjectService) {
     this.projectForm = this.fb.group({
       label: [''],
-      gitUrl: [''],
-      storageUrl: ['']
+      gitUrl: ['']
     });
   }
 
@@ -23,8 +22,14 @@ export class CreateProjectComponent implements OnInit {
   }
 
   submitProject() {
-    this.projectService.createProject(this.projectForm);
-    return true;
+    if (this.projectForm.invalid) return;
+
+    this.projectService.createProject(this.projectForm.value)
+      .subscribe(() => {
+        return alert("Project created!")
+      }, err => {
+        return alert("An error occured during the process");
+      });
   }
 
 }
