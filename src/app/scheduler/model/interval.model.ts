@@ -1,6 +1,6 @@
 
 export class IntervalModel {
-  unity: Unity;
+  unity: string;
   frequency: number;
 
   constructor(unity, frequency) {
@@ -14,9 +14,9 @@ export class IntervalModel {
 }
 
 export enum Unity {
-  Month = 'Month',
-  Week = 'Week',
-  Day = 'Day',
-  Hour = 'Hour',
-  Minute = 'Minute'
+  MONTH = 'MONTH',
+  WEEK = 'WEEK',
+  DAY = 'DAY',
+  HOUR = 'HOUR',
+  MINUTE = 'MINUTE'
 }

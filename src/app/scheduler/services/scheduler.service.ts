@@ -38,17 +38,6 @@ export class SchedulerService {
 
   };
 
-
-
-  private schedules: Schedule[] = [{name: 'Schedule 1', project: 'project 1', scheduledAt: new Date(),
-                                    scheduledBy: this.user1, createdAt: new Date(), status: ScheduleStatus.Awaiting },
-                                  {name: 'Schedule 2', project: 'project 2', scheduledAt: new Date(),
-                                    scheduledBy:  this.user1, createdAt: new Date(), status: ScheduleStatus.InProgress },
-                                  {name: 'Schedule 3', project: 'project 3', scheduledAt: new Date(),
-                                    scheduledBy:  this.user1, createdAt: new Date(), status: ScheduleStatus.Echec },
-                                  {name: 'Schedule 4', project: 'project 4', scheduledAt: new Date(),
-                                    scheduledBy:  this.user1, createdAt: new Date(), status: ScheduleStatus.Success }];
-
   constructor(private httpClient: HttpClient) {}
 
 

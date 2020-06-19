@@ -10,8 +10,9 @@ import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.com
   styleUrls: ['./schedule-list.component.scss']
 })
 export class ScheduleListComponent implements OnInit {
+  displayedColumns: string[] =  ['name', 'project', 'branch', 'intervalUnit', 'intervalFrequency', 'startDate'];
 
-  displayedColumns: string[] =  ['name', 'project', 'branch', 'startDate'];
+  @Input() schedules: Schedule[];
 
   @Input()
   schedules: Schedule[];

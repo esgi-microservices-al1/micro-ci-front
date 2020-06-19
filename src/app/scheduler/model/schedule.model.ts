@@ -2,19 +2,12 @@ import {User} from '../../users/model/user.model';
 import {IntervalModel} from './interval.model';
 
 export interface Schedule {
+  id?: string;
   name: string;
   project: string; // project name or Object
-  scheduledAt: Date;
-  scheduledBy: User;
-  status: ScheduleStatus;
+  branch: string;
+  interval: IntervalModel;
   createdAt: Date;
-}
-
-export enum ScheduleStatus {
-  Awaiting = 'Awaiting',
-  InProgress = 'In Progress',
-  Success = 'Success',
-  Echec = 'Echec'
 }
 
 export class ScheduleModelDto {
