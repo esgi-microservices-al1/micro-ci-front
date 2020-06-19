@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
-import {Schedule, ScheduleStatus} from '../../model/schedule.model';
+import {Schedule} from '../../model/schedule.model';
 import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.component';
 
 @Component({
@@ -10,15 +10,11 @@ import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.com
   styleUrls: ['./schedule-list.component.scss']
 })
 export class ScheduleListComponent implements OnInit {
+  @Output() modifySchedule = new EventEmitter();
   displayedColumns: string[] =  ['name', 'project', 'branch', 'intervalUnit', 'intervalFrequency', 'startDate'];
 
   @Input() schedules: Schedule[];
-
-  @Input()
-  schedules: Schedule[];
-
-  @Input()
-  createSchedule: CreateSchedulerComponent;
+  @Input() createSchedule: CreateSchedulerComponent;
 
   constructor(private router: Router) {}
 
@@ -26,8 +22,8 @@ export class ScheduleListComponent implements OnInit {
     console.log({schedule : this.schedules});
   }
 
-  setDisableForm() {
-    this.createSchedule.setDisableForm(false);
+  updateSchedule(schedule) {
+    this.createSchedule.updateScheduleId(schedule);
   }
 
 }

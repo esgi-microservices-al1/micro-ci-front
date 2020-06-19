@@ -7,15 +7,10 @@ export interface Schedule {
   project: string; // project name or Object
   branch: string;
   interval: IntervalModel;
-  createdAt: Date;
+  startDate: Date;
 }
 
 export class ScheduleModelDto {
-  name: string;
-  project: string;
-  branch: string;
-  interval: IntervalModel;
-  startDate: Date;
 
   constructor(schedulerName, projectName, projectBranch, interval, startDate) {
     this.name = schedulerName;
@@ -24,6 +19,11 @@ export class ScheduleModelDto {
     this.interval = interval ;
     this.startDate = startDate ;
   }
+  name: string;
+  project: string;
+  branch: string;
+  interval: IntervalModel;
+  startDate: Date;
 
   toString() {
     return JSON.stringify(this) ;

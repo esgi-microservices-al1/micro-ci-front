@@ -1,42 +1,14 @@
-import {Schedule, ScheduleModelDto, ScheduleStatus} from '../model/schedule.model';
+import {Schedule, ScheduleModelDto} from '../model/schedule.model';
 import {Injectable} from '@angular/core';
 import {User} from '../../users/model/user.model';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {catchError} from "rxjs/operators";
 import {Observable, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchedulerService {
-
-  private address1 = {
-    street: 'jules ferry',
-    suite: '',
-    city: 'Paris',
-    zipcode: '75001',
-    geo: {
-      lat: 1.54667,
-      lng: 1.54667
-    }
-  }
-  private company1 = {
-    name: 'company corp.',
-    catchPhrase: 'Goog Company',
-    bs: ''
-  }
-
-  private user1: User = {
-      id : '1',
-      address: this.address1,
-       email : 'user@user.com',
-      company : this.company1,
-    name: 'Robert',
-    username: 'RobertDu75',
-    phone: '0759605948',
-    website: 'http://robert.com'
-
-  };
+  API_URL = 'http://localhost:5000/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -50,7 +22,7 @@ export class SchedulerService {
   };
 
   getSchedules(): Observable<Schedule[]> {
-    return this.httpClient.get<Schedule[]>('http://localhost:5000/schedule');
+    return this.httpClient.get<Schedule[]>(this.API_URL + 'schedule');
   }
 
   addSchedule(schedule: string[]): void {
@@ -75,7 +47,11 @@ export class SchedulerService {
   }
 
   postSchedule(scheduleDto: ScheduleModelDto) {
-    return this.httpClient.post<ScheduleModelDto>('http://localhost:5000/schedule', scheduleDto, this.httpOptions);
+    return this.httpClient.post<ScheduleModelDto>(this.API_URL + 'schedule', scheduleDto, this.httpOptions);
+  }
+
+  updateSchedule(scheduleId: string, scheduleDto: ScheduleModelDto) {
+    return this.httpClient.put<ScheduleModelDto>(this.API_URL + 'schedule/' + scheduleId, scheduleDto);
   }
 
 }

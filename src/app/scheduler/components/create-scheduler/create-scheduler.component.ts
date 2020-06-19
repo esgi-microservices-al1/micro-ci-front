@@ -25,6 +25,7 @@ export class CreateSchedulerComponent implements OnInit {
     'MINUTE'
   ];
   @Output() updateScheduleList = new EventEmitter();
+  scheduleToUpdate = null;
 
   constructor(
     private schedulerService: SchedulerService,
@@ -47,21 +48,19 @@ export class CreateSchedulerComponent implements OnInit {
     this.scheduler = this.schedulerService.getSchedules();
   }
 
-  setDisableForm(value: boolean): void {
-    if (value) {
-      this.scheduleForm.disable();
-    } else {
-      this.scheduleForm.enable();
-    }
+  setDisableForm(): void {
+    this.scheduleToUpdate = null;
+    // if (value) {
+    //   this.scheduleForm.disable();
+    // } else {
+    //   this.scheduleForm.enable();
+    // }
   }
 
   onSubmit(schedulerData) {
-    this.toastService.createToast('coucou', null);
-
     // TODO : Save the data in the model and send them to the list
     console.log('schedulerData', schedulerData);
     this.scheduleForm.reset();
-    this.setDisableForm(false);
     let interval: IntervalModel;
     interval = new IntervalModel(schedulerData.frequencyUnit, schedulerData.frequency);
     let scheduleDto: ScheduleModelDto;
@@ -70,11 +69,35 @@ export class CreateSchedulerComponent implements OnInit {
       schedulerData.branchName,
       interval,
       schedulerData.startDate);
-    console.log(scheduleDto.toString());
-    this.schedulerService.postSchedule(scheduleDto).subscribe((res) => {
-      this.updateScheduleList.emit();
-    });
-    console.warn('Your scheduler has been created', schedulerData);
+    // console.log(scheduleDto.toString());
+    if (this.scheduleToUpdate != null) {
+        console.log('let\'s update this schedule', scheduleDto);
+        this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {
+          this.updateScheduleList.emit();
+          console.warn('Your schedule has been updated', schedulerData);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.schedulerService.postSchedule(scheduleDto).subscribe((res) => {
+        this.updateScheduleList.emit();
+        console.warn('Your schedule has been created', schedulerData);
+      });
+      this.setDisableForm();
+    }
+  }
+
+  updateScheduleId(schedule) {
+    this.scheduleToUpdate = schedule;
+    this.scheduleForm.controls.schedulerName.setValue(schedule.name);
+    this.scheduleForm.controls.projectName.setValue(schedule.project);
+    this.scheduleForm.controls.branchName.setValue(schedule.branch);
+    this.scheduleForm.controls.frequencyUnit.setValue(schedule.interval.unity);
+    this.scheduleForm.controls.frequency.setValue(schedule.interval.frequency);
+    this.scheduleForm.controls.startDate.setValue(schedule.start_date);
+    console.log('this.scheduleToUpdate', this.scheduleToUpdate);
   }
 
 

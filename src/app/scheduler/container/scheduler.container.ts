@@ -1,6 +1,7 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Schedule} from '../model/schedule.model';
 import {SchedulerService} from '../services/scheduler.service';
+import {CreateSchedulerComponent} from '../components/create-scheduler/create-scheduler.component';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class SchedulerContainer implements OnInit {
   }
 
   refresh(): void {
-    console.log('updating schedules...');
+    console.log('getting schedules...');
     this.schedulerService.getSchedules().subscribe((res) => {
       this.schedules = res; // TODO : filter only connected user's schedules
       console.log('got new schedules ! : ', res, ' , now updating component');
