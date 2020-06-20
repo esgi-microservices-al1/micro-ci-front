@@ -1,7 +1,7 @@
 import {Schedule, ScheduleModelDto} from '../model/schedule.model';
 import {Injectable} from '@angular/core';
 import {User} from '../../users/model/user.model';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 
 @Injectable({

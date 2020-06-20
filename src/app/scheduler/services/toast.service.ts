@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {Injectable} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Injectable({
@@ -7,12 +7,12 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class ToastService {
 
-  constructor( private _snackBar: MatSnackBar) {
+  constructor( private snackBar: MatSnackBar) {
 
   }
 
   createToast(message: string, action: string, time = 2000) {
-    return this._snackBar.open(message, action, {
+    return this.snackBar.open(message, action, {
       duration: time,
       verticalPosition: 'top',
       horizontalPosition: 'center'
