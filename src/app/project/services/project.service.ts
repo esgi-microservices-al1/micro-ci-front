@@ -17,4 +17,8 @@ export class ProjectService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
+
+  getAllProjects() {
+    return this.http.get(this.apiUrl);
+  }
 }
