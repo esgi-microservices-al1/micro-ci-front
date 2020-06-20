@@ -4,7 +4,7 @@ import { ProjectService } from '../../services/project.service';
 import { Project } from '../../model/project.model';
 
 @Component({
-  selector: 'app-create-project',
+  selector: 'ci-create-project',
   templateUrl: './create-project.component.html',
   styleUrls: ['./create-project.component.scss']
 })
@@ -24,15 +24,16 @@ export class CreateProjectComponent implements OnInit {
   }
 
   submitProject() {
-    if (this.projectForm.invalid) return;
-
+    if (this.projectForm.invalid) {
+      return;
+    }
     this.projectService.createProject(this.projectForm.value)
       .subscribe((project: Project) => {
         this.project = project;
         console.log(this.project);
-        return alert("Project created!")
+        return alert('Project created!');
       }, err => {
-        return alert("An error occured during the process");
+        return alert('An error occured during the process');
       });
   }
 

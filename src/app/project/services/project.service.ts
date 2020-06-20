@@ -7,7 +7,7 @@ import { Project } from '../model/project.model';
 })
 export class ProjectService {
 
-  private apiUrl = "http://localhost:3001/project";
+  private apiUrl = 'http://localhost:3001/project';
 
   constructor(private http: HttpClient) { }
 
