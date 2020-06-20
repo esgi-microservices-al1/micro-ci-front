@@ -23,7 +23,7 @@ export class ScheduleListComponent implements OnInit {
   }
 
   updateSchedule(schedule) {
-    this.createSchedule.updateScheduleId(schedule);
+    this.createSchedule.updateSchedule(schedule);
   }
 
   deleteSchedule(schedule) {

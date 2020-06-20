@@ -14,6 +14,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Schedule Name</mat-label>
     <input matInput required id="schedulerName" type="text" formControlName="schedulerName">
+    <mat-error *ngIf="this.scheduleForm.controls.schedulerName.invalid">Required field</mat-error>
   </mat-form-field>
 
   <div>
@@ -21,11 +22,13 @@
     <mat-form-field appearance="fill">
       <mat-label>Project Name</mat-label>
       <input matInput required id="projectName" type="text" formControlName="projectName">
+      <mat-error *ngIf="this.scheduleForm.controls.projectName.invalid">Required field</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Branch Name</mat-label>
       <input matInput required id="branchName" type="text" formControlName="branchName">
+      <mat-error *ngIf="this.scheduleForm.controls.branchName.invalid">Required field</mat-error>
     </mat-form-field>
   </div>
 
@@ -37,18 +40,21 @@
       <mat-select required id="frequencyUnit" formControlName="frequencyUnit">
         <mat-option *ngFor="let unit of frequencyUnits" value="{{unit}}">{{unit}}</mat-option>
       </mat-select>
+      <mat-error *ngIf="this.scheduleForm.controls.frequencyUnit.invalid">Required field</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Frequency</mat-label>
-      <input matInput required id="frequency" type="number" formControlName="frequency">
+      <input matInput required min="0" id="frequency" type="number" formControlName="frequency">
+      <mat-error *ngIf="this.scheduleForm.controls.frequency.invalid">Required field and value must be greater than 0</mat-error>
     </mat-form-field>
   </div>
 
 
   <br>
   <mat-form-field>
-    <input matInput id="startDate" [matDatepicker]="startDatepicker" formControlName="startDate">
+    <input matInput required id="startDate" [matDatepicker]="startDatepicker" formControlName="startDate">
+    <mat-error [hidden]="" *ngIf="this.scheduleForm.controls.startDate.invalid">Required field</mat-error>
     <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
     <mat-datepicker #startDatepicker></mat-datepicker>
   </mat-form-field>
