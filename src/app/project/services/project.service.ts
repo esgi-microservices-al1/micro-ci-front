@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Project } from '../model/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  createProject(project) {
+  createProject(project: Project) {
 
     return this.http.post(this.apiUrl, project, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
