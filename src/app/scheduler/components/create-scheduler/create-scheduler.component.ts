@@ -50,6 +50,7 @@ export class CreateSchedulerComponent implements OnInit {
 
   setDisableForm(): void {
     this.scheduleToUpdate = null;
+    this.scheduleForm.reset();
     // if (value) {
     //   this.scheduleForm.disable();
     // } else {
@@ -97,8 +98,15 @@ export class CreateSchedulerComponent implements OnInit {
     this.scheduleForm.controls.frequencyUnit.setValue(schedule.interval.unity);
     this.scheduleForm.controls.frequency.setValue(schedule.interval.frequency);
     this.scheduleForm.controls.startDate.setValue(schedule.start_date);
-    console.log('this.scheduleToUpdate', this.scheduleToUpdate);
   }
 
 
+  deleteSchedule(schedule) {
+    this.toastService.createToast('Delete ' + schedule.name + ' ?', 'Yes', 6000).onAction().subscribe(() => {
+      this.schedulerService.deleteSchedule(schedule.id).subscribe((res) => {
+        console.warn('Your schedule has been deleted', schedule);
+        this.updateScheduleList.emit();
+      });
+    });
+  }
 }

@@ -11,9 +11,9 @@ export class ToastService {
 
   }
 
-  createToast(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
+  createToast(message: string, action: string, time = 2000) {
+    return this._snackBar.open(message, action, {
+      duration: time,
       verticalPosition: 'top',
       horizontalPosition: 'center'
     });

@@ -11,7 +11,7 @@ import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.com
 })
 export class ScheduleListComponent implements OnInit {
   @Output() modifySchedule = new EventEmitter();
-  displayedColumns: string[] =  ['name', 'project', 'branch', 'intervalUnit', 'intervalFrequency', 'startDate'];
+  displayedColumns: string[] =  ['name', 'project', 'branch', 'intervalUnit', 'intervalFrequency', 'startDate', 'deleteSchedule'];
 
   @Input() schedules: Schedule[];
   @Input() createSchedule: CreateSchedulerComponent;
@@ -26,4 +26,7 @@ export class ScheduleListComponent implements OnInit {
     this.createSchedule.updateScheduleId(schedule);
   }
 
+  deleteSchedule(schedule) {
+    this.createSchedule.deleteSchedule(schedule);
+  }
 }

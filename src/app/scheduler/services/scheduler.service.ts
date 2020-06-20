@@ -54,4 +54,7 @@ export class SchedulerService {
     return this.httpClient.put<ScheduleModelDto>(this.API_URL + 'schedule/' + scheduleId, scheduleDto);
   }
 
+  deleteSchedule(scheduleId) {
+    return this.httpClient.delete<string>(this.API_URL + 'schedule/' + scheduleId);
+  }
 }

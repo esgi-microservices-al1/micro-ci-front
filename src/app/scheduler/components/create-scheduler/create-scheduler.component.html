@@ -1,13 +1,15 @@
 <form class="entire-form" [formGroup]="scheduleForm" (ngSubmit)="onSubmit(scheduleForm.value)">
-  <button mat-raised-button
-          color="primary"
-          (click)="setDisableForm()">
-    <span>New Schedule   </span>
-    <mat-icon>alarm</mat-icon>
-  </button>
+
 
   <div class="title-form">
-    <p>Schedule Form</p>
+    Schedule Form
+    <button mat-raised-button class="reset-schedule-button"
+            color="primary"
+            *ngIf="this.scheduleToUpdate"
+            (click)="setDisableForm()">
+      <span>New Schedule   </span>
+      <mat-icon>alarm</mat-icon>
+    </button>
   </div>
   <mat-form-field appearance="fill">
     <mat-label>Schedule Name</mat-label>
@@ -55,6 +57,6 @@
           type="submit"
           mat-raised-button
           color="primary"
-          formControlName="submit">{{scheduleToUpdate==null?'Create new Schedule':'Update schedule ' + scheduleToUpdate.name}}</button>
+          formControlName="submit">{{scheduleToUpdate==null?'Create new Schedule':'Update schedule'}}</button>
 
 </form>
