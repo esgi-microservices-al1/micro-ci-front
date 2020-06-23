@@ -21,7 +21,7 @@ export class SchedulerContainer implements OnInit {
   refresh(): void {
     console.log('getting schedules...');
     this.schedulerService.getSchedules().subscribe((res) => {
-      this.schedules = res; // TODO : filter only connected user's schedules
+      this.schedules = res; // TODO : filter only @Input project's schedules
       console.log('got new schedules ! : ', res, ' , now updating component');
       this.changeDetectorRefs.detectChanges();
     });

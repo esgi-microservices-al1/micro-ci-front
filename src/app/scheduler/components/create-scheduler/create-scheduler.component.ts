@@ -64,7 +64,7 @@ export class CreateSchedulerComponent implements OnInit {
     interval = new IntervalModel(schedulerData.frequencyUnit, schedulerData.frequency);
     let scheduleDto: ScheduleModelDto;
     scheduleDto = new ScheduleModelDto(schedulerData.schedulerName,
-      schedulerData.projectName,
+      schedulerData.projectName, // TODO : put @Input project in this field
       schedulerData.branchName,
       interval,
       schedulerData.startDate);
