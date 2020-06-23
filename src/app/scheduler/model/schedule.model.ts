@@ -1,22 +1,45 @@
-import {User} from "../../users/model/user.model";
+import {User} from '../../users/model/user.model';
+import {IntervalModel} from './interval.model';
 
 export interface Schedule {
-  name: string,
-  project : string, // project name or Object
-  branch: string,
-  scheduledBy : User,
-  interval: {
-    unity: ScheduleUnity,
-    frequency: number
+  id?: string;
+  name: string;
+  project: string; // project name or Object
+  branch: string;
+  interval: IntervalModel;
+  startDate: Date;
+}
+
+export class ScheduleModelDto {
+
+  constructor(schedulerName, projectName, projectBranch, interval, startDate) {
+    this.name = schedulerName;
+    this.project = projectName ;
+    this.branch = projectBranch ;
+    this.interval = interval ;
+    this.startDate = startDate ;
   }
-  scheduledAt : Date
-}
+  name: string;
+  project: string;
+  branch: string;
+  interval: IntervalModel;
+  startDate: Date;
+
+  toString() {
+    return JSON.stringify(this) ;
+  }
 
 
-export enum ScheduleUnity {
-  Month = 'Month',
-  Week = 'Week',
-  Day = 'Day',
-  Hour = 'Hour',
-  Minute = 'Minute'
 }
+/*
+{
+  name: String,     //unique
+  project : String, // ID ?
+  branch : String, // ID ?
+  interval : {
+     unity : String // ['Month','week','Day', 'Hour', 'Minute'
+     frequency : Number
+  }
+  startDate: Date
+}
+ */

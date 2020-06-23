@@ -1,4 +1,5 @@
-<div>
-  <h1 fxLayoutAlign="center">Scheduler Service</h1>
-  <schedule-list [schedules]="schedules" ></schedule-list>
+<h1 fxLayoutAlign="center">Scheduler Service</h1>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around start" fxFlexFill fxLayoutGap="20px">
+  <schedule-list fxFlex [schedules]="schedules" [createSchedule]="createSchedulerComponent"></schedule-list>
+  <create-scheduler #createSchedulerComponent fxFlex (updateScheduleList)="refresh()" ></create-scheduler>
 </div>
