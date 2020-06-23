@@ -74,6 +74,7 @@ export class CreateSchedulerComponent implements OnInit {
         this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {
           this.updateScheduleList.emit();
           console.warn('Your schedule has been updated', schedulerData);
+          this.scheduleToUpdate = null;
         },
         error => {
           console.log(error);
