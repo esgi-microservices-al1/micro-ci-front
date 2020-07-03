@@ -7,6 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
 import { UsersModule } from './users';
 import { ProjectModule } from './project';
+import { NotificationsModule } from './notifications';
+import {EventsModule} from './events/events-module';
+import {SchedulerModule} from './scheduler';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -19,9 +25,12 @@ import { ProjectModule } from './project';
     BrowserAnimationsModule,
 
     CoreModule,
-
+    ProjectModule,
     UsersModule,
-    ProjectModule
+    NotificationsModule,
+    EventsModule,
+    SchedulerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppContainer]
