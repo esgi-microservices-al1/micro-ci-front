@@ -1,0 +1,69 @@
+<mat-card class='card' fxFlex>
+
+  <mat-card-title>
+    <h3>Project Details : {{ project ? project.id : '' }}</h3>
+    <button mat-raised-button color='primary' [disabled]='updateButtonDisabled' (click)='update()'>Update</button>
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <div *ngIf='!project; else projectDetailsTemplate' fxLayoutAlign='center center'>
+      Select a project
+    </div>
+
+    <ng-template #projectDetailsTemplate>
+      <mat-tab-group>
+<!--
+        <mat-tab label='Description'>
+          <mat-list>
+            <mat-list-item>Id: {{project.id}}</mat-list-item>
+            <mat-list-item>Name: {{project.name}}</mat-list-item>
+          </mat-list>
+        </mat-tab>
+-->
+        <mat-tab label='Notified Users'>
+          <div class='mat-elevation-z8 users-list'>
+            <table mat-table [dataSource]='users'>
+
+              <ng-container matColumnDef='notified'>
+                <th mat-header-cell *matHeaderCellDef> Notified </th>
+                <td mat-cell *matCellDef='let user'>
+
+                  <mat-checkbox class='example-margin' ngDefaultControl [checked]='isNotified(user)' color='primary'
+                                (change)='showOptions(user, $event)'></mat-checkbox>
+                </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+
+              <ng-container matColumnDef='id'>
+                <th mat-header-cell *matHeaderCellDef> Id</th>
+                <td mat-cell *matCellDef='let user'> {{user.id}} </td>
+                <td mat-footer-cell *matFooterCellDef> 
+                  <button 
+                  mat-raised-button color='primary'
+                  (click)="newUserClick()">
+                    Add
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef='emailAddress'>
+                <th mat-header-cell *matHeaderCellDef> Email address </th>
+                <td mat-cell *matCellDef='let user'> {{user.emailAddress}} </td>
+                <td mat-footer-cell *matFooterCellDef>
+                  <input id="newUserInput" matInput placeholder="email address" [(ngModel)]="newUserEmail">
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef='columns; sticky: true'></tr>
+              <tr mat-row *matRowDef='let user; columns: columns;' class='row'></tr>
+              <tr mat-footer-row *matFooterRowDef='columns; sticky: true'></tr>
+            </table>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+    </ng-template>
+
+  </mat-card-content>
+</mat-card>
