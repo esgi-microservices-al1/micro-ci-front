@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ɵROUTER_PROVIDERS } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ci-header',
@@ -15,12 +15,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  buildRoute(){
+  eventsRoute() {
 
-    this.router.navigate(['/build']);
+    this.router.navigate(['/events']);
   }
-  usersRoute(){
+  usersRoute() {
 
-    this.router.navigate(['/users']);
+    this.router.navigate(['/']);
   }
 }

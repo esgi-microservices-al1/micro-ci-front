@@ -7,8 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
 import { UsersModule } from './users';
 import { NotificationsModule } from './notifications';
-import {EventsBuildComponent} from "./events/events-build/events-build.component";
-import {MatTableModule} from "@angular/material/table";
+import {EventsModule} from './events/events-module';
 
 
 @NgModule({
@@ -21,10 +20,9 @@ import {MatTableModule} from "@angular/material/table";
     BrowserAnimationsModule,
 
     CoreModule,
-
     UsersModule,
     NotificationsModule,
-    MatTableModule
+    EventsModule
   ],
   providers: [],
   bootstrap: [AppContainer]
