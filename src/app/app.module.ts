@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
 import { UsersModule } from './users';
 import { NotificationsModule } from './notifications';
+import {EventsModule} from './events/events-module';
 
 
 @NgModule({
@@ -19,9 +20,9 @@ import { NotificationsModule } from './notifications';
     BrowserAnimationsModule,
 
     CoreModule,
-
     UsersModule,
     NotificationsModule,
+    EventsModule
   ],
   providers: [],
   bootstrap: [AppContainer]
