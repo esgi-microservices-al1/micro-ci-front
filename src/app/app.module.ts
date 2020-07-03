@@ -5,36 +5,25 @@ import { AppContainer } from './app.container';
 import { RoutingModule } from './routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
-import { UsersModule, UsersContainer } from './users';
-import { Routes, RouterModule } from '@angular/router';
+import { UsersModule } from './users';
+import { NotificationsModule } from './notifications';
 import {EventsBuildComponent} from "./events/events-build/events-build.component";
 import {MatTableModule} from "@angular/material/table";
 
 
-const routes: Routes = [
-  { path: 'users', component: UsersContainer},
-  { path: 'build' , component: EventsBuildComponent},
-];
-
 @NgModule({
   declarations: [
-    AppContainer,
-    EventsBuildComponent,
-
+    AppContainer
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-      routes,
-      {enableTracing: true} // <-- debugging purposes only
-    ),
-
 
     CoreModule,
 
     UsersModule,
+    NotificationsModule,
     MatTableModule
   ],
   providers: [],
