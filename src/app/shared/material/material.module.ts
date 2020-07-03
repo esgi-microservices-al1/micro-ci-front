@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatButtonModule} from '@angular/material/button';
 
 
 const ANGULAR_MATERIAL_MODULES = [
@@ -15,7 +16,8 @@ const ANGULAR_MATERIAL_MODULES = [
   MatListModule,
   MatCardModule,
   MatTableModule,
-  MatTabsModule
+  MatTabsModule,
+  MatButtonModule
 ];
 
 @NgModule({

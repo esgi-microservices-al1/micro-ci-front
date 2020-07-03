@@ -8,6 +8,10 @@ import { CoreModule } from './core';
 import { UsersModule } from './users';
 import { NotificationsModule } from './notifications';
 import {EventsModule} from './events/events-module';
+import {SchedulerModule} from './scheduler';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -22,7 +26,9 @@ import {EventsModule} from './events/events-module';
     CoreModule,
     UsersModule,
     NotificationsModule,
-    EventsModule
+    EventsModule,
+    SchedulerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppContainer]
