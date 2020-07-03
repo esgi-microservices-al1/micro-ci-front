@@ -113,9 +113,4 @@ export class CreateSchedulerComponent implements OnInit {
       });
     });
   }
-
-  parseScheduleToHuman(schedule){
-    console.log(schedule.interval.unity);
-    console.log(schedule.interval.frequency);
-  }
 }

@@ -3,13 +3,7 @@
 
   <div class="title-form">
     Schedule Form
-    <button mat-raised-button class="reset-schedule-button"
-            color="primary"
-            *ngIf="this.scheduleToUpdate"
-            (click)="setDisableForm()">
-      <span>New Schedule   </span>
-      <mat-icon>alarm</mat-icon>
-    </button>
+
   </div>
   <mat-form-field appearance="fill">
     <mat-label>Schedule Name</mat-label>
@@ -59,10 +53,19 @@
     <mat-datepicker #startDatepicker></mat-datepicker>
   </mat-form-field>
   <br>
+  
   <button class="button"
           type="submit"
           mat-raised-button
           color="primary"
           formControlName="submit">{{scheduleToUpdate==null?'Create new Schedule':'Update schedule'}}</button>
+  <button mat-raised-button class="reset-schedule-button"
+          color="primary"
+          *ngIf="this.scheduleToUpdate"
+          (click)="setDisableForm()"
+          style="margin-right: 5%">
+    <span>New Schedule   </span>
+    <mat-icon>alarm</mat-icon>
+  </button>
 
 </form>
