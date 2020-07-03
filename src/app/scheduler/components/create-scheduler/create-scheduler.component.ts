@@ -68,7 +68,7 @@ export class CreateSchedulerComponent implements OnInit {
       schedulerData.branchName,
       interval,
       schedulerData.startDate);
-    // console.log(scheduleDto.toString());
+    //console.log(scheduleDto.toString());
     if (this.scheduleToUpdate != null) {
         console.log('let\'s update this schedule', scheduleDto);
         this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {
@@ -112,5 +112,10 @@ export class CreateSchedulerComponent implements OnInit {
         this.setDisableForm();
       });
     });
+  }
+
+  parseScheduleToHuman(schedule){
+    console.log(schedule.interval.unity);
+    console.log(schedule.interval.frequency);
   }
 }
