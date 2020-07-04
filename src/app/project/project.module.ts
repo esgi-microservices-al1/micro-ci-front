@@ -4,6 +4,7 @@ import { ProjectComponent } from './container/project.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
 import { SharedModule } from '../shared';
 import { ProjectListComponent } from './components/project-list/project-list.component';
+import { NotificationsModule } from '../notifications';
 
 
 
@@ -11,7 +12,8 @@ import { ProjectListComponent } from './components/project-list/project-list.com
   declarations: [ProjectComponent, CreateProjectComponent, ProjectListComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    NotificationsModule
   ]
 })
 export class ProjectModule { }

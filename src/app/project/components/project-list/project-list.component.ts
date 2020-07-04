@@ -10,7 +10,7 @@ import { ProjectService } from '../../services/project.service';
 export class ProjectListComponent implements OnInit {
 
   projects: Project[];
-  tableHeaders: string[] = ['label', 'git_url', 'enable'];
+  tableHeaders: string[] = ['_id','label', 'git_url', 'enable'];
 
   constructor(private projectService: ProjectService) { }
 
@@ -21,7 +21,6 @@ export class ProjectListComponent implements OnInit {
   getAllProject() {
     this.projectService.getAllProjects().subscribe((projects: Project[]) => {
       this.projects = projects;
-      console.log(this.projects);
     });
   }
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../model/project.model';
+import { Project as NotifProject } from 'src/app/notifications/models/project.model';
+import { ProjectService as NotificationService } from '../../../notifications/services/projects.service';
 
 @Component({
   selector: 'ci-create-project',
@@ -12,8 +14,10 @@ export class CreateProjectComponent implements OnInit {
 
   projectForm: FormGroup;
   project: Project;
+  notifProject: NotifProject;
 
-  constructor(private fb: FormBuilder, private projectService: ProjectService) {
+  constructor(private fb: FormBuilder, private projectService: ProjectService,
+              private notifService: NotificationService) {
     this.projectForm = this.fb.group({
       label: [''],
       gitUrl: ['']
@@ -30,11 +34,12 @@ export class CreateProjectComponent implements OnInit {
     this.projectService.createProject(this.projectForm.value)
       .subscribe((project: Project) => {
         this.project = project;
-        console.log(this.project);
         return alert('Project created!');
       }, err => {
-        return alert('An error occured during the process');
+        return alert('An error occured during the process\n' + err);
       });
+    this.notifProject.id = this.project._id;
+    this.notifService.update(this.notifProject);
   }
 
 }
