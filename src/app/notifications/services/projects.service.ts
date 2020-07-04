@@ -28,21 +28,21 @@ const userSamples: UserNotification[] = [
 ];
 
 const projectSamples: Project[] = [
-  {id: "1", name: 'Project n°1', notifiedUsers: userSamples.slice(1)},
-  {id: "2", name: 'Project n°2', notifiedUsers: userSamples.slice(2)},
-  {id: "3", name: 'Project n°3', notifiedUsers: userSamples.slice(3)},
-  {id: "4", name: 'Project n°4', notifiedUsers: userSamples.slice(4)},
-  {id: "5", name: 'Project n°5', notifiedUsers: userSamples.slice(5)},
-  {id: "6", name: 'Project n°6', notifiedUsers: userSamples.slice(6)},
-  {id: "7", name: 'Project n°7', notifiedUsers: userSamples.slice(7)},
-  {id: "8", name: 'Project n°8', notifiedUsers: userSamples.slice(8)},
-  {id: "9", name: 'Project n°9', notifiedUsers: userSamples.slice(9)},
-  {id: "10", name: 'Project n°10', notifiedUsers: userSamples.slice(10)},
-  {id: "11", name: 'Project n°11', notifiedUsers: userSamples.slice(11)},
-  {id: "12", name: 'Project n°12', notifiedUsers: userSamples.slice(12)},
-  {id: "13", name: 'Project n°13', notifiedUsers: userSamples.slice(13)},
-  {id: "14", name: 'Project n°14', notifiedUsers: userSamples.slice(14)},
-  {id: "15", name: 'Project n°15', notifiedUsers: userSamples.slice(15)}
+  {id: '1', name: 'Project n°1', notifiedUsers: userSamples.slice(1)},
+  {id: '2', name: 'Project n°2', notifiedUsers: userSamples.slice(2)},
+  {id: '3', name: 'Project n°3', notifiedUsers: userSamples.slice(3)},
+  {id: '4', name: 'Project n°4', notifiedUsers: userSamples.slice(4)},
+  {id: '5', name: 'Project n°5', notifiedUsers: userSamples.slice(5)},
+  {id: '6', name: 'Project n°6', notifiedUsers: userSamples.slice(6)},
+  {id: '7', name: 'Project n°7', notifiedUsers: userSamples.slice(7)},
+  {id: '8', name: 'Project n°8', notifiedUsers: userSamples.slice(8)},
+  {id: '9', name: 'Project n°9', notifiedUsers: userSamples.slice(9)},
+  {id: '10', name: 'Project n°10', notifiedUsers: userSamples.slice(10)},
+  {id: '11', name: 'Project n°11', notifiedUsers: userSamples.slice(11)},
+  {id: '12', name: 'Project n°12', notifiedUsers: userSamples.slice(12)},
+  {id: '13', name: 'Project n°13', notifiedUsers: userSamples.slice(13)},
+  {id: '14', name: 'Project n°14', notifiedUsers: userSamples.slice(14)},
+  {id: '15', name: 'Project n°15', notifiedUsers: userSamples.slice(15)}
 ];
 
 @Injectable()
