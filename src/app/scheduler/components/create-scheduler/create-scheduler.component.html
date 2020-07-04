@@ -31,10 +31,10 @@
     <p class="interval-title">Interval : </p>
     <mat-form-field appearance="fill">
       <mat-label>Frequency Unit</mat-label>
-      <mat-select required id="frequencyUnit" formControlName="frequencyUnit">
+      <mat-select [compareWith]="compareFunction" required id="frequencyUnit" formControlName="frequencyUnit">
         <mat-option *ngFor="let unit of frequencyUnits" value="{{unit}}">{{unit}}</mat-option>
       </mat-select>
-      <mat-error *ngIf="this.scheduleForm.controls.frequencyUnit.invalid">Required field</mat-error>
+      <!--<mat-error *ngIf="this.scheduleForm.controls.frequencyUnit.invalid">Required field</mat-error>-->
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
@@ -53,7 +53,7 @@
     <mat-datepicker #startDatepicker></mat-datepicker>
   </mat-form-field>
   <br>
-  
+
   <button class="button"
           type="submit"
           mat-raised-button

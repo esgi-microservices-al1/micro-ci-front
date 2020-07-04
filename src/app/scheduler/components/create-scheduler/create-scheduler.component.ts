@@ -16,10 +16,9 @@ import {SchedulerContainer} from '../..';
 export class CreateSchedulerComponent implements OnInit {
   scheduleForm;
   frequencyUnits = [
-    '',
-    'MONTH',
-    'WEEK',
     'DAY',
+    'WEEK',
+    'MONTH',
     'HOUR',
     'MINUTE'
   ];
@@ -37,7 +36,7 @@ export class CreateSchedulerComponent implements OnInit {
       schedulerName: [{value: '', disabled: false}, Validators.required],
       projectName: [{ value: '', disabled: false }, Validators.required],
       branchName: [{ value: '', disabled: false }, Validators.required],
-      frequencyUnit: [{ value: '', disabled: false }, Validators.required],
+      frequencyUnit: [{ value: '', disabled: false }],
       frequency: [{ value: '', disabled: false }, [Validators.required, Validators.min(0)]],
       startDate: [{ value: '', disabled: false }, Validators.required],
       submit: [{ value: '', disabled: false }]
@@ -45,6 +44,11 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  compareFunction(o1: any, o2: any) {
+    // tslint:disable-next-line:triple-equals
+    return (o1.name == o2.name && o1.id == o2.id);
   }
 
   setDisableForm(): void {
