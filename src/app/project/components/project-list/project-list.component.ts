@@ -10,7 +10,7 @@ import { ProjectService } from '../../services/project.service';
 export class ProjectListComponent implements OnInit {
 
   projects: Project[];
-  tableHeaders: string[] = ['_id','label', 'git_url', 'enable'];
+  tableHeaders: string[] = ['_id', 'label', 'git_url', 'enable'];
 
   constructor(private projectService: ProjectService) { }
 
