@@ -21,11 +21,11 @@ export class ProjectService {
     return this.http.get(this.apiUrl);
   }
 
-  getProject(id: String) {
+  getProject(id: string) {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
-  getBranches(projectId: String) {
+  getBranches(projectId: string) {
     return this.http.get(`${this.apiUrl}/branches/${projectId}`);
   }
 }
