@@ -24,4 +24,8 @@ export class ProjectService {
   getProject(id: String) {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
+
+  getBranches(projectId: String) {
+    return this.http.get(`${this.apiUrl}/branches/${projectId}`);
+  }
 }

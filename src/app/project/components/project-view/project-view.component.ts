@@ -16,9 +16,21 @@ export class ProjectViewComponent implements OnInit {
   constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit(): void {
+    this.getProject();
+  }
+
+  getProject() {
     this.projectService.getProject(this.route.snapshot.paramMap.get('id'))
       .subscribe((project: Project) => {
         console.log(project);
+        this.project = project;
+      }
+    );
+  }
+
+  refreshBranches() {
+    this.projectService.getBranches(this.project._id)
+      .subscribe((project: Project) => {
         this.project = project;
       }
     );
