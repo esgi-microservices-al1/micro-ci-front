@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subject} from "rxjs";
-import {RunnerStatus} from "../models/runner.status";
-import {RunnerStatusService} from "../services/runner-status.service";
-import {takeUntil} from "rxjs/operators";
+import {Subject} from 'rxjs/internal/Subject';
+import {RunnerStatus} from '../models/runner.status';
+import {RunnerStatusService} from '../services/runner-status.service';
+import {takeUntil} from 'rxjs/internal/operators/takeUntil';
 
 @Component({
-  selector: 'app-runner-status',
+  selector: 'ci-runner-status',
   templateUrl: './runner-status.container.html'
 })
 export class RunnerStatusContainer implements OnInit, OnDestroy {

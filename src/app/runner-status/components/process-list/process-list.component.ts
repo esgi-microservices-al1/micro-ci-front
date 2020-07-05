@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RunnerStatus} from "../../models/runner.status";
-import {Router} from "@angular/router";
+import {RunnerStatus} from '../../models/runner.status';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-process-list',
+  selector: 'ci-process-list',
   templateUrl: './process-list.component.html',
   styleUrls: ['./process-list.component.scss']
 })

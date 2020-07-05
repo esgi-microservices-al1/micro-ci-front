@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {RunnerStatusContainer} from "./container/runner-status.container";
+import {RunnerStatusContainer} from './container/runner-status.container';
 
 
 const routes: Routes = [

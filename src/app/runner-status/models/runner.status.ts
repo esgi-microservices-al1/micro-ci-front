@@ -1,5 +1,5 @@
 export interface RunnerStatus {
   projectId: number;
-  imageId: String;
-  upTime: String;
+  imageId: string;
+  upTime: string;
 }
