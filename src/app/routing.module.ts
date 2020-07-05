@@ -5,6 +5,7 @@ import { NotificationsContainer } from './notifications';
 import { EventsBuildComponent } from './events/eventsComponent/events-build.component';
 import { ProjectComponent } from './project/container/project.component';
 import {SchedulerContainer} from './scheduler';
+import { ProjectViewComponent } from './project/components/project-view/project-view.component';
 
 
 const routes: Routes = [{
@@ -22,6 +23,9 @@ const routes: Routes = [{
 }, {
   path: 'project',
   component: ProjectComponent
+}, {
+  path: 'project/:id',
+  component: ProjectViewComponent
 }
 ];
 

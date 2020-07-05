@@ -5,15 +5,18 @@ import { CreateProjectComponent } from './components/create-project/create-proje
 import { SharedModule } from '../shared';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { NotificationsModule } from '../notifications';
+import { ProjectViewComponent } from './components/project-view/project-view.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [ProjectComponent, CreateProjectComponent, ProjectListComponent],
+  declarations: [ProjectComponent, CreateProjectComponent, ProjectListComponent, ProjectViewComponent],
   imports: [
     CommonModule,
     SharedModule,
-    NotificationsModule
+    NotificationsModule,
+    RouterModule
   ]
 })
 export class ProjectModule { }
