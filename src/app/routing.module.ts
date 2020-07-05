@@ -22,6 +22,9 @@ const routes: Routes = [{
 }, {
   path: 'project',
   component: ProjectComponent
+}, {
+  path: 'status',
+  loadChildren: () => import('./runner-status/runner-status.module').then(m => m.RunnerStatusModule)
 }
 ];
 

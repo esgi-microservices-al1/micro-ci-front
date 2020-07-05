@@ -1,0 +1,32 @@
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from "rxjs";
+import {RunnerStatus} from "../models/runner.status";
+import {RunnerStatusService} from "../services/runner-status.service";
+import {takeUntil} from "rxjs/operators";
+
+@Component({
+  selector: 'app-runner-status',
+  templateUrl: './runner-status.container.html'
+})
+export class RunnerStatusContainer implements OnInit, OnDestroy {
+
+  runningImages: RunnerStatus[];
+  private destroy$: Subject<boolean> = new Subject<boolean>();
+
+  constructor(private runnerStatusService: RunnerStatusService) { }
+
+  ngOnInit(): void {
+    this.runnerStatusService.getStatus()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        runningImages => this.runningImages = runningImages,
+        error => console.error(error)
+      );
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
+}

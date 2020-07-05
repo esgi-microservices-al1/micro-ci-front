@@ -1,0 +1,34 @@
+<mat-card class="card">
+
+  <mat-card-title>
+    <h4>Process list</h4>
+  </mat-card-title>
+
+  <mat-card-content>
+    <div class="mat-elevation-z8 process-list">
+      <table mat-table [dataSource]="runningImages">
+
+        <ng-container matColumnDef="projectId">
+          <th mat-header-cell *matHeaderCellDef> Project id</th>
+          <td mat-cell *matCellDef="let runningImage"> {{runningImage.projectId}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="imageId">
+          <th mat-header-cell *matHeaderCellDef> Docker image id</th>
+          <td mat-cell *matCellDef="let runningImage"> {{runningImage.imageId}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="upTime">
+          <th mat-header-cell *matHeaderCellDef> Up time</th>
+          <td mat-cell *matCellDef="let runningImage"> {{runningImage.upTime}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let runningImage; columns: columns;" (click)="selectProject(runningImage.projectId)"
+            class="row"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>
