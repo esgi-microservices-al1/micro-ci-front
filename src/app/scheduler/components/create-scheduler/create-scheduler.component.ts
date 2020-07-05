@@ -22,6 +22,12 @@ export class CreateSchedulerComponent implements OnInit {
     'HOUR',
     'MINUTE'
   ];
+  projectList = [
+    'myProject1',
+    'myProject2',
+    'myProject3',
+    'myProject4',
+  ];
   today = new Date();
   tomorrow = new Date(this.today.setDate(this.today.getDate() + 1));
   @Output() updateScheduleList = new EventEmitter();
