@@ -47,10 +47,10 @@
 
   <br>
   <mat-form-field>
-    <input matInput required id="startDate" [matDatepicker]="startDatepicker" formControlName="startDate">
-    <mat-error [hidden]="" *ngIf="this.scheduleForm.controls.startDate.invalid">Required field</mat-error>
+    <input matInput value = "{{tomorrow | date:'yyyy-MM-dd'}}" required id="startDate" [matDatepicker]="startDatepicker" >
+    <!--<mat-error [hidden]="" *ngIf="this.scheduleForm.controls.startDate.invalid">Required field</mat-error>-->
     <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
-    <mat-datepicker #startDatepicker></mat-datepicker>
+    <mat-datepicker [startAt]="tomorrow" #startDatepicker></mat-datepicker>
   </mat-form-field>
   <br>
 

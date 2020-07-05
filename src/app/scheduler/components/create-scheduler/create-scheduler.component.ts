@@ -22,6 +22,8 @@ export class CreateSchedulerComponent implements OnInit {
     'HOUR',
     'MINUTE'
   ];
+  today = new Date();
+  tomorrow = new Date(this.today.setDate(this.today.getDate() + 1));
   @Output() updateScheduleList = new EventEmitter();
   scheduleToUpdate = null;
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
