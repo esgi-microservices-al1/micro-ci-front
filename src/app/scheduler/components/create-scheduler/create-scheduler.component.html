@@ -39,8 +39,8 @@
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Frequency</mat-label>
-      <input matInput required min="0" id="frequency" type="number" formControlName="frequency">
-      <mat-error *ngIf="this.scheduleForm.controls.frequency.invalid">Required field and value must be greater than 0</mat-error>
+      <input matInput value="1" required min="1" id="frequency" type="number" >
+      <!--<mat-error *ngIf="this.scheduleForm.controls.frequency.invalid">Required field and value must be greater than 0</mat-error>-->
     </mat-form-field>
   </div>
 
