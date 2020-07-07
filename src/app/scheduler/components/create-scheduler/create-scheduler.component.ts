@@ -1,11 +1,12 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroupDirective, Validators} from '@angular/forms';
 
 import {SchedulerService} from '../../services/scheduler.service';
-import {ScheduleModelDto} from '../../model/schedule.model';
+import {Schedule, ScheduleModelDto} from '../../model/schedule.model';
 import {IntervalModel} from '../../model/interval.model';
 import {ToastService} from '../../services/toast.service';
 import {SchedulerContainer} from '../..';
+import {Project} from "../../model/project.model";
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,6 +15,8 @@ import {SchedulerContainer} from '../..';
   styleUrls: ['./create-scheduler.component.scss']
 })
 export class CreateSchedulerComponent implements OnInit {
+
+  @Input() projects: Project[];
   scheduleForm;
   frequencyUnits = [
     'DAY',
@@ -52,6 +55,7 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log({project : this.projects});
   }
 
   compareFunction(o1: any, o2: any) {

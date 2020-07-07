@@ -16,7 +16,6 @@ export class ScheduleListComponent implements OnInit {
   @Input() schedules: Schedule[];
   @Input() createSchedule: CreateSchedulerComponent;
   isClicked: any = false;
-  selectedRow: number;
 
   constructor(private router: Router) {}
 
