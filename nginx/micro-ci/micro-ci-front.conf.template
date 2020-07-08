@@ -7,14 +7,7 @@ server {
   include           micro-ci/security-headers.conf;
   include           micro-ci/gzip-compression.conf;
 
-  location ~ /ms-scheduler {
-    rewrite /ms-scheduler/(.*) http://localhost:3000/$1 permanent;
-    proxy_pass   http://localhost:3000;
-    proxy_redirect     off;
-    proxy_set_header   Host $host;
-    add_header 'Access-Control-Allow-Origin' '*';
-    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-  }
+  include micro-ci/micro-ci-scheduler.conf;
 
   location / {
     index           index.html;
