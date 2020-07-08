@@ -7,7 +7,9 @@ server {
   include           micro-ci/security-headers.conf;
   include           micro-ci/gzip-compression.conf;
 
-  include           micro-ci/micro-ci-scheduler.conf;
+  location ~ /scheduler-service/(.*) {
+       return 307 http://micro-ci.westus2.cloudapp.azure.com:40501/al1.scheduler-ci/$1;
+  }
 
   location / {
     index           index.html;
