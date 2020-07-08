@@ -7,7 +7,7 @@ import {Observable, throwError} from 'rxjs';
   providedIn: 'root'
 })
 export class SchedulerService {
-  API_URL = '/ms-scheduler';
+  API_URL = '/scheduler-service';
 
   constructor(private httpClient: HttpClient) {}
 
