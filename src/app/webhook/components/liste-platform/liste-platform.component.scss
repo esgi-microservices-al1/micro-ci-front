@@ -1,0 +1,74 @@
+
+.mails-add {
+  height: 400px;
+  overflow: auto;
+}
+.row {
+  cursor: pointer;
+}
+mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  margin-left: 50px;
+  bottom: -50px;
+}
+
+ /* ******************new******** */
+
+.container {
+  padding: 10px;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}
+
+.button{
+  width: 50%;
+  bottom: -150px;
+  margin-left: 500px;
+}
+
+
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.btn{
+  font-size: 23px;
+  position: absolute;
+  bottom: 198px;
+  right: 887px;
+  height: 36px;
+  width: 117px;
+}
+
+.btn2{
+  font-size: 23px;
+    position: absolute;
+    bottom: 198px;
+    right: 887px;
+    height: 36px;
+    width: 117px;
+
+}
+

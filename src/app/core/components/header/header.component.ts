@@ -19,6 +19,12 @@ export class HeaderComponent implements OnInit {
 
     this.router.navigate(['/events']);
   }
+
+  webhookRoute() {
+
+    this.router.navigate(['/webhook']);
+  }
+
   usersRoute() {
 
     this.router.navigate(['/']);

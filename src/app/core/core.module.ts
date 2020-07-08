@@ -3,7 +3,7 @@ import { SharedModule } from '../shared';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatButtonModule} from '@angular/material/button';
-
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
   ],
     imports: [
         SharedModule,
-        MatButtonModule
+        MatButtonModule,
+        RouterModule
     ],
   exports: [
     HeaderComponent,

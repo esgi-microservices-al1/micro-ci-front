@@ -1,0 +1,38 @@
+<mat-card class="card">
+
+
+  <mat-card-title>
+    <h3>Choose Platform</h3>
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <div class="mat-elevation-z8 mails-add">
+      <div class="container">
+
+
+        <section class="example-section">
+          <mat-radio-group [(ngModel)]="labelPosition">
+            <mat-radio-button class="example-margin" value="after">Github</mat-radio-button>
+            <mat-radio-button class="example-margin" value="mid">Gitlab</mat-radio-button>
+            <mat-radio-button class="example-margin" value="before">Bitbucket</mat-radio-button>
+          </mat-radio-group>
+        </section>
+
+      </div>
+
+      <button type="button" class="btn"(click)="appliquer();" >valider</button>
+      <button type="button" class="btn2"(click)="arreter();" >Arreter le service</button>
+
+
+
+    </div>
+
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+

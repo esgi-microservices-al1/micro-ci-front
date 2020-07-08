@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppContainer } from './app.container';
 import { RoutingModule } from './routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +9,7 @@ import { ProjectModule } from './project';
 import { NotificationsModule } from './notifications';
 import {EventsModule} from './events/events-module';
 import {SchedulerModule} from './scheduler';
-
+import {WebhookModule} from './webhook';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -30,7 +29,12 @@ import { HttpClientModule } from '@angular/common/http';
     NotificationsModule,
     EventsModule,
     SchedulerModule,
-    HttpClientModule
+    HttpClientModule,
+    WebhookModule
+
+  ],
+  exports: [
+    AppContainer
   ],
   providers: [],
   bootstrap: [AppContainer]

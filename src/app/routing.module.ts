@@ -5,7 +5,7 @@ import { NotificationsContainer } from './notifications';
 import { EventsBuildComponent } from './events/eventsComponent/events-build.component';
 import { ProjectComponent } from './project/container/project.component';
 import {SchedulerContainer} from './scheduler';
-
+import {PlatformContainerComponent} from './webhook';
 
 const routes: Routes = [{
   path: '',
@@ -22,6 +22,10 @@ const routes: Routes = [{
 }, {
   path: 'project',
   component: ProjectComponent
+},
+{
+  path: 'webhook',
+  component: PlatformContainerComponent
 }
 ];
 
