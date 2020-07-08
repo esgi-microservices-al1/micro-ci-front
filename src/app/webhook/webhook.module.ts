@@ -5,7 +5,7 @@ import { PlatformContainerComponent } from './container/platform-container/platf
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {SharedModule} from '../shared';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import {SharedModule} from '../shared';
     CommonModule,
     SharedModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSlideToggleModule
 
   ]
 })

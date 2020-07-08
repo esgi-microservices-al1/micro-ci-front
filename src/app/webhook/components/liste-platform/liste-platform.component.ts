@@ -11,15 +11,20 @@ export class ListePlatformComponent implements OnInit {
   labelPosition: 'before' |'mid' |'after' = 'after';
   disabled = false;
   constructor() { }
-  ngOnInit () {  }
+  // ngOnInit () {  }
 
 
 
   ngOnInit(): void {
   }
 
+  appliquer() {
 
+  }
 
+  arreter() {
+
+  }
 }
 
 
