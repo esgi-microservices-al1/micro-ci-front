@@ -7,8 +7,11 @@ server {
   include           micro-ci/security-headers.conf;
   include           micro-ci/gzip-compression.conf;
 
-  location ~ /scheduler-service/(.*) {
-      proxy_pass http://micro-ci.westus2.cloudapp.azure.com:40501/al1.scheduler-ci/$1;
+  location ~ /scheduler-service {
+      rewrite /scheduler-service/(.*) http://micro-ci.westus2.cloudapp.azure.com:40501/al1.scheduler-ci/$1 permanent;
+      proxy_pass http://micro-ci.westus2.cloudapp.azure.com:40501;
+      proxy_set_header Host $host;
+      proxy_redirect off;
   }
 
   location / {
