@@ -1,6 +1,5 @@
 import {Schedule, ScheduleModelDto} from '../model/schedule.model';
 import {Injectable} from '@angular/core';
-import {User} from '../../users/model/user.model';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 
@@ -8,26 +7,19 @@ import {Observable, throwError} from 'rxjs';
   providedIn: 'root'
 })
 export class SchedulerService {
-  API_URL = 'http://localhost:5000/';
+  API_URL = '/scheduler-service';
 
   constructor(private httpClient: HttpClient) {}
-
 
   httpOptions = {
     headers: new HttpHeaders({
       'Cache-Control' : 'no-cache',
       'Content-Type':  'application/json',
-      'Access-Control-Allow-Origin':  'http://127.0.0.1:5000'
     })
   };
 
   getSchedules(): Observable<Schedule[]> {
-    return this.httpClient.get<Schedule[]>(this.API_URL + 'schedule');
-  }
-
-  addSchedule(schedule: string[]): void {
-    // this.schedules.push({name: schedule.pop(), project: schedule.pop(), scheduledAt : new Date(schedule.pop()),
-    //                      scheduledBy: schedule.pop(), createdAt: schedule.pop(), scheduledAt : schedule.pop()});
+    return this.httpClient.get<Schedule[]>(this.API_URL + '/schedule');
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -47,14 +39,14 @@ export class SchedulerService {
   }
 
   postSchedule(scheduleDto: ScheduleModelDto) {
-    return this.httpClient.post<ScheduleModelDto>(this.API_URL + 'schedule', scheduleDto, this.httpOptions);
+    return this.httpClient.post<ScheduleModelDto>(this.API_URL + '/schedule', scheduleDto, this.httpOptions);
   }
 
   updateSchedule(scheduleId: string, scheduleDto: ScheduleModelDto) {
-    return this.httpClient.put<ScheduleModelDto>(this.API_URL + 'schedule/' + scheduleId, scheduleDto);
+    return this.httpClient.put<ScheduleModelDto>(this.API_URL + '/schedule/' + scheduleId, scheduleDto);
   }
 
   deleteSchedule(scheduleId) {
-    return this.httpClient.delete<string>(this.API_URL + 'schedule/' + scheduleId);
+    return this.httpClient.delete<string>(this.API_URL + '/schedule/' + scheduleId);
   }
 }

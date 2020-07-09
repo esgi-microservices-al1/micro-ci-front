@@ -7,6 +7,8 @@ server {
   include           micro-ci/security-headers.conf;
   include           micro-ci/gzip-compression.conf;
 
+  include  micro-ci/micro-ci-scheduler.conf;
+
   location / {
     index           index.html;
     try_files       $uri $uri/ /index.html =404;
@@ -27,4 +29,5 @@ server {
     access_log      off;
     #add_header      Cache-Control 'public';
   }
+
 }
