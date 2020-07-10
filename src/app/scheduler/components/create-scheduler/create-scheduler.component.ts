@@ -17,8 +17,7 @@ import {Project} from '../../../project/model/project.model';
 })
 export class CreateSchedulerComponent implements OnInit {
 
-  @Input() projects: Project[];
-  selectedProject: Project;
+  @Input() project: Project;
   scheduleForm;
   frequencyUnits = [
     'DAY',
@@ -33,6 +32,12 @@ export class CreateSchedulerComponent implements OnInit {
     'myProject3',
     'myProject4',
   ];
+
+  branch = ['branch1', 'branch2'];
+
+// tslint:disable-next-line:max-line-length
+  proj1 = {_id: '1', label: 'myProject1', git_url: 'https://toto.git', access_token: 'eeee', enable: true, git_host: 'github', branches: this.branch} as Project;
+
   today = new Date();
   tomorrow = new Date(this.today.setDate(this.today.getDate() + 1));
   @Output() updateScheduleList = new EventEmitter();
@@ -57,7 +62,7 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log({project : this.projects});
+    console.log({project : this.project});
   }
 
   compareFunction(o1: any, o2: any) {

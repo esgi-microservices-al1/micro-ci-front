@@ -1,9 +1,9 @@
 {
   "/scheduler-service": {
-    "target": "http://localhost:3000",
+    "target": "http://localhost:5000",
     "secure": false,
     "pathRewrite": {
-      "^/ms-scheduler": ""
+      "^/scheduler-service": ""
     },
     "logLevel": "debug"
   }

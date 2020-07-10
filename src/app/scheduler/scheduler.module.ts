@@ -18,7 +18,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 
     ScheduleListComponent,
 
-    CreateSchedulerComponent
+    CreateSchedulerComponent,
+
   ],
   imports: [
     SharedModule,
