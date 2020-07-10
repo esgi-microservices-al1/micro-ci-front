@@ -20,7 +20,9 @@ export class CreateProjectComponent implements OnInit {
               private notifService: NotificationService) {
     this.projectForm = this.fb.group({
       label: [''],
-      gitUrl: ['']
+      gitUrl: [''],
+      gitHost: [''],
+      accessToken: ['']
     });
   }
 
@@ -34,7 +36,9 @@ export class CreateProjectComponent implements OnInit {
     this.projectService.createProject(this.projectForm.value)
       .subscribe((project: Project) => {
         this.project = project;
-        return alert('Project created!');
+        alert('Project created!');
+        window.location.reload();
+        return;
       }, err => {
         return alert('An error occured during the process\n' + err);
       });

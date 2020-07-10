@@ -12,7 +12,7 @@
 
     <ng-container [matColumnDef]="tableHeaders[1]">
         <th mat-header-cell *matHeaderCellDef> {{ tableHeaders[1] | uppercase }} </th>
-        <td mat-cell *matCellDef="let project"> {{ project[tableHeaders[1]] }} </td>
+        <td mat-cell *matCellDef="let project"> {{ project[tableHeaders[1]] || "null" }} </td>
     </ng-container>
 
     <ng-container [matColumnDef]="tableHeaders[2]">
