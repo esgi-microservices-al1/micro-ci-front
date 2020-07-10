@@ -18,6 +18,7 @@ import {Project} from '../../../project/model/project.model';
 export class CreateSchedulerComponent implements OnInit {
 
   @Input() projects: Project[];
+  selectedProject: Project;
   scheduleForm;
   frequencyUnits = [
     'DAY',

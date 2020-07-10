@@ -16,14 +16,15 @@
     <mat-form-field appearance="fill">
       <mat-label>Project name</mat-label>
       <mat-select [compareWith]="compareFunction" required id="projectName" formControlName="frequencyUnit">
-        <mat-option *ngFor="let project of projects" value="{{project.label}}">{{project.label}}</mat-option>
+        <mat-option *ngFor="let project of projects" value="{{project.label}}" (click)="selectedProject=project">{{project.label}}</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Branch Name</mat-label>
-      <input matInput required id="branchName" type="text" formControlName="branchName">
-      <mat-error *ngIf="this.scheduleForm.controls.branchName.invalid">Required field</mat-error>
+      <mat-select [compareWith]="compareFunction" required id="branchName" formControlName="branchName">
+        <!--<mat-option *ngFor="let branch of selectedProject.branches" value="{{branch}}">{{branch}}</mat-option>-->
+      </mat-select>
     </mat-form-field>
   </div>
 

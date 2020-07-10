@@ -1,6 +1,9 @@
 export interface Project {
+    _id: string;
     label: string;
     git_url: string;
-    branches: Array<string>;
+    access_token: string;
+    git_host: string;
     enable: boolean;
+    branches: [string];
 }
