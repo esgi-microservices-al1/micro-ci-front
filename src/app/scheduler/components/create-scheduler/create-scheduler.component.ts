@@ -1,10 +1,27 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroupDirective, Validators} from '@angular/forms';
+import {FormBuilder, FormGroupDirective, Validators} from '@angular/forms';
 import {SchedulerService} from '../../services/scheduler.service';
 import { ScheduleModelDto, IntervalModel} from '../../model';
 import {ToastService} from '../../services/toast.service';
 import {Project} from '../../../project/model/project.model';
 import {DatePipe} from "@angular/common";
+import {MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats} from "@angular/material/core";
+
+
+export const GRI_DATE_FORMATS: MatDateFormats = {
+  ...MAT_NATIVE_DATE_FORMATS,
+  display: {
+    ...MAT_NATIVE_DATE_FORMATS.display,
+    dateInput:
+      {
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      timeZone: 'Europe/Paris',
+        formatMatcher :'basic'
+    } as Intl.DateTimeFormatOptions,
+  }
+};
 
 
 @Component({
@@ -13,8 +30,7 @@ import {DatePipe} from "@angular/common";
   templateUrl: './create-scheduler.component.html',
   styleUrls: ['./create-scheduler.component.scss'],
   providers: [
-    // {provide: DateAdapter, u, deps: [MAT_DATE_LOCALE]},
-    // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    { provide: MAT_DATE_FORMATS, useValue: GRI_DATE_FORMATS , },
   ]
 })
 export class CreateSchedulerComponent implements OnInit {
