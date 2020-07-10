@@ -10,6 +10,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -17,9 +19,11 @@ import {MatNativeDateModule} from '@angular/material/core';
     SchedulerContainer,
 
     ScheduleListComponent,
-
     CreateSchedulerComponent,
 
+  ],
+  providers: [
+    DatePipe,
   ],
   imports: [
     SharedModule,

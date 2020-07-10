@@ -1,24 +1,27 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroupDirective, Validators} from '@angular/forms';
-
 import {SchedulerService} from '../../services/scheduler.service';
-import {Schedule, ScheduleModelDto} from '../../model/schedule.model';
-import {IntervalModel} from '../../model/interval.model';
+import { ScheduleModelDto, IntervalModel} from '../../model';
 import {ToastService} from '../../services/toast.service';
-import {SchedulerContainer} from '../..';
 import {Project} from '../../../project/model/project.model';
+import {DatePipe} from "@angular/common";
 
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'create-scheduler',
   templateUrl: './create-scheduler.component.html',
-  styleUrls: ['./create-scheduler.component.scss']
+  styleUrls: ['./create-scheduler.component.scss'],
+  providers: [
+    // {provide: DateAdapter, u, deps: [MAT_DATE_LOCALE]},
+    // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ]
 })
 export class CreateSchedulerComponent implements OnInit {
 
-  @Input() project: Project;
+  branch = ['master', 'develop'];
   scheduleForm;
+
   frequencyUnits = [
     'DAY',
     'WEEK',
@@ -26,47 +29,43 @@ export class CreateSchedulerComponent implements OnInit {
     'HOUR',
     'MINUTE'
   ];
-  projectList = [
-    'myProject1',
-    'myProject2',
-    'myProject3',
-    'myProject4',
-  ];
 
-  branch = ['branch1', 'branch2'];
+  @Input() project:  Project = {
+    _id: '1',
+    label: 'myProject1',
+    git_url: 'https://toto.git',
+    access_token: 'eeee',
+    enable: true,
+    git_host: 'github',
+    branches: this.branch} as Project;
 
-// tslint:disable-next-line:max-line-length
-  proj1 = {_id: '1', label: 'myProject1', git_url: 'https://toto.git', access_token: 'eeee', enable: true, git_host: 'github', branches: this.branch} as Project;
-
-  today = new Date();
-  tomorrow = new Date(this.today.setDate(this.today.getDate() + 1));
   @Output() updateScheduleList = new EventEmitter();
+
+
+
+  branchName: string = this.project.branches[0];
+  frequency: number = 1;
+  startDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  frequencyUnit : string = this.frequencyUnits[0];
+
   scheduleToUpdate = null;
+
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
 
   constructor(
     private schedulerService: SchedulerService,
     private formBuilder: FormBuilder,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private datePipe: DatePipe
   ) {
-
-    this.scheduleForm = this.formBuilder.group({
-      schedulerName: [{value: '', disabled: false}, Validators.required],
-      projectName: [{ value: '', disabled: false }, Validators.required],
-      branchName: [{ value: '', disabled: false }, Validators.required],
-      frequencyUnit: [{ value: '', disabled: false }],
-      frequency: [{ value: '', disabled: false }, [Validators.required, Validators.min(0)]],
-      startDate: [{ value: '', disabled: false }, Validators.required],
-      submit: [{ value: '', disabled: false }]
-    });
+    this.resetFormulaire();
   }
 
   ngOnInit(): void {
-    console.log({project : this.project});
+    console.log(this.project.label);
   }
 
   compareFunction(o1: any, o2: any) {
-    // tslint:disable-next-line:triple-equals
     return (o1.name == o2.name && o1.id == o2.id);
   }
 
@@ -76,22 +75,15 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   onSubmit(schedulerData) {
+
+    console.log("projectName : ", schedulerData.projectName);
     console.log('schedulerData', schedulerData);
     if (this.scheduleForm.invalid) {
       this.toastService.createToast('Invalid Schedule', 'OK');
       return;
     }
-    this.scheduleForm.reset();
-    this.formDirective.resetForm();
-    let interval: IntervalModel;
-    interval = new IntervalModel(schedulerData.frequencyUnit, schedulerData.frequency);
-    let scheduleDto: ScheduleModelDto;
-    scheduleDto = new ScheduleModelDto(schedulerData.schedulerName,
-      schedulerData.projectName, // TODO : put @Input project in this field
-      schedulerData.branchName,
-      interval,
-      schedulerData.startDate);
-    // console.log(scheduleDto.toString());
+    const scheduleDto = this.parseFormData(schedulerData);
+
     if (this.scheduleToUpdate != null) {
         console.log('let\'s update this schedule', scheduleDto);
         this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {
@@ -114,6 +106,8 @@ export class CreateSchedulerComponent implements OnInit {
       );
       this.setDisableForm();
     }
+
+    this.resetFormulaire();
   }
 
   updateSchedule(schedule) {
@@ -126,6 +120,28 @@ export class CreateSchedulerComponent implements OnInit {
     this.scheduleForm.controls.startDate.setValue(schedule.start_date);
   }
 
+  resetFormulaire() {
+    this.scheduleForm = this.formBuilder.group({
+      schedulerName: [{value: '', disabled: false}, Validators.required],
+      projectName: [{ value: this.project.label, disabled: true}, Validators.required],
+      branchName: [{ value: this.branchName, disabled: false }, Validators.required],
+      frequencyUnit: [{ value: this.frequencyUnit ,disabled: false }],
+      frequency: [{ value: this.frequency , disabled: false }, [Validators.required, Validators.min(0)]],
+      startDate: [{ value: this.startDate , disabled: false }, Validators.required]
+    });
+  }
+
+  private parseFormData(schedulerData): ScheduleModelDto {
+    const interval = new IntervalModel(schedulerData.frequencyUnit, schedulerData.frequency);
+
+    let startDate = typeof schedulerData.startDate === 'string'?
+                              schedulerData.startDate :
+                              schedulerData.startDate.toISOString();
+
+
+    return new ScheduleModelDto( schedulerData.schedulerName, this.project.label,
+                                  schedulerData.branchName, interval, startDate );
+  }
 
   deleteSchedule(schedule) {
     this.toastService.createToast('Delete ' + schedule.name + ' ?', 'Yes', 6000).onAction().subscribe(() => {
@@ -133,7 +149,21 @@ export class CreateSchedulerComponent implements OnInit {
         console.warn('Your schedule has been deleted', schedule);
         this.updateScheduleList.emit();
         this.setDisableForm();
+        this.resetFormulaire();
       });
     });
   }
+
+  get getDateFormatted() {
+    // this.datepipe.transform(this.startDate, 'dd/MM/yyyy');
+    const formatted =  this.datePipe.transform(this.startDate, 'yyyy/dd/MM');
+    console.log({formatted});
+    return formatted;
+  }
+
+
+  buttonContentName(){
+    return this.scheduleToUpdate == null ? 'Create new Schedule':'Update schedule';
+  }
+
 }

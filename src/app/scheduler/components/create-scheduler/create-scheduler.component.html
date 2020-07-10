@@ -1,63 +1,112 @@
-<form class="entire-form" [formGroup]="scheduleForm" (ngSubmit)="onSubmit(scheduleForm.value)">
-
-
+<form class="entire-form"
+      [formGroup]="scheduleForm"
+      (ngSubmit)="onSubmit(scheduleForm.value)" >
   <div class="title-form">
     Schedule Form
-
   </div>
   <mat-form-field appearance="fill">
     <mat-label>Schedule Name</mat-label>
-    <input matInput required id="schedulerName" type="text" formControlName="schedulerName">
-    <mat-error *ngIf="this.scheduleForm.controls.schedulerName.invalid">Required field</mat-error>
+    <input matInput
+           id="schedulerName"
+           type="text"
+           formControlName="schedulerName"
+           required >
+    <mat-error *ngIf="scheduleForm.controls.schedulerName.invalid">
+      Required field
+    </mat-error>
   </mat-form-field>
 
   <div>
-    <p class="project-title">Project : </p>
+    <p class="project-title">
+      Project :
+    </p>
     <mat-form-field appearance="fill">
-      <input matInput required id="projectName" type="text" value="{{project.label}}" formControlName="projectName">
+      <input matInput
+             id="projectName"
+             type="text"
+             formControlName="projectName">
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
-      <mat-label>Branch Name</mat-label>
-      <mat-select [compareWith]="compareFunction" required id="branchName" formControlName="branchName">
-        <mat-option *ngFor="let branch of project.branches" value="{{branch}}">{{branch}}</mat-option>-->
+      <mat-label>
+        Branch Name
+      </mat-label>
+      <mat-select [compareWith]="compareFunction"
+                  id="branchName"
+                  formControlName="branchName"
+                  [value]="branchName"
+                  required>
+        <mat-option *ngFor="let branch of project.branches"
+                    value="{{branch}}">
+          {{branch}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
 
   <div>
-    <p class="interval-title">Interval : </p>
+    <p class="interval-title">
+      Interval :
+    </p>
     <mat-form-field appearance="fill">
-      <mat-label>Frequency Unit</mat-label>
-      <mat-select [compareWith]="compareFunction" required id="frequencyUnit" formControlName="frequencyUnit">
-        <mat-option *ngFor="let unit of frequencyUnits" value="{{unit}}">{{unit}}</mat-option>
+      <mat-label>
+        Frequency Unit
+      </mat-label>
+      <mat-select [compareWith]="compareFunction"
+                  id="frequencyUnit"
+                  formControlName="frequencyUnit"
+                  required>
+        <mat-option *ngFor="let unit of frequencyUnits"
+                    value="{{unit}}">
+          {{unit}}
+        </mat-option>
       </mat-select>
-      <!--<mat-error *ngIf="this.scheduleForm.controls.frequencyUnit.invalid">Required field</mat-error>-->
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Frequency</mat-label>
-      <input matInput value="1" required min="1" id="frequency" type="number" >
+      <input matInput
+             [value]="frequency"
+             formControlName="frequency"
+             required
+             min="1"
+             id="frequency"
+             type="number" >
       <!--<mat-error *ngIf="this.scheduleForm.controls.frequency.invalid">Required field and value must be greater than 0</mat-error>-->
     </mat-form-field>
   </div>
-
-
   <br>
   <mat-form-field>
-    <input matInput value = "{{tomorrow | date:'yyyy-MM-dd'}}" required id="startDate" [matDatepicker]="startDatepicker" >
+
+
+
+    <input matInput
+           required
+           id="startDate"
+           [matDatepicker]="startDatepicker"
+           formControlName="startDate"
+           />
+    <mat-datepicker-toggle matSuffix
+                           [for]="startDatepicker">
+      <mat-datepicker [startAt]="startDate"
+                      #startDatepicker >
+    </mat-datepicker>
     <!--<mat-error [hidden]="" *ngIf="this.scheduleForm.controls.startDate.invalid">Required field</mat-error>-->
-    <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
-    <mat-datepicker [startAt]="tomorrow" #startDatepicker></mat-datepicker>
+
+    </mat-datepicker-toggle>
+
+
+
   </mat-form-field>
   <br>
 
   <button class="button"
           type="submit"
           mat-raised-button
-          color="primary"
-          formControlName="submit">{{scheduleToUpdate==null?'Create new Schedule':'Update schedule'}}</button>
+          color="primary">
+    {{ buttonContentName() }}
+  </button>
   <button mat-raised-button class="reset-schedule-button"
           color="primary"
           *ngIf="this.scheduleToUpdate"
