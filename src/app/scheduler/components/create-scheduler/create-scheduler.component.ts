@@ -6,7 +6,8 @@ import {Schedule, ScheduleModelDto} from '../../model/schedule.model';
 import {IntervalModel} from '../../model/interval.model';
 import {ToastService} from '../../services/toast.service';
 import {SchedulerContainer} from '../..';
-import {Project} from "../../model/project.model";
+import {Project} from '../../../project/model/project.model';
+
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -84,7 +85,7 @@ export class CreateSchedulerComponent implements OnInit {
       schedulerData.branchName,
       interval,
       schedulerData.startDate);
-    //console.log(scheduleDto.toString());
+    // console.log(scheduleDto.toString());
     if (this.scheduleToUpdate != null) {
         console.log('let\'s update this schedule', scheduleDto);
         this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {

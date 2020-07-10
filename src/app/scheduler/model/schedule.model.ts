@@ -1,4 +1,3 @@
-import {User} from '../../users/model/user.model';
 import {IntervalModel} from './interval.model';
 
 export interface Schedule {

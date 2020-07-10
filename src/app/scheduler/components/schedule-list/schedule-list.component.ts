@@ -20,7 +20,7 @@ export class ScheduleListComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    console.log({schedule : this.schedules});
+    console.log('project list : ' + {schedule : this.schedules});
   }
 
   updateSchedule(schedule) {
