@@ -3,7 +3,7 @@
     "target": "http://localhost:3000",
     "secure": false,
     "pathRewrite": {
-      "^/ms-scheduler": ""
+      "^/scheduler-service": ""
     },
     "logLevel": "debug"
   }
