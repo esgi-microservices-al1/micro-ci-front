@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
 import {Schedule} from '../../model/schedule.model';
 import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.component';
+import {Project} from "../../../project/model/project.model";
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -17,7 +17,11 @@ export class ScheduleListComponent implements OnInit {
   @Input() createSchedule: CreateSchedulerComponent;
   isClicked: any = false;
 
-  constructor(private router: Router) {}
+  currentProject: Project;
+
+  constructor() {
+    this.currentProject = JSON.parse(localStorage.getItem('selectedProject')) as Project;
+  }
 
   ngOnInit(): void {
     console.log('project list : ' + {schedule : this.schedules});

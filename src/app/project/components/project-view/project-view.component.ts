@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../model/project.model';
 
@@ -9,11 +9,14 @@ import { Project } from '../../model/project.model';
   styleUrls: ['./project-view.component.scss']
 })
 export class ProjectViewComponent implements OnInit {
-
+  
   project: Project;
+
   branchesTableHeader = ['branches'];
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
+  constructor(private route: ActivatedRoute,
+              private projectService: ProjectService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getProject();
@@ -36,4 +39,8 @@ export class ProjectViewComponent implements OnInit {
     );
   }
 
+  goToSchedules() {
+    localStorage.setItem('selectedProject', JSON.stringify(this.project));
+    this.router.navigateByUrl('/scheduler');
+  }
 }

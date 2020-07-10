@@ -1,10 +1,25 @@
 <mat-card class="info-card">
     <mat-card-title> Project Informations </mat-card-title>
 
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between start"
+       fxFlexFill>
     <a mat-icon-button color="primary" [routerLink]="[ '/project' ]">
-        <mat-icon>arrow_back</mat-icon>
-        Go back to project list
+      <mat-icon>arrow_back</mat-icon>
+      Go back to project list
     </a>
+      <button mat-raised-button
+              color="primary"
+              (click)="goToSchedules()">
+        <mat-icon>
+          alarm
+        </mat-icon>
+        <span>    Schedules</span>
+      </button>
+  </div>
+
+
     <div class="info">
         <div>
             <h5>ID: </h5>

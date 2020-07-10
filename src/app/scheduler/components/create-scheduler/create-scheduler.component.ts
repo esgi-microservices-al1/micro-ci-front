@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroupDirective, Validators} from '@angular/forms';
 import {SchedulerService} from '../../services/scheduler.service';
-import { ScheduleModelDto, IntervalModel} from '../../model';
+import {ScheduleModelDto, IntervalModel, FrequencyUnit} from '../../model';
 import {ToastService} from '../../services/toast.service';
 import {Project} from '../../../project/model/project.model';
 import {DatePipe} from "@angular/common";
 import {MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats} from "@angular/material/core";
+import {Router} from "@angular/router";
 
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
@@ -34,35 +35,16 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   ]
 })
 export class CreateSchedulerComponent implements OnInit {
-
-  branch = ['master', 'develop'];
-  scheduleForm;
-
-  frequencyUnits = [
-    'DAY',
-    'WEEK',
-    'MONTH',
-    'HOUR',
-    'MINUTE'
-  ];
-
-  @Input() project:  Project = {
-    _id: '1',
-    label: 'myProject1',
-    git_url: 'https://toto.git',
-    access_token: 'eeee',
-    enable: true,
-    git_host: 'github',
-    branches: this.branch} as Project;
-
   @Output() updateScheduleList = new EventEmitter();
 
+  scheduleForm;
 
-
-  branchName: string = this.project.branches[0];
+  frequencyUnits = Object.keys(FrequencyUnit);
+  project: Project;
+  branchName: string ;
   frequency: number = 1;
   startDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
-  frequencyUnit : string = this.frequencyUnits[0];
+  frequencyUnit : string = FrequencyUnit.DAY.toString();
 
   scheduleToUpdate = null;
 
@@ -72,9 +54,17 @@ export class CreateSchedulerComponent implements OnInit {
     private schedulerService: SchedulerService,
     private formBuilder: FormBuilder,
     private toastService: ToastService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router
   ) {
-    this.resetFormulaire();
+    this.project = JSON.parse(localStorage.getItem('selectedProject')) as Project;
+    if( this.project != null ) {
+      this.branchName = this.project.branches[0];
+      this.resetFormulaire();
+    } else {
+      this.router.navigateByUrl('/');
+
+    }
   }
 
   ngOnInit(): void {
@@ -155,7 +145,7 @@ export class CreateSchedulerComponent implements OnInit {
                               schedulerData.startDate.toISOString();
 
 
-    return new ScheduleModelDto( schedulerData.schedulerName, this.project.label,
+    return new ScheduleModelDto( schedulerData.schedulerName, this.project._id,
                                   schedulerData.branchName, interval, startDate );
   }
 
