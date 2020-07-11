@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Schedule} from '../../model/schedule.model';
+import {Schedule} from '../../model';
 import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.component';
-import {Project} from "../../../project/model/project.model";
+import {Project} from '../../../project/model/project.model';
 
 @Component({
   // tslint:disable-next-line:component-selector

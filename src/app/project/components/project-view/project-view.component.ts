@@ -9,7 +9,6 @@ import { Project } from '../../model/project.model';
   styleUrls: ['./project-view.component.scss']
 })
 export class ProjectViewComponent implements OnInit {
-  
   project: Project;
 
   branchesTableHeader = ['branches'];

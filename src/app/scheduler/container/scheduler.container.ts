@@ -1,8 +1,6 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Schedule} from '../model/schedule.model';
+import {Schedule} from '../model';
 import {SchedulerService} from '../services/scheduler.service';
-import {CreateSchedulerComponent} from '../components/create-scheduler/create-scheduler.component';
-import {Project} from "../../project/model/project.model";
 
 
 @Component({

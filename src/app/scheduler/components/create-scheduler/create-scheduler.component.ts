@@ -4,9 +4,9 @@ import {SchedulerService} from '../../services/scheduler.service';
 import {ScheduleModelDto, IntervalModel, FrequencyUnit} from '../../model';
 import {ToastService} from '../../services/toast.service';
 import {Project} from '../../../project/model/project.model';
-import {DatePipe} from "@angular/common";
-import {MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats} from "@angular/material/core";
-import {Router} from "@angular/router";
+import {DatePipe} from '@angular/common';
+import {MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
+import {Router} from '@angular/router';
 
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
@@ -19,7 +19,7 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
       month: 'long',
       day: '2-digit',
       timeZone: 'Europe/Paris',
-        formatMatcher :'basic'
+      formatMatcher : 'basic'
     } as Intl.DateTimeFormatOptions,
   }
 };
@@ -42,9 +42,9 @@ export class CreateSchedulerComponent implements OnInit {
   frequencyUnits = Object.keys(FrequencyUnit);
   project: Project;
   branchName: string ;
-  frequency: number = 1;
+  frequency = 1;
   startDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
-  frequencyUnit : string = FrequencyUnit.DAY.toString();
+  frequencyUnit: string = FrequencyUnit.DAY.toString();
 
   scheduleToUpdate = null;
 
@@ -58,7 +58,7 @@ export class CreateSchedulerComponent implements OnInit {
     private router: Router
   ) {
     this.project = JSON.parse(localStorage.getItem('selectedProject')) as Project;
-    if( this.project != null ) {
+    if ( this.project != null ) {
       this.branchName = this.project.branches[0];
       this.resetFormulaire();
     } else {
@@ -72,7 +72,7 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   compareFunction(o1: any, o2: any) {
-    return (o1.name == o2.name && o1.id == o2.id);
+    return (o1.name === o2.name && o1.id === o2.id);
   }
 
   setDisableForm(): void {
@@ -81,9 +81,6 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   onSubmit(schedulerData) {
-
-    console.log("projectName : ", schedulerData.projectName);
-    console.log('schedulerData', schedulerData);
     if (this.scheduleForm.invalid) {
       this.toastService.createToast('Invalid Schedule', 'OK');
       return;
@@ -131,7 +128,7 @@ export class CreateSchedulerComponent implements OnInit {
       schedulerName: [{value: '', disabled: false}, Validators.required],
       projectName: [{ value: this.project.label, disabled: true}, Validators.required],
       branchName: [{ value: this.branchName, disabled: false }, Validators.required],
-      frequencyUnit: [{ value: this.frequencyUnit ,disabled: false }],
+      frequencyUnit: [{ value: this.frequencyUnit , disabled: false }],
       frequency: [{ value: this.frequency , disabled: false }, [Validators.required, Validators.min(0)]],
       startDate: [{ value: this.startDate , disabled: false }, Validators.required]
     });
@@ -140,7 +137,7 @@ export class CreateSchedulerComponent implements OnInit {
   private parseFormData(schedulerData): ScheduleModelDto {
     const interval = new IntervalModel(schedulerData.frequencyUnit, schedulerData.frequency);
 
-    let startDate = typeof schedulerData.startDate === 'string'?
+    const startDate = typeof  schedulerData.startDate === 'string' ?
                               schedulerData.startDate :
                               schedulerData.startDate.toISOString();
 
@@ -168,8 +165,8 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
 
-  buttonContentName(){
-    return this.scheduleToUpdate == null ? 'Create new Schedule':'Update schedule';
+  buttonContentName() {
+    return this.scheduleToUpdate == null ? 'Create new Schedule' : 'Update schedule';
   }
 
 }
