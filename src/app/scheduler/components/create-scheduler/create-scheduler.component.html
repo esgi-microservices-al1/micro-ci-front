@@ -80,24 +80,18 @@
   <mat-form-field>
 
 
-
-    <input matInput
-           required
-           id="startDate"
-           [matDatepicker]="startDatepicker"
-           formControlName="startDate"
+    <input  matInput
+            required
+            id="startDate"
+            [matDatepicker]="startDatepicker"
+            formControlName="startDate"
            />
     <mat-datepicker-toggle matSuffix
                            [for]="startDatepicker">
       <mat-datepicker [startAt]="startDate"
                       #startDatepicker >
-    </mat-datepicker>
-    <!--<mat-error [hidden]="" *ngIf="this.scheduleForm.controls.startDate.invalid">Required field</mat-error>-->
-
+      </mat-datepicker>
     </mat-datepicker-toggle>
-
-
-
   </mat-form-field>
   <br>
 

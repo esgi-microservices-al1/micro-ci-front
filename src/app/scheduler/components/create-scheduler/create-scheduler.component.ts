@@ -36,11 +36,11 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
 })
 export class CreateSchedulerComponent implements OnInit {
   @Output() updateScheduleList = new EventEmitter();
+  project: Project;
 
   scheduleForm;
 
   frequencyUnits = Object.keys(FrequencyUnit);
-  project: Project;
   branchName: string ;
   frequency = 1;
   startDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
@@ -54,16 +54,12 @@ export class CreateSchedulerComponent implements OnInit {
     private schedulerService: SchedulerService,
     private formBuilder: FormBuilder,
     private toastService: ToastService,
-    private datePipe: DatePipe,
-    private router: Router
+    private datePipe: DatePipe
   ) {
     this.project = JSON.parse(localStorage.getItem('selectedProject')) as Project;
-    if ( this.project != null ) {
+    if ( this.project != null ) { //TODO add guard for this
       this.branchName = this.project.branches[0];
       this.resetFormulaire();
-    } else {
-      this.router.navigateByUrl('/');
-
     }
   }
 
@@ -77,7 +73,6 @@ export class CreateSchedulerComponent implements OnInit {
 
   setDisableForm(): void {
     this.scheduleToUpdate = null;
-    this.scheduleForm.reset();
   }
 
   onSubmit(schedulerData) {
@@ -87,7 +82,7 @@ export class CreateSchedulerComponent implements OnInit {
     }
     const scheduleDto = this.parseFormData(schedulerData);
 
-    if (this.scheduleToUpdate != null) {
+    if (this.scheduleToUpdate != null) { //TODO create method like createSchedule
         console.log('let\'s update this schedule', scheduleDto);
         this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {
           this.updateScheduleList.emit();
@@ -98,7 +93,7 @@ export class CreateSchedulerComponent implements OnInit {
           console.log(error);
         }
       );
-    } else {
+    } else { //TODO create method like updateSchedule
       this.schedulerService.postSchedule(scheduleDto).subscribe((res) => {
         this.updateScheduleList.emit();
         console.warn('Your schedule has been created', schedulerData);
@@ -114,13 +109,15 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   updateSchedule(schedule) {
-    this.scheduleToUpdate = schedule;
-    this.scheduleForm.controls.schedulerName.setValue(schedule.name);
-    this.scheduleForm.controls.projectName.setValue(schedule.project);
-    this.scheduleForm.controls.branchName.setValue(schedule.branch);
-    this.scheduleForm.controls.frequencyUnit.setValue(schedule.interval.unity);
-    this.scheduleForm.controls.frequency.setValue(schedule.interval.frequency);
-    this.scheduleForm.controls.startDate.setValue(schedule.start_date);
+    if( this.project != null)  {
+      this.scheduleToUpdate = schedule;
+      this.scheduleForm.controls.schedulerName.setValue(schedule.name);
+      this.scheduleForm.controls.projectName.setValue(schedule.project);
+      this.scheduleForm.controls.branchName.setValue(schedule.branch);
+      this.scheduleForm.controls.frequencyUnit.setValue(schedule.interval.unity);
+      this.scheduleForm.controls.frequency.setValue(schedule.interval.frequency);
+      this.scheduleForm.controls.startDate.setValue(schedule.start_date);
+    }
   }
 
   resetFormulaire() {
@@ -156,14 +153,6 @@ export class CreateSchedulerComponent implements OnInit {
       });
     });
   }
-
-  get getDateFormatted() {
-    // this.datepipe.transform(this.startDate, 'dd/MM/yyyy');
-    const formatted =  this.datePipe.transform(this.startDate, 'yyyy/dd/MM');
-    console.log({formatted});
-    return formatted;
-  }
-
 
   buttonContentName() {
     return this.scheduleToUpdate == null ? 'Create new Schedule' : 'Update schedule';

@@ -22,6 +22,10 @@ export class SchedulerService {
     return this.httpClient.get<Schedule[]>(this.API_URL + '/schedule');
   }
 
+  getSchedulesByProject(projectId: string): Observable<Schedule[]> {
+    return this.httpClient.get<Schedule[]>(this.API_URL + `/schedule/project/${projectId}`);
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
