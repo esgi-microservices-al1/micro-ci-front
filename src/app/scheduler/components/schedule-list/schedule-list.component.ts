@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
-import {Schedule} from '../../model/schedule.model';
+import {Schedule} from '../../model';
 import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.component';
+import {Project} from '../../../project/model/project.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -11,15 +11,20 @@ import {CreateSchedulerComponent} from '../create-scheduler/create-scheduler.com
 })
 export class ScheduleListComponent implements OnInit {
   @Output() modifySchedule = new EventEmitter();
-  displayedColumns: string[] =  ['name', 'project', 'branch', 'intervalUnit', 'intervalFrequency', 'startDate', 'deleteSchedule'];
+  displayedColumns: string[] =  ['name', 'project', 'branch', 'scheduledInterval', 'startDate', 'deleteSchedule'];
 
   @Input() schedules: Schedule[];
   @Input() createSchedule: CreateSchedulerComponent;
+  isClicked: any = false;
 
-  constructor(private router: Router) {}
+  currentProject: Project;
+
+  constructor() {
+    this.currentProject = JSON.parse(localStorage.getItem('selectedProject')) as Project;
+  }
 
   ngOnInit(): void {
-    console.log({schedule : this.schedules});
+    console.log('project list : ' + {schedule : this.schedules});
   }
 
   updateSchedule(schedule) {
@@ -28,5 +33,9 @@ export class ScheduleListComponent implements OnInit {
 
   deleteSchedule(schedule) {
     this.createSchedule.deleteSchedule(schedule);
+  }
+
+  parseScheduleToHuman(schedule) {
+    return 'Every ' + schedule.interval.frequency + ' ' + schedule.interval.unity;
   }
 }

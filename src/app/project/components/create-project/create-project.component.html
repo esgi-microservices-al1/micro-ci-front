@@ -1,0 +1,24 @@
+<mat-card class="creation-card">
+    <mat-card-title>Create your project here</mat-card-title>
+    <form [formGroup]="projectForm" (ngSubmit)="submitProject()">
+        <mat-form-field class="full-width">
+            <mat-label>Label</mat-label>
+            <input matInput formControlName="label" placeholder="Frontend project">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Git Url</mat-label>
+            <input matInput formControlName="gitUrl" placeholder="https://github.com/myproject">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Git Host (Github or Gitlab)</mat-label>
+          <input matInput formControlName="gitHost" placeholder="Github">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Access Token (Only if the repo is private)</mat-label>
+            <input matInput formControlName="accessToken" placeholder="myToken">
+          </mat-form-field>
+        <button mat-raised-button color="primary">
+            Create
+        </button>
+    </form>
+</mat-card>

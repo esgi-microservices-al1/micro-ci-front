@@ -1,13 +1,13 @@
-import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Schedule} from '../model/schedule.model';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Schedule} from '../model';
 import {SchedulerService} from '../services/scheduler.service';
-import {CreateSchedulerComponent} from '../components/create-scheduler/create-scheduler.component';
 
 
 @Component({
   templateUrl: './scheduler.container.html'
 })
 export class SchedulerContainer implements OnInit {
+
   schedules: Schedule[];
 
   constructor(private schedulerService: SchedulerService, private changeDetectorRefs: ChangeDetectorRef) {

@@ -21,14 +21,24 @@
         </a>
       </div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+
         <ul fxLayout fxLayoutGap="20px" class="navigation-items">
           <li>
-            <a>
+            <nav>
+            <a routerLink ='/' routerLink = 'active'  (click)='usersRoute()'>
               <mat-icon class="icon">home</mat-icon>
-              <span class="label">Home</span>
+              <span class="label" (click)='usersRoute()'>Home</span>
+            </a>
+          </nav>
+          </li>
+
+          <li>
+            <a routerLink ='/events' routerLinkActive = 'active'  (click)='eventsRoute()'>
+              <span class="label" (click)='eventsRoute()'>Build</span>
             </a>
           </li>
         </ul>
+
       </div>
     </mat-toolbar>
     <main>
