@@ -57,7 +57,8 @@ export class CreateSchedulerComponent implements OnInit {
     private datePipe: DatePipe
   ) {
     this.project = JSON.parse(localStorage.getItem('selectedProject')) as Project;
-    if ( this.project != null ) { //TODO add guard for this
+    // TODO add guard for this
+    if ( this.project != null ) {
       this.branchName = this.project.branches[0];
       this.resetFormulaire();
     }
@@ -82,7 +83,8 @@ export class CreateSchedulerComponent implements OnInit {
     }
     const scheduleDto = this.parseFormData(schedulerData);
 
-    if (this.scheduleToUpdate != null) { //TODO create method like createSchedule
+    // TODO create method like createSchedule
+    if (this.scheduleToUpdate != null) {
         console.log('let\'s update this schedule', scheduleDto);
         this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {
           this.updateScheduleList.emit();
@@ -93,7 +95,7 @@ export class CreateSchedulerComponent implements OnInit {
           console.log(error);
         }
       );
-    } else { //TODO create method like updateSchedule
+    } else { // TODO create method like updateSchedule
       this.schedulerService.postSchedule(scheduleDto).subscribe((res) => {
         this.updateScheduleList.emit();
         console.warn('Your schedule has been created', schedulerData);
@@ -109,7 +111,7 @@ export class CreateSchedulerComponent implements OnInit {
   }
 
   updateSchedule(schedule) {
-    if( this.project != null)  {
+    if ( this.project != null)  {
       this.scheduleToUpdate = schedule;
       this.scheduleForm.controls.schedulerName.setValue(schedule.name);
       this.scheduleForm.controls.projectName.setValue(schedule.project);
