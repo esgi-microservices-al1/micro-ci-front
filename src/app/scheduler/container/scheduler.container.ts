@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Schedule} from '../model';
 import {SchedulerService} from '../services/scheduler.service';
-import {Project} from "../../project/model/project.model";
-import {Router} from "@angular/router";
+import {Project} from '../../project/model/project.model';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -17,16 +17,16 @@ export class SchedulerContainer implements OnInit {
               private changeDetectorRefs: ChangeDetectorRef,
               private router: Router) {
     this.project = JSON.parse(localStorage.getItem('selectedProject')) as Project;
-    if ( this.project == null ) { //TODO add guard for this
+    // TODO add guard for this
+    if ( this.project == null ) {
       this.router.navigateByUrl('/');
     }
-    console.log("this.project : " , this.project);
+    console.log('this.project : ' , this.project);
 
   }
 
   ngOnInit(): void {
     this.refresh();
-
   }
 
   refresh(): void {
