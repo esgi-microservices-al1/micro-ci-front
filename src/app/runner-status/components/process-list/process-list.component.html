@@ -6,29 +6,32 @@
 
   <mat-card-content>
     <div class="mat-elevation-z8 process-list">
-      <table mat-table [dataSource]="runningImages">
+      <table mat-table [dataSource]="runningImages" *ngIf="runningImages.length > 0">
 
         <ng-container matColumnDef="projectId">
           <th mat-header-cell *matHeaderCellDef> Project id</th>
-          <td mat-cell *matCellDef="let runningImage"> {{runningImage.projectId}} </td>
+          <td mat-cell *matCellDef="let runningImage"> {{runningImage.project_id}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="imageId">
           <th mat-header-cell *matHeaderCellDef> Docker image id</th>
-          <td mat-cell *matCellDef="let runningImage"> {{runningImage.imageId}} </td>
+          <td mat-cell *matCellDef="let runningImage"> {{runningImage.image_id}} </td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="upTime">
           <th mat-header-cell *matHeaderCellDef> Up time</th>
-          <td mat-cell *matCellDef="let runningImage"> {{runningImage.upTime}} </td>
+          <td mat-cell *matCellDef="let runningImage"> {{runningImage.uptime}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columns"></tr>
-        <tr mat-row *matRowDef="let runningImage; columns: columns;" (click)="selectProject(runningImage.projectId)"
+        <tr mat-row *matRowDef="let runningImage; columns: columns;" (click)="selectProject(runningImage.project_id)"
             class="row"></tr>
       </table>
+      <div class="empty-runner-message">
+        There is no ongoing process
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

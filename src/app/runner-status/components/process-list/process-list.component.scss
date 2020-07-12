@@ -13,3 +13,9 @@ table {
 .card {
   height: calc(100% - 32px);
 }
+
+.empty-runner-message {
+  text-align: center;
+  padding: 5rem;
+  background-color: #eaeaea;
+}

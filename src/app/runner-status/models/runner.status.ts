@@ -1,5 +1,6 @@
 export interface RunnerStatus {
-  projectId: number;
-  imageId: string;
-  upTime: string;
+  project_id: number;
+  image_id: string;
+  container_id: string;
+  uptime: string;
 }

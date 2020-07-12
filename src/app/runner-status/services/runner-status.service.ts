@@ -11,7 +11,7 @@ export class RunnerStatusService {
   constructor(private http: HttpClient) {
   }
 
-  getStatus(): Observable<RunnerStatus[]> {
-    return this.http.get<RunnerStatus[]>('/runner-service/stats');
+  getStatus(): Observable<{datas: RunnerStatus[]}> {
+    return this.http.get<{datas: RunnerStatus[]}>('/runner-service/stats');
   }
 }

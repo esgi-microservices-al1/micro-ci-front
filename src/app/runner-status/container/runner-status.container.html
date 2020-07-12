@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem">
+<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem" *ngIf="runningImages">
   <ci-counter fxFlex="33%" style="min-height: 100%" [count]="runningImages.length"></ci-counter>
-  <ci-process-list fxFlex style="min-height: 100%" [runningImages]="runningImages"></ci-process-list>
+  <ci-process-list fxFlex="66%" style="min-height: 100%" [runningImages]="runningImages"></ci-process-list>
 </div>

@@ -19,7 +19,7 @@ export class RunnerStatusContainer implements OnInit, OnDestroy {
     this.runnerStatusService.getStatus()
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        runningImages => this.runningImages = runningImages,
+        runningImages => this.runningImages = runningImages.datas,
         error => console.error(error)
       );
   }
