@@ -29,7 +29,7 @@
         <tr mat-row *matRowDef="let runningImage; columns: columns;" (click)="selectProject(runningImage.project_id)"
             class="row"></tr>
       </table>
-      <div class="empty-runner-message">
+      <div class="empty-runner-message" *ngIf="runningImages.length == 0">
         There is no ongoing process
       </div>
     </div>
