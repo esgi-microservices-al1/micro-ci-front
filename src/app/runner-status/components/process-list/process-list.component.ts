@@ -17,7 +17,7 @@ export class ProcessListComponent implements OnInit {
   }
 
   selectProject(projectId: number): void {
-    this.router.navigate(['project']);
+    this.router.navigate(['project/' + projectId]);
   }
 
 }

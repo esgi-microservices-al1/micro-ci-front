@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subject} from 'rxjs/internal/Subject';
+import { Subject } from 'rxjs';
 import {RunnerStatus} from '../models/runner.status';
 import {RunnerStatusService} from '../services/runner-status.service';
-import {takeUntil} from 'rxjs/internal/operators/takeUntil';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ci-runner-status',
