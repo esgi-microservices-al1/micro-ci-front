@@ -11,6 +11,7 @@ import {takeUntil} from 'rxjs/internal/operators/takeUntil';
 export class RunnerStatusContainer implements OnInit, OnDestroy {
 
   runningImages: RunnerStatus[];
+  isError: boolean = false;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private runnerStatusService: RunnerStatusService) { }
@@ -19,8 +20,11 @@ export class RunnerStatusContainer implements OnInit, OnDestroy {
     this.runnerStatusService.getStatus()
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        runningImages => this.runningImages = runningImages.datas,
-        error => console.error(error)
+        runningImages => {
+          this.runningImages = runningImages.datas;
+          this.isError = false;
+        },
+        error => this.isError = true
       );
   }
 
