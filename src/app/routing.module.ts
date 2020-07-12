@@ -5,6 +5,7 @@ import { NotificationsContainer } from './notifications';
 import { EventsBuildComponent } from './events/eventsComponent/events-build.component';
 import { ProjectComponent } from './project/container/project.component';
 import {SchedulerContainer} from './scheduler';
+import { ProjectViewComponent } from './project/components/project-view/project-view.component';
 
 
 const routes: Routes = [{
@@ -25,6 +26,9 @@ const routes: Routes = [{
 }, {
   path: 'status',
   loadChildren: () => import('./runner-status/runner-status.module').then(m => m.RunnerStatusModule)
+}, {
+  path: 'project/:id',
+  component: ProjectViewComponent
 }
 ];
 

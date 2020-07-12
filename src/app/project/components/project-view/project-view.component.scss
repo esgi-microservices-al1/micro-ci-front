@@ -1,0 +1,16 @@
+.info-card {
+    width: 60%;
+    margin: auto;
+}
+
+.info div {
+    display: flex;
+    > p {
+        margin: auto 8px;
+    }
+}
+
+.table-width {
+    width: 100%;
+    margin: 16px 0;
+}

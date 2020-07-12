@@ -8,6 +8,7 @@ server {
   include           micro-ci/gzip-compression.conf;
 
   include  micro-ci/micro-ci-runner.conf;
+  include  micro-ci/micro-ci-scheduler.conf;
 
   location / {
     index           index.html;
@@ -29,4 +30,5 @@ server {
     access_log      off;
     #add_header      Cache-Control 'public';
   }
+
 }

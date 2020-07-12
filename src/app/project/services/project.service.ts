@@ -12,7 +12,6 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   createProject(project: Project) {
-
     return this.http.post(this.apiUrl, project, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
@@ -20,5 +19,13 @@ export class ProjectService {
 
   getAllProjects() {
     return this.http.get(this.apiUrl);
+  }
+
+  getProject(id: string) {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+  getBranches(projectId: string) {
+    return this.http.get(`${this.apiUrl}/branches/${projectId}`);
   }
 }
