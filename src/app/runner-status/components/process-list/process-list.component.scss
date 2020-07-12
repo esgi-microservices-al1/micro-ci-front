@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+}
+
+.process-list {
+  max-height: 600px;
+  overflow: auto;
+}
+.row {
+  cursor: pointer;
+}
+
+.card {
+  height: calc(100% - 32px);
+}
+
+.empty-runner-message {
+  text-align: center;
+  padding: 5rem;
+  background-color: #eaeaea;
+}
