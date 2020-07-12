@@ -12,12 +12,12 @@ export class RunnerStatusService {
   }
 
   getStatus(): Observable<RunnerStatus[]> {
-    return of([
-      {projectId: 231, imageId: 'azer234E6765uyguiguih767', upTime: 'hehe'},
-      {projectId: 121, imageId: 'azer234Eftyuyubiguih767', upTime: 'hehe'},
-      {projectId: 31, imageId: 'azer234E6765uknonknnuiuh767', upTime: 'hehe'},
-      {projectId: 23, imageId: 'azer234E6765uyguiguih767', upTime: 'hehe'}
-    ]);
-    // return this.http.get<RunnerStatus[]>("hehe");
+    // return of([
+    //   {projectId: 231, imageId: 'azer234E6765uyguiguih767', upTime: 'hehe'},
+    //   {projectId: 121, imageId: 'azer234Eftyuyubiguih767', upTime: 'hehe'},
+    //   {projectId: 31, imageId: 'azer234E6765uknonknnuiuh767', upTime: 'hehe'},
+    //   {projectId: 23, imageId: 'azer234E6765uyguiguih767', upTime: 'hehe'}
+    // ]);
+    return this.http.get<RunnerStatus[]>("/runner-service/stats");
   }
 }

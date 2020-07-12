@@ -7,6 +7,9 @@ server {
   include           micro-ci/security-headers.conf;
   include           micro-ci/gzip-compression.conf;
 
+  include  micro-ci/micro-ci-scheduler.conf;
+  include  micro-ci/micro-ci-runner.conf;
+
   location / {
     index           index.html;
     try_files       $uri $uri/ /index.html =404;
