@@ -6,6 +6,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import {SharedModule} from '../shared';
 import { ProcessListComponent } from './components/process-list/process-list.component';
 import { ServiceRunnerErrorComponent } from './components/service-error/service-runner-error.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -14,7 +15,8 @@ import { ServiceRunnerErrorComponent } from './components/service-error/service-
   imports: [
     CommonModule,
     RunnerStatusRoutingModule,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule
   ]
 })
 export class RunnerStatusModule { }

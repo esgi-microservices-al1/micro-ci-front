@@ -1,8 +1,13 @@
-<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem" *ngIf="runningImages && !isError">
+<div style="text-align: end; padding-right: 3rem; cursor: pointer" (click)="refreshProcess()">
+  <mat-icon style="font-size: 3rem">refresh</mat-icon>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem" *ngIf="runningImages && !isError && !isLoading">
   <ci-counter fxFlex="33%" style="min-height: 100%" [count]="runningImages.length"></ci-counter>
   <ci-process-list fxFlex="66%" style="min-height: 100%" [runningImages]="runningImages"></ci-process-list>
 </div>
 
-<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem" *ngIf="isError">
+<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem" *ngIf="isError && !isLoading">
   <ci-service-runner-error fxFlex></ci-service-runner-error>
 </div>
+
+<mat-spinner *ngIf="isLoading" style="margin: auto"></mat-spinner>
