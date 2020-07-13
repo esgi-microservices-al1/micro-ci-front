@@ -1,9 +1,9 @@
 
 export interface Project {
-    id:number;
-    name:string;
-    path:string
-    datecreated?:string;
+    project_id:number;
+    projectName?:string;
+    projectPath?:string;
+    created_time?:string;
 }
 
 export interface Status{
@@ -12,9 +12,33 @@ export interface Status{
 }
 
 export interface Command{
-    cmdid?:number;
+    id?:number;
     command:string;
-    affichable:boolean;
-    datecreated?:string;
-    projectid:number;
+    stdout:boolean;
+    created_time?:string;
 }
+
+export interface Commands{
+    process_id?:number;
+    commands:Array<Command>;
+    project:Project;
+}
+
+/*class CommandsClass {
+    private commands:Commands;
+    constructor(Command, project) {
+        commands = 
+    }
+
+}*/
+
+/*class CommandsClass{
+    cmds:cmds:Dictionary.<Array<Command>, number>;
+    addCommands(commands:Array<Command>){
+        for(i = 0; i< commands.lenght(); i++){
+            cmds[i] = commands[i]
+        }
+    }
+}*/
+
+

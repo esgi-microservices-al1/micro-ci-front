@@ -25,7 +25,6 @@ import { OnDestroy, OnInit, Component } from '@angular/core';
         .subscribe(
           projects => {
             this.projects = [...projects];  
-            console.log("Project Get: " + this.projects) 
           },
           err => console.error("Project Get err: " +  err)
         );

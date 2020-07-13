@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { Project, Command, Status } from '../../model/commande.model';
+import { Project, Command, Commands, Status } from '../../model/commande.model';
 import { CommandService } from '../../services/command.service';
 import { EventEmitter } from 'protractor';
 
@@ -12,8 +12,7 @@ export class CommandDetailsComponent implements OnInit, OnChanges{
 
   @Input() project: Project;
 
-  historiqueCommands:Command[];
-
+  historiqueCommands:Commands[];
 
   text: string;
   commandInfo:Command;
@@ -32,7 +31,7 @@ export class CommandDetailsComponent implements OnInit, OnChanges{
         switch (propName) {
           case 'project': {
             if(changes.project != null)
-            this.serviceGetCommands(this.project.id);
+            this.serviceGetCommands(this.project.project_id);
           }
         }
       }
@@ -46,30 +45,48 @@ export class CommandDetailsComponent implements OnInit, OnChanges{
 
   sendCommandTipped(event:any){
     if(this.text.length > 2){
+      let caseStdoutFalseArray = ["cd ", "CD ","mkdir ","MKDIR ", "cp ", "CP"];
+      if(caseStdoutFalseArray.includes(this.text.substring(0, 3))){
+        this.commandInfo = {
+          command: this.text,
+          stdout: false,        
+          //projectid: this.project.project_id
+        };
+      }
       this.commandInfo = {
-        command: this.text,
-        affichable: true,
-        projectid: this.project.id
-      };
-      console.log("Project: "+this.project.id +" "+ this.project.name);
-      console.log("Commande: "+this.commandInfo.projectid + " " + this.commandInfo.command);
-      this.commandeService.MicroserviceRest_CommandPOST(this.commandInfo)
+          command: this.text,
+          stdout: true,        
+          //projectid: this.project.project_id
+        };
+      console.log("Project: "+this.project.project_id +" "+ this.project);
+      console.log("Commande: for"+this.project.project_id  + " is " + this.commandInfo.command);
+      this.commandeService.MicroserviceRest_CommandPOST(this.commandInfo, this.project.project_id)
       .subscribe(
-        s => this.status =s,
-        err => console.error("command Post err: " +  err)
+        err => {
+        if(err == null){
+          this.text = "";
+        }
+          console.error("command Post err: " +  err)
+        }
+
       );
     }
   }
   serviceGetCommands(id:number){
-    this.commandeService.MicroserviceRest_CommandGET(this.project.id)
+    this.commandeService.MicroserviceRest_CommandGET(this.project.project_id)
     .subscribe(
-      commands => {
-        this.historiqueCommands = [...commands];  
-        console.log("histo commands Get: (project: "+ this.project.id +") " + this.historiqueCommands) 
+      c => {
+        this.historiqueCommands =[...c];
+        c.forEach(e=> {
+           console.log("histo commands Get: (project: "+e.process_id +") ");
+           console.log("histo commands Get: (commandes: "+e.commands +") ");
+           console.log("histo commands Get: (create_date: "+e.project +") ");
+        });
+       // console.log("histo commands Get: (project: "+ this.project.project_id +") " + c.commands) 
       },
       err => console.error("Project Get err: " +  err)
     );
-      console.log("Histo commands: " + this.historiqueCommands);
+      console.log("Histo commands: " +  this.historiqueCommands);
   }
 
 }

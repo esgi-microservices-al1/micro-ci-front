@@ -14,8 +14,8 @@
       <mat-tab-group>
         <mat-tab label="Console">
           <mat-list>
-            <mat-list-item>Id: {{project.id}}</mat-list-item>
-            <mat-list-item>Project: {{project.name}}</mat-list-item>
+            <mat-list-item>Id: {{project.project_id}}</mat-list-item>
+            <mat-list-item>Project: {{project.projectName}}</mat-list-item>
             <br>
             <mat-list-item>
               <mat-form-field> 
@@ -29,14 +29,21 @@
            
         </mat-tab>
         <mat-tab label="Historique des commandes">
-       
-         <h3 matLine> Project: {{project.name}}</h3>
-        <mat-divider> </mat-divider>
-         <mat-list-item *ngFor="let historiqueCommand of historiqueCommands">
-            <span>{{historiqueCommand.command}} </span>
-            <span> {{historiqueCommand.datecreated}} </span>
-         </mat-list-item>
-         
+
+          <h3 matLine> Project: {{project.projectName}}</h3>
+          <mat-divider> </mat-divider>
+        <mat-card-content>
+
+          <mat-list role="list" *ngFor="let historiqueCommand of historiqueCommands">
+            <div *ngFor="let command of historiqueCommand.commands">
+                <mat-list-item role="listitem" >id: {{command.id}} </mat-list-item>
+                <mat-list-item role="listitem"> commandes: {{command.command}} </mat-list-item>
+                <!-- mat-list-item role="listitem" if="!command.created_time" > date: {{command.created_time}} </mat-list-item -->
+            </div>
+            <mat-divider> </mat-divider>
+          </mat-list>
+
+         </mat-card-content>
         </mat-tab>
       </mat-tab-group>
     </ng-template>
