@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, Subscription} from 'rxjs';
 import {RunnerStatus} from '../models/runner.status';
 import {RunnerStatusService} from '../services/runner-status.service';
-import { takeUntil } from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'ci-runner-status',
@@ -17,7 +17,8 @@ export class RunnerStatusContainer implements OnInit, OnDestroy {
   refreshInterval;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private runnerStatusService: RunnerStatusService) { }
+  constructor(private runnerStatusService: RunnerStatusService) {
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -25,7 +26,9 @@ export class RunnerStatusContainer implements OnInit, OnDestroy {
   }
 
   getProcesses() {
-    if(this.processSubscription) this.processSubscription.unsubscribe();
+    if (this.processSubscription) {
+      this.processSubscription.unsubscribe();
+    }
     this.processSubscription = this.runnerStatusService.getStatus()
       .pipe(takeUntil(this.destroy$))
       .subscribe(
@@ -43,7 +46,9 @@ export class RunnerStatusContainer implements OnInit, OnDestroy {
   }
 
   refreshProcess() {
-    if(this.refreshInterval) clearInterval(this.refreshInterval);
+    if (this.refreshInterval) {
+      clearInterval(this.refreshInterval);
+    }
     this.getProcesses();
     this.refreshInterval = setInterval(() => {
       this.getProcesses();
