@@ -1,0 +1,62 @@
+<mat-card class="info-card">
+    <mat-card-title> Project Informations </mat-card-title>
+
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between start"
+       fxFlexFill>
+    <a mat-icon-button color="primary" [routerLink]="[ '/project' ]">
+      <mat-icon>arrow_back</mat-icon>
+      Go back to project list
+    </a>
+      <button mat-raised-button
+              color="primary"
+              (click)="goToSchedules()">
+        <mat-icon>
+          alarm
+        </mat-icon>
+        <span>    Schedules</span>
+      </button>
+  </div>
+
+
+    <div class="info">
+        <div>
+            <h5>ID: </h5>
+            <p>{{ project?._id }}</p>
+        </div>
+        <div>
+            <h5>Label: </h5>
+            <p>{{ project?.label }}</p>
+        </div>
+        <div>
+            <h5>GIT_URL: </h5>
+            <p>{{ project?.git_url }}</p>
+        </div>
+        <div *ngIf="!!project?.access_token">
+            <h5>Token: </h5>
+            <p>{{ project?.access_token }}</p>
+        </div>
+        <div>
+            <h5>GIT_HOST: </h5>
+            <p>{{ project?.git_host }}</p>
+        </div>
+        <div>
+            <h5>ENABLE: </h5>
+            <p>{{ project?.enable }}</p>
+        </div>
+        <table mat-table [dataSource]="project?.branches" class="mat-elevation-z5 table-width">
+            <ng-container matColumnDef="branches">
+                <th mat-header-cell *matHeaderCellDef>
+                    BRANCHES
+                    <button mat-icon-button color="primary" (click)="refreshBranches()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                </th>
+                <td mat-cell *matCellDef="let branch"> {{ branch }} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="branchesTableHeader"></tr>
+            <tr mat-row *matRowDef="let projectData; columns: branchesTableHeader;"></tr>
+        </table>
+    </div>
+</mat-card>

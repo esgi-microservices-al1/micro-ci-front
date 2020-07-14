@@ -23,7 +23,12 @@ export class HeaderComponent implements OnInit {
 
     this.router.navigate(['/']);
   }
+
   commandsRoute(){
     this.router.navigate(['/commands']);
+  }
+
+  statusRoute() {
+    this.router.navigate(['/status']);
   }
 }
