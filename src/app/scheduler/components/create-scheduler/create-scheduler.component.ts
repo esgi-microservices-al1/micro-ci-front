@@ -86,6 +86,7 @@ export class CreateSchedulerComponent implements OnInit {
     // TODO create method like createSchedule
     if (this.scheduleToUpdate != null) {
         console.log('let\'s update this schedule', scheduleDto);
+        scheduleDto.project = this.project._id;
         this.schedulerService.updateSchedule(this.scheduleToUpdate.id, scheduleDto).subscribe((res) => {
           this.updateScheduleList.emit();
           console.warn('Your schedule has been updated', schedulerData);

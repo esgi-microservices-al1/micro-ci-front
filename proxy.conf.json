@@ -1,6 +1,6 @@
 {
   "/scheduler-service": {
-    "target": "http://localhost:3000",
+    "target": "http://micro-ci.westus2.cloudapp.azure.com:40501/al1.scheduler-ci",
     "secure": false,
     "pathRewrite": {
       "^/scheduler-service": ""
