@@ -24,19 +24,19 @@ export class CommandService {
     return this.http.get<Project[]>(this.basurl + '/api/v1/projects/');
   }
 
-  MicroserviceRest_CommandPOST(command: Command, project_id: number): Observable<Commands> {
-    const project: Project = {
-        project_id
-      };
-    const commands = new Array<Command>();
-    commands[0] = command;
+  MicroserviceRest_CommandPOST(command: Command, projectId: number): Observable<Commands> {
+      const myproject: Project = {
+          project_id: projectId
+        };
+      const mycommands = new Array<Command>();
+      mycommands[0] = command;
 
-    const commmandPost: Commands = {
-      commands,
-      project
-    };
-    return this.http.post<Commands>( this.basurl + '/api/v1/commands/add', commmandPost, this.headers);
-  }
+      const commmandPost: Commands = {
+        commands: mycommands,
+        project: myproject
+      };
+      return this.http.post<Commands>( this.basurl + '/api/v1/commands/add', commmandPost, this.headers);
+   }
 
   MicroserviceRest_CommandGET(projectid: number): Observable<Commands[]> {
     return this.http.get<Commands[]>( this.basurl + '/api/v1/commands/filter?id=' + projectid, this.headers);
