@@ -1,29 +1,29 @@
 <mat-card class="mat-elevation-z1 schedule-list">
-  <mat-card-title fxLayout="row" fxLayoutAlign="space-around center" >
-      <h2> Schedule List</h2>
+  <mat-card-title fxLayout="row" fxLayoutAlign="space-around center">
+    <h2> Schedule List</h2>
   </mat-card-title>
   <mat-card-content>
     <div class="mat-elevation-z1">
-      <table mat-table [dataSource]="schedules">
+      <table [dataSource]="schedules" mat-table>
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <th *matHeaderCellDef mat-header-cell> Name</th>
+          <td *matCellDef="let element" mat-cell> {{element.name}}</td>
         </ng-container>
 
         <!-- Project Column -->
         <ng-container matColumnDef="project">
-          <th mat-header-cell *matHeaderCellDef> Project </th>
-          <td mat-cell *matCellDef="let element"> {{currentProject.label}} </td>
+          <th *matHeaderCellDef mat-header-cell> Project</th>
+          <td *matCellDef="let element" mat-cell> {{currentProject.label}}</td>
         </ng-container>
 
         <!-- Branch Column -->
         <ng-container matColumnDef="branch">
-          <th mat-header-cell *matHeaderCellDef> Branch </th>
-          <td mat-cell *matCellDef="let element"> {{element.branch}} </td>
+          <th *matHeaderCellDef mat-header-cell> Branch</th>
+          <td *matCellDef="let element" mat-cell> {{element.branch}}</td>
         </ng-container>
 
         <!-- Interval Unit Column -->
@@ -34,8 +34,8 @@
         -->
 
         <ng-container matColumnDef="scheduledInterval">
-          <th mat-header-cell *matHeaderCellDef> Scheduled Interval </th>
-          <td mat-cell *matCellDef="let element"> {{parseScheduleToHuman(element)}} </td>
+          <th *matHeaderCellDef mat-header-cell> Scheduled Interval</th>
+          <td *matCellDef="let element" mat-cell> {{parseScheduleToHuman(element)}}</td>
         </ng-container>
 
         <!-- Interval Frequency Column -->
@@ -47,23 +47,24 @@
 
         <!-- StartDate Column -->
         <ng-container matColumnDef="startDate">
-          <th mat-header-cell *matHeaderCellDef> StartDate </th>
-          <td mat-cell *matCellDef="let element"> {{element.start_date | date : 'dd/MM/yyyy HH:mm:ss'}} </td>
+          <th *matHeaderCellDef mat-header-cell> StartDate</th>
+          <td *matCellDef="let element" mat-cell> {{element.start_date | date : 'dd/MM/yyyy HH:mm:ss'}}</td>
         </ng-container>
 
         <!-- Delete Schedule Column -->
         <ng-container matColumnDef="deleteSchedule">
-          <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="deleteSchedule(element)">
+          <th *matHeaderCellDef mat-header-cell></th>
+          <td *matCellDef="let element" mat-cell>
+            <button (click)="deleteSchedule(element)" mat-icon-button>
               <mat-icon>delete
               </mat-icon>
             </button>
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="updateSchedule(row); isClicked = !isClicked"></tr>
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr (click)="updateSchedule(row); isClicked = !isClicked" *matRowDef="let row; columns: displayedColumns;"
+            mat-row></tr>
       </table>
     </div>
   </mat-card-content>

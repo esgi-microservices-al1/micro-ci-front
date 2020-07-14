@@ -13,13 +13,13 @@ export class ProjectCommandListComponent {
   columns: string[] = ['id', 'name'];
 
   @Input()
-  projects:Project[]
+  projects: Project[];
 
   @Output()
   selectedProject: EventEmitter<Project> = new EventEmitter<Project>();
-  
 
-  selectProject(project:Project) {
+
+  selectProject(project: Project) {
     this.selectedProject.emit(project);
   }
 

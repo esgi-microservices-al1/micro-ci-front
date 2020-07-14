@@ -1,16 +1,16 @@
-<form class="entire-form"
+<form (ngSubmit)="onSubmit(scheduleForm.value)"
       [formGroup]="scheduleForm"
-      (ngSubmit)="onSubmit(scheduleForm.value)" >
+      class="entire-form">
   <div class="title-form">
     Schedule Form
   </div>
   <mat-form-field appearance="fill">
     <mat-label>Schedule Name</mat-label>
-    <input matInput
+    <input formControlName="schedulerName"
            id="schedulerName"
-           type="text"
-           formControlName="schedulerName"
-           required >
+           matInput
+           required
+           type="text">
     <mat-error *ngIf="scheduleForm.controls.schedulerName.invalid">
       Required field
     </mat-error>
@@ -21,10 +21,10 @@
       Project :
     </p>
     <mat-form-field appearance="fill">
-      <input matInput
+      <input formControlName="projectName"
              id="projectName"
-             type="text"
-             formControlName="projectName">
+             matInput
+             type="text">
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
@@ -32,9 +32,9 @@
         Branch Name
       </mat-label>
       <mat-select [compareWith]="compareFunction"
-                  id="branchName"
-                  formControlName="branchName"
                   [value]="branchName"
+                  formControlName="branchName"
+                  id="branchName"
                   required>
         <mat-option *ngFor="let branch of project.branches"
                     value="{{branch}}">
@@ -54,8 +54,8 @@
         Frequency Unit
       </mat-label>
       <mat-select [compareWith]="compareFunction"
-                  id="frequencyUnit"
                   formControlName="frequencyUnit"
+                  id="frequencyUnit"
                   required>
         <mat-option *ngFor="let unit of frequencyUnits"
                     value="{{unit}}">
@@ -66,13 +66,13 @@
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Frequency</mat-label>
-      <input matInput
-             [value]="frequency"
+      <input [value]="frequency"
              formControlName="frequency"
-             required
-             min="1"
              id="frequency"
-             type="number" >
+             matInput
+             min="1"
+             required
+             type="number">
       <!--<mat-error *ngIf="this.scheduleForm.controls.frequency.invalid">Required field and value must be greater than 0</mat-error>-->
     </mat-form-field>
   </div>
@@ -80,31 +80,31 @@
   <mat-form-field>
 
 
-    <input  matInput
-            required
-            id="startDate"
-            [matDatepicker]="startDatepicker"
-            formControlName="startDate"
-           />
-    <mat-datepicker-toggle matSuffix
-                           [for]="startDatepicker">
-      <mat-datepicker [startAt]="startDate"
-                      #startDatepicker >
+    <input [matDatepicker]="startDatepicker"
+           formControlName="startDate"
+           id="startDate"
+           matInput
+           required
+    />
+    <mat-datepicker-toggle [for]="startDatepicker"
+                           matSuffix>
+      <mat-datepicker #startDatepicker
+                      [startAt]="startDate">
       </mat-datepicker>
     </mat-datepicker-toggle>
   </mat-form-field>
   <br>
 
   <button class="button"
-          type="submit"
+          color="primary"
           mat-raised-button
-          color="primary">
+          type="submit">
     {{ buttonContentName() }}
   </button>
-  <button mat-raised-button class="reset-schedule-button"
+  <button (click)="setDisableForm()" *ngIf="this.scheduleToUpdate"
+          class="reset-schedule-button"
           color="primary"
-          *ngIf="this.scheduleToUpdate"
-          (click)="setDisableForm()"
+          mat-raised-button
           style="margin-right: 5%">
     <span>New Schedule</span>
     <mat-icon>alarm</mat-icon>

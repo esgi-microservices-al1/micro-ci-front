@@ -32,7 +32,7 @@ const routes: Routes = [{
   component: ProjectViewComponent
 }, {
   path: 'commands',
-  component: ProjectcommandContainer 
+  component: ProjectcommandContainer
 }
 ];
 

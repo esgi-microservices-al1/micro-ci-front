@@ -7,19 +7,19 @@
   <mat-card-content>
 
     <div class='mat-elevation-z8 projects-list'>
-      <table mat-table [dataSource]='projects'>
+      <table [dataSource]='projects' mat-table>
         <ng-container matColumnDef='id'>
-          <th mat-header-cell *matHeaderCellDef> Id</th>
-          <td mat-cell *matCellDef='let project'> {{project.id}} </td>
+          <th *matHeaderCellDef mat-header-cell> Id</th>
+          <td *matCellDef='let project' mat-cell> {{project.id}}</td>
         </ng-container>
 
         <ng-container matColumnDef='name'>
-          <th mat-header-cell *matHeaderCellDef> Name</th>
-          <td mat-cell *matCellDef='let project'> {{project.name}} </td>
+          <th *matHeaderCellDef mat-header-cell> Name</th>
+          <td *matCellDef='let project' mat-cell> {{project.name}}</td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef='columns; sticky: true'></tr>
-        <tr mat-row *matRowDef='let project; columns: columns;' (click)='selectProject(project)' class='row'></tr>
+        <tr *matHeaderRowDef='columns; sticky: true' mat-header-row></tr>
+        <tr (click)='selectProject(project)' *matRowDef='let project; columns: columns;' class='row' mat-row></tr>
       </table>
     </div>
 

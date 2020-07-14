@@ -1,24 +1,24 @@
 <mat-card class="creation-card">
-    <mat-card-title>Create your project here</mat-card-title>
-    <form [formGroup]="projectForm" (ngSubmit)="submitProject()">
-        <mat-form-field class="full-width">
-            <mat-label>Label</mat-label>
-            <input matInput formControlName="label" placeholder="Frontend project">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Git Url</mat-label>
-            <input matInput formControlName="gitUrl" placeholder="https://github.com/myproject">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <mat-label>Git Host (Github or Gitlab)</mat-label>
-          <input matInput formControlName="gitHost" placeholder="Github">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Access Token (Only if the repo is private)</mat-label>
-            <input matInput formControlName="accessToken" placeholder="myToken">
-          </mat-form-field>
-        <button mat-raised-button color="primary">
-            Create
-        </button>
-    </form>
+  <mat-card-title>Create your project here</mat-card-title>
+  <form (ngSubmit)="submitProject()" [formGroup]="projectForm">
+    <mat-form-field class="full-width">
+      <mat-label>Label</mat-label>
+      <input formControlName="label" matInput placeholder="Frontend project">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Git Url</mat-label>
+      <input formControlName="gitUrl" matInput placeholder="https://github.com/myproject">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Git Host (Github or Gitlab)</mat-label>
+      <input formControlName="gitHost" matInput placeholder="Github">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Access Token (Only if the repo is private)</mat-label>
+      <input formControlName="accessToken" matInput placeholder="myToken">
+    </mat-form-field>
+    <button color="primary" mat-raised-button>
+      Create
+    </button>
+  </form>
 </mat-card>

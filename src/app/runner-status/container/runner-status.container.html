@@ -1,12 +1,14 @@
-<div style="text-align: end; padding-right: 3rem; cursor: pointer" (click)="refreshProcess()">
+<div (click)="refreshProcess()" style="text-align: end; padding-right: 3rem; cursor: pointer">
   <mat-icon style="font-size: 3rem">refresh</mat-icon>
 </div>
-<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem" *ngIf="runningImages && !isError && !isLoading">
-  <ci-counter fxFlex="33%" style="min-height: 100%" [count]="runningImages.length"></ci-counter>
-  <ci-process-list fxFlex="66%" style="min-height: 100%" [runningImages]="runningImages"></ci-process-list>
+<div *ngIf="runningImages && !isError && !isLoading" fxFlexFill fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px"
+     style="margin-bottom: 2rem">
+  <ci-counter [count]="runningImages.length" fxFlex="33%" style="min-height: 100%"></ci-counter>
+  <ci-process-list [runningImages]="runningImages" fxFlex="66%" style="min-height: 100%"></ci-process-list>
 </div>
 
-<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px" style="margin-bottom: 2rem" *ngIf="isError && !isLoading">
+<div *ngIf="isError && !isLoading" fxFlexFill fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px"
+     style="margin-bottom: 2rem">
   <ci-service-runner-error fxFlex></ci-service-runner-error>
 </div>
 

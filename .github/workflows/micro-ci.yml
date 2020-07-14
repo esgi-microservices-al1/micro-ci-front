@@ -8,22 +8,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Project
-      uses: actions/checkout@v1
+      - name: Checkout Project
+        uses: actions/checkout@v1
 
-    - name: Use Node.js LTS
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
+      - name: Use Node.js LTS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
 
-    - name: Install Dependencies
-      run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-    - name: Run lint
-      run: npm run lint
+      - name: Run lint
+        run: npm run lint
 
-    - name: Build Project
-      run: npm run build
+      - name: Build Project
+        run: npm run build
 
   deploy:
     name: Deploy to Heroku Platform
@@ -32,26 +32,26 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
-    - name: Checkout Project
-      uses: actions/checkout@v1
+      - name: Checkout Project
+        uses: actions/checkout@v1
 
-    - name: Heroku Login
-      uses: actions/heroku@master
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      with:
-        args: container:login
+      - name: Heroku Login
+        uses: actions/heroku@master
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          args: container:login
 
-    - name: Heroku Build & Push Docker Image
-      uses: actions/heroku@master
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      with:
-       args: container:push -a micro-ci-al1 web
+      - name: Heroku Build & Push Docker Image
+        uses: actions/heroku@master
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          args: container:push -a micro-ci-al1 web
 
-    - name: Heroku Deploy to Production
-      uses: actions/heroku@master
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      with:
-        args: container:release -a micro-ci-al1 web
+      - name: Heroku Deploy to Production
+        uses: actions/heroku@master
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          args: container:release -a micro-ci-al1 web

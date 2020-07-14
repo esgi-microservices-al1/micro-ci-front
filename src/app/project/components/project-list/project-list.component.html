@@ -1,40 +1,40 @@
 <h3 class="centered-title">Project List</h3>
-<table mat-table [dataSource]="projects" class="mat-elevation-z8 table-width">
-    <ng-container [matColumnDef]="tableHeaders[0]">
-        <th mat-header-cell *matHeaderCellDef> {{ tableHeaders[0] | uppercase }} </th>
-        <td mat-cell *matCellDef="let project">
-            <a mat-icon-button color="accent" [routerLink]="[ project[tableHeaders[0]] ]">
-                <mat-icon>launch</mat-icon>
-            </a>
-            {{ project[tableHeaders[0]] }}
-        </td>
-    </ng-container>
+<table [dataSource]="projects" class="mat-elevation-z8 table-width" mat-table>
+  <ng-container [matColumnDef]="tableHeaders[0]">
+    <th *matHeaderCellDef mat-header-cell> {{ tableHeaders[0] | uppercase }}</th>
+    <td *matCellDef="let project" mat-cell>
+      <a [routerLink]="[ project[tableHeaders[0]] ]" color="accent" mat-icon-button>
+        <mat-icon>launch</mat-icon>
+      </a>
+      {{ project[tableHeaders[0]] }}
+    </td>
+  </ng-container>
 
-    <ng-container [matColumnDef]="tableHeaders[1]">
-        <th mat-header-cell *matHeaderCellDef> {{ tableHeaders[1] | uppercase }} </th>
-        <td mat-cell *matCellDef="let project"> {{ project[tableHeaders[1]] || "null" }} </td>
-    </ng-container>
+  <ng-container [matColumnDef]="tableHeaders[1]">
+    <th *matHeaderCellDef mat-header-cell> {{ tableHeaders[1] | uppercase }}</th>
+    <td *matCellDef="let project" mat-cell> {{ project[tableHeaders[1]] || "null" }}</td>
+  </ng-container>
 
-    <ng-container [matColumnDef]="tableHeaders[2]">
-        <th mat-header-cell *matHeaderCellDef> {{ tableHeaders[2] | uppercase }} </th>
-        <td mat-cell *matCellDef="let project"> {{ project[tableHeaders[2]] }} </td>
-    </ng-container>
+  <ng-container [matColumnDef]="tableHeaders[2]">
+    <th *matHeaderCellDef mat-header-cell> {{ tableHeaders[2] | uppercase }}</th>
+    <td *matCellDef="let project" mat-cell> {{ project[tableHeaders[2]] }}</td>
+  </ng-container>
 
-    <ng-container [matColumnDef]="tableHeaders[3]">
-        <th mat-header-cell *matHeaderCellDef> {{ tableHeaders[3] | uppercase }} </th>
-        <td mat-cell *matCellDef="let project"> {{ project[tableHeaders[3]] }} </td>
-    </ng-container>
+  <ng-container [matColumnDef]="tableHeaders[3]">
+    <th *matHeaderCellDef mat-header-cell> {{ tableHeaders[3] | uppercase }}</th>
+    <td *matCellDef="let project" mat-cell> {{ project[tableHeaders[3]] }}</td>
+  </ng-container>
 
-    <ng-container [matColumnDef]="tableHeaders[4]">
-        <th mat-header-cell *matHeaderCellDef> {{ tableHeaders[4] | uppercase }} </th>
-        <td mat-cell *matCellDef="let project"> {{ project[tableHeaders[4]] }} </td>
-    </ng-container>
+  <ng-container [matColumnDef]="tableHeaders[4]">
+    <th *matHeaderCellDef mat-header-cell> {{ tableHeaders[4] | uppercase }}</th>
+    <td *matCellDef="let project" mat-cell> {{ project[tableHeaders[4]] }}</td>
+  </ng-container>
 
-    <ng-container [matColumnDef]="tableHeaders[5]">
-        <th mat-header-cell *matHeaderCellDef> {{ tableHeaders[5] | uppercase }} </th>
-        <td mat-cell *matCellDef="let project"> {{ project[tableHeaders[5]] }} </td>
-    </ng-container>
+  <ng-container [matColumnDef]="tableHeaders[5]">
+    <th *matHeaderCellDef mat-header-cell> {{ tableHeaders[5] | uppercase }}</th>
+    <td *matCellDef="let project" mat-cell> {{ project[tableHeaders[5]] }}</td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
-    <tr mat-row *matRowDef="let projectData; columns: tableHeaders;"></tr>
+  <tr *matHeaderRowDef="tableHeaders" mat-header-row></tr>
+  <tr *matRowDef="let projectData; columns: tableHeaders;" mat-row></tr>
 </table>

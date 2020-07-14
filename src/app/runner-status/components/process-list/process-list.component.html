@@ -6,30 +6,30 @@
 
   <mat-card-content>
     <div class="mat-elevation-z8 process-list">
-      <table mat-table [dataSource]="runningImages" *ngIf="runningImages.length > 0">
+      <table *ngIf="runningImages.length > 0" [dataSource]="runningImages" mat-table>
 
         <ng-container matColumnDef="projectId">
-          <th mat-header-cell *matHeaderCellDef> Project id</th>
-          <td mat-cell *matCellDef="let runningImage"> {{runningImage.project_id}} </td>
+          <th *matHeaderCellDef mat-header-cell> Project id</th>
+          <td *matCellDef="let runningImage" mat-cell> {{runningImage.project_id}}</td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="imageId">
-          <th mat-header-cell *matHeaderCellDef> Docker image id</th>
-          <td mat-cell *matCellDef="let runningImage"> {{runningImage.image_id}} </td>
+          <th *matHeaderCellDef mat-header-cell> Docker image id</th>
+          <td *matCellDef="let runningImage" mat-cell> {{runningImage.image_id}}</td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="upTime">
-          <th mat-header-cell *matHeaderCellDef> Up time</th>
-          <td mat-cell *matCellDef="let runningImage"> {{runningImage.uptime}} </td>
+          <th *matHeaderCellDef mat-header-cell> Up time</th>
+          <td *matCellDef="let runningImage" mat-cell> {{runningImage.uptime}}</td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="columns"></tr>
-        <tr mat-row *matRowDef="let runningImage; columns: columns;" (click)="selectProject(runningImage.project_id)"
-            class="row"></tr>
+        <tr *matHeaderRowDef="columns" mat-header-row></tr>
+        <tr (click)="selectProject(runningImage.project_id)" *matRowDef="let runningImage; columns: columns;" class="row"
+            mat-row></tr>
       </table>
-      <div class="empty-runner-message" *ngIf="runningImages.length == 0">
+      <div *ngIf="runningImages.length == 0" class="empty-runner-message">
         There is no ongoing process
       </div>
     </div>

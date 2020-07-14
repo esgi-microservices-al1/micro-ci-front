@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav  #sidenav role="navigation">
+  <mat-sidenav #sidenav role="navigation">
     <mat-nav-list>
       <a mat-list-item>
         <mat-icon class="icon">home</mat-icon>
@@ -20,33 +20,33 @@
           ESGI Micro CI
         </a>
       </div>
-      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <div fxFlex fxHide.xs fxLayout fxLayoutAlign="flex-end">
 
-        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+        <ul class="navigation-items" fxLayout fxLayoutGap="20px">
           <li>
             <nav>
-            <a routerLink ='/' routerLink = 'active'  (click)='usersRoute()'>
-              <mat-icon class="icon">home</mat-icon>
-              <span class="label" (click)='usersRoute()'>Home</span>
-            </a>
-          </nav>
+              <a (click)='usersRoute()' routerLink='active' routerLink='/'>
+                <mat-icon class="icon">home</mat-icon>
+                <span (click)='usersRoute()' class="label">Home</span>
+              </a>
+            </nav>
           </li>
 
           <li>
-            <a routerLink ='/events' routerLinkActive = 'active'  (click)='eventsRoute()'>
-              <span class="label" (click)='eventsRoute()'>Build</span>
-            </a>
-          </li>
-
-          <li>
-            <a routerLink ='/status' routerLinkActive = 'active'  (click)='statusRoute()'>
-              <span class="label" (click)='statusRoute()'>Runner status</span>
+            <a (click)='eventsRoute()' routerLink='/events' routerLinkActive='active'>
+              <span (click)='eventsRoute()' class="label">Build</span>
             </a>
           </li>
 
           <li>
-            <a routerLink ='/commands' routerLinkActive = 'active'  (click)='commandsRoute()'>
-            <span class="label" (click)='commandsRoute()'>Writte commands</span>
+            <a (click)='statusRoute()' routerLink='/status' routerLinkActive='active'>
+              <span (click)='statusRoute()' class="label">Runner status</span>
+            </a>
+          </li>
+
+          <li>
+            <a (click)='commandsRoute()' routerLink='/commands' routerLinkActive='active'>
+              <span (click)='commandsRoute()' class="label">Writte commands</span>
             </a>
           </li>
         </ul>

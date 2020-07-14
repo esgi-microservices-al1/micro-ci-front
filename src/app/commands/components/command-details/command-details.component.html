@@ -16,52 +16,54 @@
           <mat-list>
             <mat-list-item>Id: {{project.project_id}}</mat-list-item>
             <mat-list-item>Project: {{project.projectName}}</mat-list-item>
-            <br>   <br>
+            <br> <br>
             <mat-list-item>
-            
-           <!-->    <mat-checkbox  formControlName="stdout_check">Voulez vous afficher la commande ?</mat-checkbox > <\-->
-               <br>
-               <mat-form-field> 
-                  <mat-label>Command:</mat-label>
-                  <textarea matInput  #input placeholder="Type commande here" (keyup)=getTextInputValue(input.value)  >
-                  </textarea>
-                  <button mat-raised-button color="warn" (click)=sendCommandTipped(project)> Add </button>
-                </mat-form-field>            
-                <!-- table mat-table [dataSource]="commandList" matSort class="mat-elevation-z8">
-                  <ng-container matColumnDef="position">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                  </ng-container>
 
-                  <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                  </ng-container>
-                </table -->
+              <!-->
+              <mat-checkbox formControlName="stdout_check">Voulez vous afficher la commande ?</mat-checkbox>
+              <\-->
+              <br>
+              <mat-form-field>
+                <mat-label>Command:</mat-label>
+                <textarea #input (keyup)=getTextInputValue(input.value) matInput placeholder="Type commande here">
+                  </textarea>
+                <button (click)=sendCommandTipped(project) color="warn" mat-raised-button> Add</button>
+              </mat-form-field>
+              <!-- table mat-table [dataSource]="commandList" matSort class="mat-elevation-z8">
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              </table -->
               <!-- section class="horizontal_align" >
                 <button mat-raised-button color="primary" > Validate les commands </button>
               </section -->
-                
+
             </mat-list-item>
           </mat-list>
-           
+
         </mat-tab>
         <mat-tab label="Historique des commandes">
 
           <h3 matLine> Project: {{project.projectName}}</h3>
-          <mat-divider> </mat-divider>
-        <mat-card-content>
+          <mat-divider></mat-divider>
+          <mat-card-content>
 
-          <mat-list role="list" *ngFor="let historiqueCommand of historiqueCommands">
-            <div *ngFor="let command of historiqueCommand.commands">
-                <mat-list-item role="listitem" >id: {{command.id}} </mat-list-item>
-                <mat-list-item role="listitem"> commandes: {{command.command}} </mat-list-item>
+            <mat-list *ngFor="let historiqueCommand of historiqueCommands" role="list">
+              <div *ngFor="let command of historiqueCommand.commands">
+                <mat-list-item role="listitem">id: {{command.id}}</mat-list-item>
+                <mat-list-item role="listitem"> commandes: {{command.command}}</mat-list-item>
                 <!-- mat-list-item role="listitem" if="!command.created_time" > date: {{command.created_time}} </mat-list-item -->
-            </div>
-            <mat-divider> </mat-divider>
-          </mat-list>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list>
 
-         </mat-card-content>
+          </mat-card-content>
         </mat-tab>
       </mat-tab-group>
     </ng-template>

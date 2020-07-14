@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="20px">
-    <ci-project-command-list fxFlex [projects]="projects" (selectedProject)="getSelectedProject($event)">
-    </ci-project-command-list>
+<div fxFlexFill fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <ci-project-command-list (selectedProject)="getSelectedProject($event)" [projects]="projects" fxFlex>
+  </ci-project-command-list>
 
-    <ci-command-details fxFlex [project]="selectedProject"></ci-command-details>
+  <ci-command-details [project]="selectedProject" fxFlex></ci-command-details>
 </div>
