@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, OnChanges, OnDestroy, SimpleChange, SimpleChanges } from '@angular/core';
-import { Router, NavigationEnd} from '@angular/router';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project, Command, Commands } from '../../model/commande.model';
 import { CommandService } from '../../services/command.service';
@@ -10,7 +10,7 @@ import { EventEmitter } from 'protractor';
   templateUrl: './command-details.component.html',
   styleUrls: ['./command-details.component.scss']
 })
-export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
+export class CommandDetailsComponent implements OnInit, OnChanges {
   @Input() project: Project;
 
   historiqueCommands:Commands[];
@@ -22,40 +22,40 @@ export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
 
   //commandForm:FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private commandeService: CommandService){
+  constructor(private formBuilder: FormBuilder, private commandeService: CommandService) {
   }
     
-  ngOnInit(){ 
-    this.text ="";
+  ngOnInit() { 
+    this.text ='';
     this.valid = false;
   }
-  ngOnDestroy(){ 
-    if(this.valid == true){
-      this.text = "";
-    }
-  }
 
-  ngOnChanges(changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'project': {
             if(changes.project != null)
             this.serviceGetCommands(this.project.project_id);
+          case 'valid': {
+            if(this.valid == true){
+              this.text = '';
+            }
+          }
           }
         }
       }
     }
   }
 
-  getTextInputValue(event:string){
+  getTextInputValue(event:string) {
     this.text = event;
-    console.log("Textarea: " + this.text)
+    console.log('Textarea: ' + this.text)
   }
 
-  sendCommandTipped(event:any){
+  sendCommandTipped(event:any) {
     if(this.text.length > 2){
-      let caseStdoutFalseArray = ["cd ", "CD ","mkdir ","MKDIR ", "cp ", "CP"];
+      const caseStdoutFalseArray = ['cd ', 'CD ','mkdir ','MKDIR ', 'cp ', 'CP ' ];
       if(caseStdoutFalseArray.includes(this.text.substring(0, 3))){
         this.commandInfo = {
           command: this.text,
@@ -66,8 +66,8 @@ export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
           command: this.text,
           stdout: true
         };
-      console.log("Project: "+this.project.project_id +" "+ this.project);
-      console.log("Commande: for"+this.project.project_id  + " is " + this.commandInfo.command);
+      console.log('Project: '+this.project.project_id +' '+ this.project);
+      console.log('Commande: for'+this.project.project_id  + ' is ' + this.commandInfo.command);
       this.commandeService.MicroserviceRest_CommandPOST(this.commandInfo, this.project.project_id)
       .subscribe(
         data =>{
@@ -80,7 +80,7 @@ export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
     this.serviceGetCommands(this.project.project_id);
     }
   }
-  serviceGetCommands(id:number){
+  serviceGetCommands(id:number) {
     this.commandeService.MicroserviceRest_CommandGET(this.project.project_id)
     .subscribe(
       commands => {

@@ -7,8 +7,7 @@ import { OnDestroy, OnInit, Component } from '@angular/core';
 @Component({
     templateUrl: './projectcommand.container.html'
   })
-  export class ProjectcommandContainer implements OnInit, OnDestroy {
-  
+  export class ProjectcommandContainer implements OnInit, OnDestroy {  
     projects: Project[];
     selectedProject: Project;
   

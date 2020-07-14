@@ -6,14 +6,14 @@ export interface Project {
     created_time?: string;
 }
 
-export interface Command{
+export interface Command {
     id?: number;
     command: string;
     stdout: boolean;
     created_time?: string;
 }
 
-export interface Commands{
+export interface Commands {
     process_id?: number;
     commands: Array<Command>;
     project: Project;
