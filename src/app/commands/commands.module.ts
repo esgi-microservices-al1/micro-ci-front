@@ -15,7 +15,6 @@ import { CommandDetailsComponent } from './components/command-details/command-de
   ],
   imports: [
     SharedModule
-  ]
-  
+  ]  
 })
 export class CommandsModule { }

@@ -11,14 +11,13 @@ import { EventEmitter } from 'protractor';
   styleUrls: ['./command-details.component.scss']
 })
 export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
-
   @Input() project: Project;
 
   historiqueCommands:Commands[];
   text: string;
-  commandInfo:Command;
-  refresh:boolean;
-  valid:boolean;
+  commandInfo: Command;
+  refresh: boolean;
+  valid: boolean;
   //commandList:Command[];
 
   //commandForm:FormGroup;
@@ -36,7 +35,7 @@ export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
     }
   }
 
-  ngOnChanges(changes:SimpleChanges){
+  ngOnChanges(changes: SimpleChanges){
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
@@ -75,7 +74,7 @@ export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
           this.valid = true;
         },
         err => {
-        console.error("command Post err: " +  err);
+        console.error('command Post err: ' +  err);
       });
       
     this.serviceGetCommands(this.project.project_id);
@@ -87,10 +86,10 @@ export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
       commands => {
         this.historiqueCommands =[...commands];
         
-        console.log("Histo commands: " +  this.historiqueCommands);
+        console.log('Histo commands: ' +  this.historiqueCommands);
       },
       err => {
-        console.error("Project Get err: " +  err);
+        console.error('Project Get err: ' +  err);
       }
     );
   }

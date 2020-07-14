@@ -5,7 +5,7 @@ import { CommandService } from 'src/app/commands/services/command.service';
 import { OnDestroy, OnInit, Component } from '@angular/core';
 
 @Component({
-    templateUrl:'./projectcommand.container.html'
+    templateUrl: './projectcommand.container.html'
   })
   export class ProjectcommandContainer implements OnInit, OnDestroy {
   

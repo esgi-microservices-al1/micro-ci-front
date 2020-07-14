@@ -30,11 +30,10 @@ const routes: Routes = [{
 }, {
   path: 'project/:id',
   component: ProjectViewComponent
-}, 
-{
+}, {
   path: 'commands',
   component: ProjectcommandContainer 
-}
+},
 ];
 
 

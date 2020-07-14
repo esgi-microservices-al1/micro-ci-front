@@ -13,10 +13,10 @@ export class CommandService {
       'Content-Type': 'application/json'
     })
   };
-  basurl:string;
+  basurl: string;
 
-  constructor(private http: HttpClient) { 
-    //this.basurl = "http://localhost:8080";
+  constructor(private http: HttpClient){ 
+    // this.basurl = "http://localhost:8080";
     this.basurl = "http://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci";
   }
 
