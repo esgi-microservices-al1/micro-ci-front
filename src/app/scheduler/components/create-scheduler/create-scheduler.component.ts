@@ -1,12 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroupDirective, Validators} from '@angular/forms';
 import {SchedulerService} from '../../services/scheduler.service';
 import {ScheduleModelDto, IntervalModel, FrequencyUnit} from '../../model';
 import {ToastService} from '../../services/toast.service';
 import {Project} from '../../../project/model/project.model';
-import {DatePipe} from '@angular/common';
 import {MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
-import {Router} from '@angular/router';
 
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
@@ -31,7 +29,7 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   templateUrl: './create-scheduler.component.html',
   styleUrls: ['./create-scheduler.component.scss'],
   providers: [
-    { provide: MAT_DATE_FORMATS, useValue: GRI_DATE_FORMATS , },
+    { provide: MAT_DATE_FORMATS, useValue: GRI_DATE_FORMATS },
   ]
 })
 export class CreateSchedulerComponent implements OnInit {
@@ -53,8 +51,7 @@ export class CreateSchedulerComponent implements OnInit {
   constructor(
     private schedulerService: SchedulerService,
     private formBuilder: FormBuilder,
-    private toastService: ToastService,
-    private datePipe: DatePipe
+    private toastService: ToastService
   ) {
     this.project = JSON.parse(localStorage.getItem('selectedProject')) as Project;
     // TODO add guard for this

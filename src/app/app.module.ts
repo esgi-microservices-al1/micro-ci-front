@@ -12,6 +12,7 @@ import {EventsModule} from './events/events-module';
 import {SchedulerModule} from './scheduler';
 
 import { HttpClientModule } from '@angular/common/http';
+import {SchedulerService} from "./scheduler/services/scheduler.service";
 
 
 
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     SchedulerModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppContainer]
 })
 export class AppModule { }
