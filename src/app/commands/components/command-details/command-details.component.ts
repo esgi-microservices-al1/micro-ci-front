@@ -34,32 +34,31 @@ export class CommandDetailsComponent implements OnInit, OnChanges {
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
-          case 'project': {
-            if(changes.project != null)
+          case 'project': 
             this.serviceGetCommands(this.project.project_id);
-          case 'valid': {
-            if(this.valid == true){
+            break; 
+          case 'valid': 
+            if(this.valid === true){
               this.text = '';
             }
-          }
-          }
+            break; 
         }
       }
     }
   }
 
-  getTextInputValue(event:string) {
+  getTextInputValue(event: string) {
     this.text = event;
     console.log('Textarea: ' + this.text)
   }
 
-  sendCommandTipped(event:any) {
+  sendCommandTipped(event: any) {
     if(this.text.length > 2){
       const caseStdoutFalseArray = ['cd ', 'CD ','mkdir ','MKDIR ', 'cp ', 'CP ' ];
       if(caseStdoutFalseArray.includes(this.text.substring(0, 3))){
         this.commandInfo = {
           command: this.text,
-          stdout: false,        
+          stdout: false,
         };
       }
       this.commandInfo = {
@@ -75,17 +74,15 @@ export class CommandDetailsComponent implements OnInit, OnChanges {
         },
         err => {
         console.error('command Post err: ' +  err);
-      });
-      
-    this.serviceGetCommands(this.project.project_id);
+      }); 
+      this.serviceGetCommands(this.project.project_id);
     }
   }
-  serviceGetCommands(id:number) {
+  serviceGetCommands(id: number) {
     this.commandeService.MicroserviceRest_CommandGET(this.project.project_id)
     .subscribe(
       commands => {
-        this.historiqueCommands =[...commands];
-        
+        this.historiqueCommands = [...commands];
         console.log('Histo commands: ' +  this.historiqueCommands);
       },
       err => {

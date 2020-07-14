@@ -33,7 +33,7 @@ const routes: Routes = [{
 }, {
   path: 'commands',
   component: ProjectcommandContainer 
-},
+}
 ];
 
 
