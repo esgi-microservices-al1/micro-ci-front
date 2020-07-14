@@ -26,4 +26,7 @@ export class HeaderComponent implements OnInit {
   statusRoute() {
     this.router.navigate(['/status']);
   }
+  projectRoute() {
+    this.router.navigate(['/project']);
+  }
 }
