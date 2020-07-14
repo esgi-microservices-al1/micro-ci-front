@@ -115,7 +115,7 @@ export class CreateSchedulerComponent implements OnInit {
     if ( this.project != null)  {
       this.scheduleToUpdate = schedule;
       this.scheduleForm.controls.schedulerName.setValue(schedule.name);
-      this.scheduleForm.controls.projectName.setValue(schedule.project);
+      this.scheduleForm.controls.projectName.setValue(this.project.label);
       this.scheduleForm.controls.branchName.setValue(schedule.branch);
       this.scheduleForm.controls.frequencyUnit.setValue(schedule.interval.unity);
       this.scheduleForm.controls.frequency.setValue(schedule.interval.frequency);
