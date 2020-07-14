@@ -68,10 +68,6 @@ export class CreateSchedulerComponent implements OnInit {
     console.log(this.project.label);
   }
 
-  compareFunction(o1: any, o2: any) {
-    return (o1.name === o2.name && o1.id === o2.id);
-  }
-
   setDisableForm(): void {
     this.scheduleToUpdate = null;
   }
