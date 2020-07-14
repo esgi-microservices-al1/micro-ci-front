@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'ci-liste-platform',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./liste-platform.component.scss']
 })
 export class ListePlatformComponent implements OnInit {
-  checked = false;
-  indeterminate = false;
-  labelPosition: 'before' |'mid' |'after' = 'after';
-  disabled = false;
+
+
+  checked: boolean;
+  @Output() changed = new EventEmitter<boolean>();
   constructor() { }
   // ngOnInit () {  }
 
@@ -18,13 +19,11 @@ export class ListePlatformComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  appliquer() {
 
-  }
 
-  arreter() {
-
-  }
 }
 
+export class AppComponent  {
+
+}
 

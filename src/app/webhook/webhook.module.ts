@@ -6,6 +6,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {SharedModule} from '../shared';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -15,8 +18,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     SharedModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    BrowserModule,
+    FormsModule
 
   ]
+
 })
 export class WebhookModule { }
