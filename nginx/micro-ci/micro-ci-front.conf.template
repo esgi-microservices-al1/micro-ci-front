@@ -7,6 +7,7 @@ server {
   include           micro-ci/security-headers.conf;
   include           micro-ci/gzip-compression.conf;
 
+  include  micro-ci/micro-ci-runner.conf;
   include  micro-ci/micro-ci-scheduler.conf;
 
   location / {

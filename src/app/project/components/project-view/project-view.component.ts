@@ -9,7 +9,15 @@ import { Project } from '../../model/project.model';
   styleUrls: ['./project-view.component.scss']
 })
 export class ProjectViewComponent implements OnInit {
-  project: Project;
+  project: Project = {
+    _id: '5f09a2e88158385ce934900b',
+    label: 'Project 1',
+    access_token: 'fezfgzr',
+    branches: ['master', 'develop', 'demo'] as Array<string>,
+    enable: true,
+    git_host: 'Github',
+    git_url: 'vfs,mbv,rmbrôbgr'
+  } as Project;
 
   branchesTableHeader = ['branches'];
 

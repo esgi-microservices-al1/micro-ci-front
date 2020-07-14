@@ -23,4 +23,7 @@ export class HeaderComponent implements OnInit {
 
     this.router.navigate(['/']);
   }
+  statusRoute() {
+    this.router.navigate(['/status']);
+  }
 }
