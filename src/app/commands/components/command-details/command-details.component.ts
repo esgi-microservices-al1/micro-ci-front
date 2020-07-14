@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, Output, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { Project, Command, Commands, Status } from '../../model/commande.model';
+import { Component, OnInit, Input, Output, OnChanges, OnDestroy, SimpleChange, SimpleChanges } from '@angular/core';
+import { Router, NavigationEnd} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Project, Command, Commands } from '../../model/commande.model';
 import { CommandService } from '../../services/command.service';
 import { EventEmitter } from 'protractor';
 
@@ -8,21 +10,30 @@ import { EventEmitter } from 'protractor';
   templateUrl: './command-details.component.html',
   styleUrls: ['./command-details.component.scss']
 })
-export class CommandDetailsComponent implements OnInit, OnChanges{
+export class CommandDetailsComponent implements OnInit, OnChanges, OnDestroy{
 
   @Input() project: Project;
 
   historiqueCommands:Commands[];
-
   text: string;
   commandInfo:Command;
-  status:boolean;
+  refresh:boolean;
+  valid:boolean;
+  //commandList:Command[];
 
-  constructor(private commandeService: CommandService){
+  //commandForm:FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private commandeService: CommandService){
   }
     
   ngOnInit(){ 
     this.text ="";
+    this.valid = false;
+  }
+  ngOnDestroy(){ 
+    if(this.valid == true){
+      this.text = "";
+    }
   }
 
   ngOnChanges(changes:SimpleChanges){
@@ -50,43 +61,38 @@ export class CommandDetailsComponent implements OnInit, OnChanges{
         this.commandInfo = {
           command: this.text,
           stdout: false,        
-          //projectid: this.project.project_id
         };
       }
       this.commandInfo = {
           command: this.text,
-          stdout: true,        
-          //projectid: this.project.project_id
+          stdout: true
         };
       console.log("Project: "+this.project.project_id +" "+ this.project);
       console.log("Commande: for"+this.project.project_id  + " is " + this.commandInfo.command);
       this.commandeService.MicroserviceRest_CommandPOST(this.commandInfo, this.project.project_id)
       .subscribe(
+        data =>{
+          this.valid = true;
+        },
         err => {
-        if(err == null){
-          this.text = "";
-        }
-          console.error("command Post err: " +  err)
-        }
-
-      );
+        console.error("command Post err: " +  err);
+      });
+      
+    this.serviceGetCommands(this.project.project_id);
     }
   }
   serviceGetCommands(id:number){
     this.commandeService.MicroserviceRest_CommandGET(this.project.project_id)
     .subscribe(
-      c => {
-        this.historiqueCommands =[...c];
-        c.forEach(e=> {
-           console.log("histo commands Get: (project: "+e.process_id +") ");
-           console.log("histo commands Get: (commandes: "+e.commands +") ");
-           console.log("histo commands Get: (create_date: "+e.project +") ");
-        });
-       // console.log("histo commands Get: (project: "+ this.project.project_id +") " + c.commands) 
+      commands => {
+        this.historiqueCommands =[...commands];
+        
+        console.log("Histo commands: " +  this.historiqueCommands);
       },
-      err => console.error("Project Get err: " +  err)
+      err => {
+        console.error("Project Get err: " +  err);
+      }
     );
-      console.log("Histo commands: " +  this.historiqueCommands);
   }
 
 }

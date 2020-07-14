@@ -24,6 +24,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
   commandsRoute(){
-    this.router.navigate(['/commands'])
+    this.router.navigate(['/commands']);
   }
 }

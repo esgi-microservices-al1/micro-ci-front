@@ -12,7 +12,6 @@ const routes: Routes = [
   {
   path: '',
   component: UsersContainer
-
   }, {
     path: 'notifications',
     component: NotificationsContainer
