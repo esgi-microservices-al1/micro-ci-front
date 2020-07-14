@@ -7,7 +7,8 @@ import { Project } from '../model/project.model';
 })
 export class ProjectService {
 
-  private apiUrl = 'http://localhost:3001/project';
+  private apiUrl = '/projects-service/project';
+  // private apiUrl = 'http://micro-ci.westus2.cloudapp.azure.com:40501/al1.projects-ci/project';
 
   constructor(private http: HttpClient) { }
 
