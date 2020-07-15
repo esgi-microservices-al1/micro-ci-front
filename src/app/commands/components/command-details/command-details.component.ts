@@ -28,6 +28,7 @@ export class CommandDetailsComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.text = '';
     this.valid = false;
+    this.project = null;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -35,7 +36,9 @@ export class CommandDetailsComponent implements OnInit, OnChanges {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'project':
+            if (this.valid === true) {
             this.serviceGetCommands(this.project.project_id);
+            }
             break;
           case 'valid':
             if (this.valid === true) {
