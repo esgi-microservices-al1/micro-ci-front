@@ -8,9 +8,9 @@ import { catchError } from 'rxjs/internal/operators/catchError';
   providedIn: 'root'
 })
 export class CommandService {
-  basurl = '/commands-service';
+  API_URL = '/commands-service';
   headers = {
-    headers: new HttpHeaders({
+    httpOptions: new HttpHeaders({
       'Cache-Control' : 'no-cache',
       'Content-Type': 'application/json'
     })
@@ -22,7 +22,7 @@ export class CommandService {
   }
 
   MicroserviceRest_ProjectsGET(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.basurl + '/api/v1/projects/');
+    return this.http.get<Project[]>(this.API_URL + '/api/v1/projects', httpOptions);
   }
 
   MicroserviceRest_CommandPOST(command: Command, projectId: number): Observable<Commands> {
@@ -36,11 +36,11 @@ export class CommandService {
       commands: mycommands,
       project: myproject
     };
-    return this.http.post<Commands>( this.basurl + '/api/v1/commands/add', commmandPost, this.headers);
+    return this.http.post<Commands>( this.API_URL + '/api/v1/commands/add', commmandPost, this.httpOptions);
   }
 
   MicroserviceRest_CommandGET(projectid: number): Observable<Commands[]> {
-    return this.http.get<Commands[]>( this.basurl + '/api/v1/commands/filter?id=' + projectid, this.headers);
+    return this.http.get<Commands[]>( this.API_URL + '/api/v1/commands/filter?id=' + projectid, this.httpOptions);
   }
 
 }
