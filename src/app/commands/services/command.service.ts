@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/internal/operators/catchError';
   providedIn: 'root'
 })
 export class CommandService {
-  API_URL = 'https://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci';
+  API_URL = '/commands-service';
   httpOptions = {
     headers: new HttpHeaders({
       'Cache-Control' : 'no-cache',
@@ -36,11 +36,11 @@ export class CommandService {
       commands: mycommands,
       project: myproject
     };
-    return this.http.post<Commands>( this.API_URL + '/api/v1/commands/add', commmandPost, this.httpOptions);
+    return this.http.post<Commands>( this.API_URL + '/al1.commands-ci/api/v1/commands/add', commmandPost, this.httpOptions);
   }
 
   MicroserviceRest_CommandGET(projectid: number): Observable<Commands[]> {
-    return this.http.get<Commands[]>( this.API_URL + '/api/v1/commands/filter?id=' + projectid, this.httpOptions);
+    return this.http.get<Commands[]>( this.API_URL + '/al1.commands-ci/api/v1/commands/filter?id=' + projectid, this.httpOptions);
   }
 
 }
