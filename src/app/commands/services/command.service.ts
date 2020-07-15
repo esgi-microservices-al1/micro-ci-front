@@ -22,7 +22,7 @@ export class CommandService {
   }
 
   MicroserviceRest_ProjectsGET(): Observable<Project[]> {
-    return this.http.get<Project[]>(API_URL + 'api/v1/projects');
+    return this.http.get<Project[]>(API_URL + '/api/v1/projects');
   }
 
   MicroserviceRest_CommandPOST(command: Command, projectId: number): Observable<Commands> {
