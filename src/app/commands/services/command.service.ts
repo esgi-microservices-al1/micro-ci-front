@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/internal/operators/catchError';
   providedIn: 'root'
 })
 export class CommandService {
-  API_URL = 'http://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci';
+  API_URL = 'https://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci';
   httpOptions = {
     headers: new HttpHeaders({
       'Cache-Control' : 'no-cache',
