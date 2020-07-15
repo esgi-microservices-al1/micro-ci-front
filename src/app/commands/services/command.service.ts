@@ -9,8 +9,8 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 })
 export class CommandService {
   API_URL = '/commands-service';
-  headers = {
-    httpOptions: new HttpHeaders({
+  httpOptions = {
+    headers: new HttpHeaders({
       'Cache-Control' : 'no-cache',
       'Content-Type': 'application/json'
     })
