@@ -8,20 +8,21 @@ import { catchError } from 'rxjs/internal/operators/catchError';
   providedIn: 'root'
 })
 export class CommandService {
-  headers = {
+  API_URL = '/commands-service';
+  httpOptions = {
     headers: new HttpHeaders({
+      'Cache-Control' : 'no-cache',
       'Content-Type': 'application/json'
     })
   };
-  basurl: string;
 
   constructor(private http: HttpClient) {
     // this.basurl = "http://localhost:8080";
-    this.basurl = 'http://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci';
+    // this.basurl = 'http://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci';
   }
 
   MicroserviceRest_ProjectsGET(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.basurl + '/api/v1/projects/');
+    return this.http.get<Project[]>(this.API_URL + '/api/v1/projects', this.httpOptions);
   }
 
   MicroserviceRest_CommandPOST(command: Command, projectId: number): Observable<Commands> {
@@ -35,11 +36,11 @@ export class CommandService {
       commands: mycommands,
       project: myproject
     };
-    return this.http.post<Commands>( this.basurl + '/api/v1/commands/add', commmandPost, this.headers);
+    return this.http.post<Commands>( this.API_URL + '/api/v1/commands/add', commmandPost, this.httpOptions);
   }
 
   MicroserviceRest_CommandGET(projectid: number): Observable<Commands[]> {
-    return this.http.get<Commands[]>( this.basurl + '/api/v1/commands/filter?id=' + projectid, this.headers);
+    return this.http.get<Commands[]>( this.API_URL + '/api/v1/commands/filter?id=' + projectid, this.httpOptions);
   }
 
 }
