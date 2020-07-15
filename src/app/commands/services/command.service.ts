@@ -18,7 +18,7 @@ export class CommandService {
 
   constructor(private http: HttpClient) {
     // this.basurl = "http://localhost:8080";
-    //this.basurl = 'http://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci';
+    // this.basurl = 'http://micro-ci.westus2.cloudapp.azure.com:40501/al1.commands-ci';
   }
 
   MicroserviceRest_ProjectsGET(): Observable<Project[]> {
