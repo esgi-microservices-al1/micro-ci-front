@@ -9,6 +9,7 @@ server {
 
   include  micro-ci/micro-ci-runner.conf;
   include  micro-ci/micro-ci-scheduler.conf;
+  include  micro-ci/micro-ci-commands.conf;
 
   location / {
     index           index.html;
